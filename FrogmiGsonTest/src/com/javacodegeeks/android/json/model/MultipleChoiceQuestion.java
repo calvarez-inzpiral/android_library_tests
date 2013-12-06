@@ -4,19 +4,13 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-public class MultipleChoiceQuestion {
-
-	@SerializedName("original_code")
-	public int mOriginalCode;
+public class MultipleChoiceQuestion extends FrogmiActivity {
 	
 	@SerializedName("question")
 	public String mQuestion;
 	
 	@SerializedName("multiple")
 	public int mMultiple;
-	
-	@SerializedName("node_order")
-	public int mNodeOrder;
 	
 	@SerializedName("alternatives")
 	public List<Alternative> mAlternatives;
