@@ -1,5 +1,8 @@
 package com.javacodegeeks.android.json;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -13,10 +16,12 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.acid.frogmi.FrogmiAndroidActivity;
 import com.google.gson.Gson;
 import com.javacodegeeks.android.json.model.BaseNode;
 import com.javacodegeeks.android.json.model.Evaluation;
@@ -26,14 +31,16 @@ import com.javacodegeeks.android.json.model.PresentationNode;
 
 public class JsonParsingActivity extends Activity {
 	
-	String url = "http://www.frogmi.com/api/presentationAsJson?id=864";
 	
+	String url = "http://www.frogmi.com/api/presentationAsJson?id=864";
+	String filename = "archivojson.txt";
+	private JsonParsingActivity self;
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        
+        self = this ;
         InputStream source = retrieveStream(url);
         
         Gson gson = new Gson();
@@ -41,6 +48,26 @@ public class JsonParsingActivity extends Activity {
         Reader reader = new InputStreamReader(source);
         
         Evaluation evaluation = gson.fromJson(reader, Evaluation.class);
+        
+        //persistencia en txt
+       
+
+        String s = gson.toJson(evaluation);
+
+        FileOutputStream outputStream;
+
+        try {
+          outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+          outputStream.write(s.getBytes());
+          outputStream.close();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+        
+        
+        //carga los datos desde el txt
+        readBack(this);
+        
         
         Toast.makeText(this, evaluation.mName, Toast.LENGTH_SHORT).show();
         
@@ -50,6 +77,25 @@ public class JsonParsingActivity extends Activity {
         	Toast.makeText(this, result.mCode, Toast.LENGTH_SHORT).show();
 		}
         
+    }
+    
+    
+    
+    private void readBack(Context c){
+    	
+    	 FileInputStream fis = c.openFileInput("archivojson.txt");
+    	 InputStreamReader isr = new InputStreamReader(fis);
+    	 BufferedReader bufferedReader = new BufferedReader(isr);
+    	 StringBuilder sb = new StringBuilder();
+    	 String line;
+    	 while ((line = bufferedReader.readLine()) != null) {
+    	     sb.append(line);
+    	 }
+
+    	 String json = sb.toString();
+    	 Gson gson = new Gson();
+    	 Evaluation evaluation= gson.fromJson(json, Evaluation.class);
+    	
     }
     
     private InputStream retrieveStream(String url) {
