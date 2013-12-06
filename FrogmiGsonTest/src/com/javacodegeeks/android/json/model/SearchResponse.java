@@ -9,7 +9,7 @@ public class SearchResponse {
 	public List<Result> results;
 	
 	@SerializedName("max_id")
-	public long maxId;
+	public long node;
 	
 	@SerializedName("since_id")
 	public int sinceId;
@@ -35,5 +35,8 @@ public class SearchResponse {
 	public String maxIdStr;
 	
 	public String query;
+	
+	
+	
 	
 }
