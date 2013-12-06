@@ -5,16 +5,7 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class MultipleChoiceQuestion {
-	
-	@SerializedName("node")
-	public String mNode;
-	
-	@SerializedName("required")
-	public boolean mRequired;
-	
-	@SerializedName("code")
-	public String mCode;
-	
+
 	@SerializedName("original_code")
 	public int mOriginalCode;
 	
