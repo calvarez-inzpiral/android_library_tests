@@ -5,8 +5,6 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class Comment {
-
-	public List<Result> comment;
 	
 	@SerializedName("node")
 	public String mNode;

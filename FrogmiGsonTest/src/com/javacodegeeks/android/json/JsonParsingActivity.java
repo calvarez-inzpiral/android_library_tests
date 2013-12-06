@@ -18,6 +18,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.javacodegeeks.android.json.model.Evaluation;
 import com.javacodegeeks.android.json.model.Node;
 import com.javacodegeeks.android.json.model.Question;
 import com.javacodegeeks.android.json.model.PresentationNode;
@@ -38,7 +39,7 @@ public class JsonParsingActivity extends Activity {
         
         Reader reader = new InputStreamReader(source);
         
-        PresentationNode evaluation = gson.fromJson(reader, PresentationNode.class);
+        Evaluation evaluation = gson.fromJson(reader, Evaluation.class);
         
         Toast.makeText(this, evaluation.mName, Toast.LENGTH_SHORT).show();
         

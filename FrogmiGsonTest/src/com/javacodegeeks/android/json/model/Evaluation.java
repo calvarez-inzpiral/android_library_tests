@@ -6,9 +6,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Evaluation {
 	
-
-	public List<Result> evaluation;
-	
 	@SerializedName("node")
 	public String mNode;
 	
@@ -16,17 +13,9 @@ public class Evaluation {
 	public String mName;
 	
 	@SerializedName("code")
-	public int mCcode;
+	public int mCode;
 	
 	@SerializedName("children")
-	public List<Result> mChildern;
+	public List<Node> mChildren;
 	
-	
-	
-//	"node":"Frogmi::Evaluation",
-//	"name":"SMU P.P Chequeo de Cajas Unimarc 2.0",
-//	"code":"864",
-//	"children":[
-	
-
 }

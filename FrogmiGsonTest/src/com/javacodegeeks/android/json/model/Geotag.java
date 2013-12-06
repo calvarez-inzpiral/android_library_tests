@@ -11,8 +11,6 @@ public class Geotag {
 //	"original_code":"14956",
 //	"node_order":2
 	
-	public List<Result> geotag;
-	
 	@SerializedName("node")
 	public String mNode;
 	

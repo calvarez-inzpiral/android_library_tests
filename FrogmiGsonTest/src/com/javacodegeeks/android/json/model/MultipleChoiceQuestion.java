@@ -14,8 +14,6 @@ public class MultipleChoiceQuestion {
 //	"multiple":"0",
 //	"node_order":21
 	
-	public List<Result> multipleChoiceQuestion;
-	
 	@SerializedName("node")
 	public String mNode;
 	
