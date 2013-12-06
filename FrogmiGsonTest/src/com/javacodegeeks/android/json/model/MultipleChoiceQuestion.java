@@ -5,14 +5,6 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class MultipleChoiceQuestion {
-
-//	"node":"Frogmi::Activities::Manual::MultipleChoiceQuestion",
-//	"required":true,
-//	"code":"864-14965",
-//	"original_code":"14965",
-//	"question":"Existen egresos de fechas anteriores a la ultima rendicion de gastos",
-//	"multiple":"0",
-//	"node_order":21
 	
 	@SerializedName("node")
 	public String mNode;
@@ -34,4 +26,8 @@ public class MultipleChoiceQuestion {
 	
 	@SerializedName("node_order")
 	public int mNodeOrder;
+	
+	@SerializedName("alternatives")
+	public List<Alternative> mAlternatives;
+	
 }

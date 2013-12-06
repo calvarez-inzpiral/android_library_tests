@@ -22,6 +22,6 @@ public class PresentationNode {
 	public int mNodeOrder;
 
 	@SerializedName("children")
-	public List<Node> mChildren;
+	public List<BaseNode> mChildren;
 	
 }

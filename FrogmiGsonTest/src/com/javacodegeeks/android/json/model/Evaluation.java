@@ -16,6 +16,6 @@ public class Evaluation {
 	public int mCode;
 	
 	@SerializedName("children")
-	public List<Node> mChildren;
+	public List<BaseNode> mChildren;
 	
 }
