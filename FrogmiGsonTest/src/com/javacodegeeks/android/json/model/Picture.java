@@ -3,22 +3,14 @@ package com.javacodegeeks.android.json.model;
 import com.google.gson.annotations.SerializedName;
 
 public class Picture {
-	
-	@SerializedName("node")
-	public String mNode;
+
 	
 	@SerializedName("question")
 	public String mQuestion;
 	
 	@SerializedName("value")
 	public String mValue;
-	
-	@SerializedName("required")
-	public boolean mRequired;
-	
-	@SerializedName("code")
-	public String mCode;
-	
+
 	@SerializedName("quality")
 	public int mQuality;
 	

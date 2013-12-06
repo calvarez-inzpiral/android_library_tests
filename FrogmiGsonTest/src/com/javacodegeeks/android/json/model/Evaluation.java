@@ -6,15 +6,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class Evaluation {
 	
+	
 	@SerializedName("node")
 	public String mNode;
 	
 	@SerializedName("name")
 	public String mName;
 	
-	@SerializedName("code")
-	public int mCode;
 	
+	@SerializedName("code")
+	public String mCode;
+
 	@SerializedName("children")
 	public List<BaseNode> mChildren;
 	
