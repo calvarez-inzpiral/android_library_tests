@@ -23,7 +23,7 @@ import com.javacodegeeks.android.json.model.SearchResponse;
 
 public class JsonParsingActivity extends Activity {
 	
-	String url = "http://10.0.1.13/test/twitter_search.json";
+	String url = "http://www.frogmi.com/api/presentationAsJson?id=864";
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {

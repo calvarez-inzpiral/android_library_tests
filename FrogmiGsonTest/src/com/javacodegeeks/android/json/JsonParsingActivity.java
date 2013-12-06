@@ -18,12 +18,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.javacodegeeks.android.json.model.Result;
-import com.javacodegeeks.android.json.model.SearchResponse;
+import com.javacodegeeks.android.json.model.Node;
+import com.javacodegeeks.android.json.model.Question;
+import com.javacodegeeks.android.json.model.PresentationNode;
 
 public class JsonParsingActivity extends Activity {
 	
-	String url = "http://10.0.1.13/test/twitter_search.json";
+	String url = "http://www.frogmi.com/api/presentationAsJson?id=864";
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,14 +38,14 @@ public class JsonParsingActivity extends Activity {
         
         Reader reader = new InputStreamReader(source);
         
-        SearchResponse response = gson.fromJson(reader, SearchResponse.class);
+        PresentationNode evaluation = gson.fromJson(reader, PresentationNode.class);
         
-        Toast.makeText(this, response.query, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, evaluation.mName, Toast.LENGTH_SHORT).show();
         
-        List<Result> results = response.results;
+        List<Node> results = evaluation.mChildren;
         
-        for (Result result : results) {
-        	Toast.makeText(this, result.fromUser, Toast.LENGTH_SHORT).show();
+        for (Node result : results) {
+        	Toast.makeText(this, result.mCode, Toast.LENGTH_SHORT).show();
 		}
         
     }
