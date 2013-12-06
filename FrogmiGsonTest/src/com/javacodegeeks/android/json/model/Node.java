@@ -2,9 +2,9 @@ package com.javacodegeeks.android.json.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Metadata {
+public class Node {
 	
-	@SerializedName("result_type")
-	public String resultType;
+	@SerializedName("code")
+	public String mCode;
 
 }
