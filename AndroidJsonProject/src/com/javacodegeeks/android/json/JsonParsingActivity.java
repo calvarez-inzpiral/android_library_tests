@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+
 import com.google.gson.Gson;
 import com.javacodegeeks.android.json.model.Result;
 import com.javacodegeeks.android.json.model.SearchResponse;
