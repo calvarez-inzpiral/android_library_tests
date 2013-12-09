@@ -10,22 +10,36 @@ Mejorar la eficiencia de la obtención de información codificada en JSON y pers
 Proceso 864: "SMU P.P Chequeo de Cajas Unimarc 2.0"
 
 ## Resultados
-
+<TODO> Los algoritmos producen el mismo resultado </TODO>
+El tiempo que se tomó cada uno fue:
+<table>
+    <tr>
+        <td> </td>
+        <td>FrogmiGsonTest</td>
+        <td>FrogmiTaskManager</td>
+    </tr>
+    <tr>
+        <td>Tiempo</td>
+        <td>666</td>
+        <td>123</td>
+    </tr>
+</table>
 
 ##Cómo probar
 
-###Desde el proyecto [FrogmiGsontest](https://github.com/calvarez-inzpiral/android_library_tests/tree/master/FrogmiGsonTest)
-
+###Desde el proyecto [FrogmiGsonTest](https://github.com/calvarez-inzpiral/android_library_tests/tree/master/FrogmiGsonTest)
 Éste es el proyecto de test de GSON. Los pasos a seguir son:
-1. Conectarse directamente a la API: [presentationAsJson 864](http://www.frogmi.com/api/presentationAsJson?id=864)
-2. Se mostrará en pantalla el tiempo que se tarda en parsear el JSON
+1.	Conectarse directamente a la API: [presentationAsJson 864](http://www.frogmi.com/api/presentationAsJson?id=864)
+2.	Se mostrará en pantalla el tiempo que se tarda en parsear el JSON
 
 ###Desde el proyecto [FrogmiTaskManager](https://github.com/inzpiral/frogmi_taskmanager_android/tree/master/Frogmi2)
-
 Éste es el proyecto oficial de Task Manager, el cual utiliza el Framework mobile de inzpiral. Los pasos a seguir son:
-1. Cambiar la API donde se conecta para descargar tareas ubicada en:
+1.	Cambiar la API donde se conecta para descargar tareas ubicada en:
 		Archivo: TaskManager/src/com/inzpiral/frogmi/taskmanager/views/MainScreenGroup.java
 		Método: "MainScreenGroup(Context context)" (Constructor)
 		Variable: mURL
-2. Cambiar variable anterior por: [tarea_proceso_864.json](http://github.com/calvarez-inzpiral/android_library_tests/raw/master/FrogmiGsonTest/tarea_proceso_864.json)
-3. Ejecutar taskmanager y presionar el botón de descarga. En el logcat de android se mostrará el tiempo que se tardó en parsear el JSON con el Framework
+2.	Cambiar variable anterior por: [tarea_proceso_864.json](http://github.com/calvarez-inzpiral/android_library_tests/raw/master/FrogmiGsonTest/tarea_proceso_864.json)
+3.	Ejecutar taskmanager y presionar el botón de descarga. En el logcat de android se mostrará el tiempo que se tardó en parsear el JSON con el Framework
+
+###Probar si los objetos en memoria son iguales
+TODO
