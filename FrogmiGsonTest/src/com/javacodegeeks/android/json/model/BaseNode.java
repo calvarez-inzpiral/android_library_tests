@@ -3,7 +3,7 @@ package com.javacodegeeks.android.json.model;
 import com.google.gson.annotations.SerializedName;
 
 public class BaseNode {
-	
+
 	@SerializedName("node")
 	public String mNode;
 	

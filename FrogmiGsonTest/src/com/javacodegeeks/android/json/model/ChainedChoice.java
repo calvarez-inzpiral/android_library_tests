@@ -5,7 +5,7 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class ChainedChoice extends FrogmiActivity {
-	
+
 	@SerializedName("question")
 	public String mQuestion;
 	
