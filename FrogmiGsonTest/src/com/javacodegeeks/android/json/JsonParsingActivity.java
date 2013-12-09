@@ -73,7 +73,7 @@ public class JsonParsingActivity extends Activity {
             	evaluation = gson.fromJson(reader, Evaluation.class);
             	
 				cal = Calendar.getInstance();
-				System.out.println("Parsing time:" + (cal.getTimeInMillis() - init));
+				System.out.println("Parsing time: " + (cal.getTimeInMillis() - init));
 				init = cal.getTimeInMillis();
             	
 //		        System.out.println(evaluation.mName);
