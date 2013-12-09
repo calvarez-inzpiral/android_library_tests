@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.lang.reflect.Type;
 import java.util.List;
+
+import javax.security.auth.Destroyable;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -18,11 +21,19 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
 import com.javacodegeeks.android.json.model.BaseNode;
 import com.javacodegeeks.android.json.model.Evaluation;
 import com.javacodegeeks.android.json.model.Node;
 import com.javacodegeeks.android.json.model.Question;
 import com.javacodegeeks.android.json.model.PresentationNode;
+import com.javacodegeeks.android.json.model.Repetition;
+import com.javacodegeeks.android.json.utils.Utils;
 
 public class JsonParsingActivity extends Activity {
 	
@@ -35,22 +46,46 @@ public class JsonParsingActivity extends Activity {
         setContentView(R.layout.main);
         
         InputStream source = retrieveStream(url);
+
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(BaseNode.class, new MyDeserializer());
         
-        Gson gson = new Gson();
+        final Gson gson = builder.create();
+        //        Gson gson = new Gson();
         
-        Reader reader = new InputStreamReader(source);
+        final Reader reader = new InputStreamReader(source);
         
-        Evaluation evaluation = gson.fromJson(reader, Evaluation.class);
-        
-        Toast.makeText(this, evaluation.mName, Toast.LENGTH_SHORT).show();
-        
-        List<BaseNode> results = evaluation.mChildren;
-        
-        for (BaseNode result : results) {
-        	Toast.makeText(this, result.mCode, Toast.LENGTH_SHORT).show();
-		}
+        Thread t = new Thread(null, new Runnable() {
+            @Override
+            public void run() {
+            	Evaluation evaluation = gson.fromJson(reader, Evaluation.class);
+		        System.out.println(evaluation.mName);
+		        
+		        List<? extends BaseNode> results = ((PresentationNode)evaluation.mChildren.get(0)).mChildren;
+		        
+		        for (BaseNode result : results) {
+		        	System.out.println(result.mCode);
+		        }
+            }
+        }, "parsing", 1024 * 1024);
+        t.start();
         
     }
+    
+    class MyDeserializer implements JsonDeserializer<BaseNode> {
+
+		@Override
+		public BaseNode deserialize(JsonElement json, Type typeOfT,
+				JsonDeserializationContext context) throws JsonParseException {
+			String node = json.getAsJsonObject().get("node").getAsString();
+			GsonBuilder builder = new GsonBuilder();
+			builder.registerTypeAdapter(BaseNode.class, new MyDeserializer());
+			Gson gson = builder.create();
+			
+			return gson.fromJson(json, Utils.getTypeByTag(node));
+		}
+		
+	}
     
     private InputStream retrieveStream(String url) {
     	
