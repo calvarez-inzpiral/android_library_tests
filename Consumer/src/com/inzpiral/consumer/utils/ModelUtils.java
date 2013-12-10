@@ -1,23 +1,26 @@
-package com.javacodegeeks.android.json.utils;
+package com.inzpiral.consumer.utils;
 
 import java.lang.reflect.Type;
 
-import com.javacodegeeks.android.json.model.ChainedChoice;
-import com.javacodegeeks.android.json.model.Comment;
-import com.javacodegeeks.android.json.model.Decision;
-import com.javacodegeeks.android.json.model.Geotag;
-import com.javacodegeeks.android.json.model.MultipleChoiceQuestion;
-import com.javacodegeeks.android.json.model.Picture;
-import com.javacodegeeks.android.json.model.PresentationNode;
-import com.javacodegeeks.android.json.model.Question;
-import com.javacodegeeks.android.json.model.Repetition;
-import com.javacodegeeks.android.json.model.Timestamp;
+import com.inzpiral.consumer.models.ChainedChoice;
+import com.inzpiral.consumer.models.Comment;
+import com.inzpiral.consumer.models.Decision;
+import com.inzpiral.consumer.models.Geotag;
+import com.inzpiral.consumer.models.MultipleChoiceQuestion;
+import com.inzpiral.consumer.models.Picture;
+import com.inzpiral.consumer.models.PresentationNode;
+import com.inzpiral.consumer.models.Question;
+import com.inzpiral.consumer.models.Repetition;
+import com.inzpiral.consumer.models.Row;
+import com.inzpiral.consumer.models.Section;
+import com.inzpiral.consumer.models.Timestamp;
 
 
-public class Utils {
+public class ModelUtils {
 	
 	public static Type getTypeByTag(String tag) {
-
+		
+		// Nodos Basicos
 		if(tag.equals("Frogmi::Presentation::Node")) {
 	        return PresentationNode.class;
 		}
@@ -28,6 +31,15 @@ public class Utils {
 	        return Decision.class;
 		}
 
+		// Nodos Eespeciales
+		else if(tag.equals("Frogmi::Presentation::Section")) {
+	        return Section.class;
+		}
+		else if(tag.equals("Frogmi::Presentation::Row")) {
+	        return Row.class;
+		}
+		
+		// Hojas
 		else if(tag.equals("Frogmi::Activities::Automatic::Timestamp")) {
 	        return Timestamp.class;
 		}

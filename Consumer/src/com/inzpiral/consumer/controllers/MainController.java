@@ -1,52 +1,79 @@
 package com.inzpiral.consumer.controllers;
 
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.Calendar;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.inzpiral.consumer.controllers.SpinnerController.SpinnerControllerListener;
+import com.inzpiral.consumer.models.BaseNode;
+import com.inzpiral.consumer.models.Evaluation;
+import com.inzpiral.consumer.utils.ConsumerDeserializer;
+import com.inzpiral.consumer.utils.NetworkUtils;
 import com.inzpiral.consumer.views.MainView;
 
 /**
  * LoginController intercepts the on click login button event, verify the inputs 
  *
  */
-public class MainController implements OnItemSelectedListener {
+public class MainController {
 	
-	private MainView mainView;
-	private MainControllerListener listener;
-	private String[] vals = { "here", "are", "some", "values" };
-	private String[] vals2 = { "uno", "dos", "tres" };
+	private MainView mMainView;
+
+	private String mURL = "http://10.0.1.13/test/consumo_masivo.json";
+	private Evaluation mEvaluation;
+	private MainControllerListener mListener;
 
 	public MainController(MainView loginView, MainControllerListener listener) {
-		this.mainView = loginView;
-		this.listener = listener;
-		
-		ArrayAdapter<String> ad = new ArrayAdapter<String>(mainView.getContext(), android.R.layout.simple_dropdown_item_1line, vals);
-		mainView.getCategories().setAdapter(ad);
-		
-		ArrayAdapter<String> ad2 = new ArrayAdapter<String>(mainView.getContext(), android.R.layout.simple_dropdown_item_1line, vals2);
-		mainView.getLocations().setAdapter(ad2);
+		this.mMainView = loginView;
+		this.mListener = listener;
 	}
 
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-		System.out.println("SELECTED: {id:" + id + ", position:" + position + "}");
-		listener.onDoSomething("SELECTED: {id:" + id + ", position:" + position + "}");
+	public Evaluation parseConsumer() {
+		return parseConsumer(mURL);
+	}
+	public Evaluation parseConsumer(String url) {
+		mMainView.enableAll(false);
+		
+		InputStream source = mListener.retrieveStream(url);
+
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(BaseNode.class, new ConsumerDeserializer());
+        
+        final Gson gson = builder.create();
+        
+        final Reader reader = new InputStreamReader(source);
+        
+        Thread t = new Thread(null, new Runnable() {
+            @Override
+            public void run() {
+				Calendar cal = Calendar.getInstance();
+				long init = cal.getTimeInMillis();
+				
+            	mEvaluation = gson.fromJson(reader, Evaluation.class);
+            	
+				cal = Calendar.getInstance();
+				System.out.println("Parsing time: " + (cal.getTimeInMillis() - init));
+				init = cal.getTimeInMillis();
+            }
+        }, "parsing", 1024 * 1024);
+        t.start();
+        
+        try {
+			t.join();
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+
+		mMainView.enableAll(true);
+        return mEvaluation;
 	}
 
-	@Override
-	public void onNothingSelected(AdapterView<?> parent) {
-		System.out.println("NOTHING SELECTED!");
-	}
-	
-	
+	// Interfaces
 	public interface MainControllerListener {
-		/**
-		 * The method is called by Login controller to inform the 
-		 * Login Activity about the successful login
-		 */
-		public void onDoSomething(String msg);
+		public InputStream retrieveStream(String url);
 	}
 
 }
