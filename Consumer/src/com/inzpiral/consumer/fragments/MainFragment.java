@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.inzpiral.consumer.R;
+import com.inzpiral.consumer.activities.HomeActivity;
 import com.inzpiral.consumer.controllers.MainController;
 import com.inzpiral.consumer.controllers.MainController.MainControllerListener;
 import com.inzpiral.consumer.controllers.SpinnerController;
@@ -29,6 +30,10 @@ public class MainFragment extends SherlockFragment implements MainControllerList
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
     	super.onViewCreated(view, savedInstanceState);
+
+		// Obtener evaluacion
+		Evaluation ev = ((HomeActivity) getActivity()).getEvaluation();
+		System.out.println("Desde Main: " + ev.mName);
 		
 		// Activity links the view and the controller
     	MainController mainController = new MainController((MainView) view.findViewById(R.id.main_view), this);
@@ -36,18 +41,6 @@ public class MainFragment extends SherlockFragment implements MainControllerList
 		// Intercept the events of MainView
 //		((MainView) view.findViewById(R.id.main_view)).setListeners(spinnerController);
 		
-		// Ejecutar la consulta
-		Evaluation ev = mainController.parseConsumer();
-		System.out.println(ev.mName);
-	}
-
-	@Override
-	public InputStream retrieveStream(String url) {
-		InputStream asd;
-		
-		asd = NetworkUtils.retrieveStream(url);
-		
-		return asd;
 	}
 
 }

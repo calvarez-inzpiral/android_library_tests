@@ -1,19 +1,18 @@
 package com.inzpiral.consumer.fragments;
 
-import com.actionbarsherlock.app.SherlockFragment;
-import com.inzpiral.consumer.R;
-import com.inzpiral.consumer.controllers.MainController;
-import com.inzpiral.consumer.controllers.SpinnerController;
-import com.inzpiral.consumer.controllers.SpinnerController.SpinnerControllerListener;
-import com.inzpiral.consumer.views.MainView;
-import com.inzpiral.consumer.views.SpinnersView;
-
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.actionbarsherlock.app.SherlockFragment;
+import com.inzpiral.consumer.R;
+import com.inzpiral.consumer.activities.HomeActivity;
+import com.inzpiral.consumer.controllers.SpinnerController;
+import com.inzpiral.consumer.controllers.SpinnerController.SpinnerControllerListener;
+import com.inzpiral.consumer.models.Evaluation;
+import com.inzpiral.consumer.views.SpinnersView;
 
 public class SpinnerFragment extends SherlockFragment implements SpinnerControllerListener {
 
@@ -25,6 +24,10 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
     	super.onViewCreated(view, savedInstanceState);
+
+		// Obtener evaluacion
+		Evaluation ev = ((HomeActivity) getActivity()).getEvaluation();
+		System.out.println("Desde Spinners: " + ev.mName);
 		
 		// Activity links the view and the controller
 		SpinnerController spinnerController = new SpinnerController((SpinnersView) view.findViewById(R.id.spinners_view), this);
