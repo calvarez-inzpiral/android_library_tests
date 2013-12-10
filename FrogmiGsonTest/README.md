@@ -8,7 +8,7 @@ Mejorar la eficiencia de la obtención de información codificada en JSON y pers
 ##Caso de Prueba
 Proceso 864: "SMU P.P Chequeo de Cajas Unimarc 2.0"
 
-## Resultados
+##Resultados
 El tiempo que se tomó cada uno fue:
 <table>
     <tr>
