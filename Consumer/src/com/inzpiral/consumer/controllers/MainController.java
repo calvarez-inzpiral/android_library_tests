@@ -43,7 +43,6 @@ public class MainController {
         builder.registerTypeAdapter(BaseNode.class, new ConsumerDeserializer());
         
         final Gson gson = builder.create();
-        
         final Reader reader = new InputStreamReader(source);
         
         Thread t = new Thread(null, new Runnable() {

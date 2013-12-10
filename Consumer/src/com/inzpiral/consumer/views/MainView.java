@@ -26,8 +26,8 @@ public class MainView extends RelativeLayout{
 	
 	// Llamadas externas
 	public void enableAll(boolean status) {
-		getCategories().setEnabled(status);
-		getLocations().setEnabled(status);
+//		getCategories().setEnabled(status);
+//		getLocations().setEnabled(status);
 		getContent().setEnabled(status);
 		getWaitLooper().setVisibility(status ? View.GONE : View.VISIBLE);
 	}

@@ -6,6 +6,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 
 import com.inzpiral.consumer.views.MainView;
+import com.inzpiral.consumer.views.SpinnersView;
 
 /**
  * LoginController intercepts the on click login button event, verify the inputs 
@@ -13,20 +14,20 @@ import com.inzpiral.consumer.views.MainView;
  */
 public class SpinnerController implements OnItemSelectedListener {
 	
-	private MainView mainView;
+	private SpinnersView mSpinnersView;
 	private SpinnerControllerListener listener;
 	private String[] vals = { "here", "are", "some", "values" };
 	private String[] vals2 = { "uno", "dos", "tres" };
 
-	public SpinnerController(MainView loginView, SpinnerControllerListener listener) {
-		this.mainView = loginView;
+	public SpinnerController(SpinnersView spinnersView, SpinnerControllerListener listener) {
+		this.mSpinnersView = spinnersView;
 		this.listener = listener;
 		
-		ArrayAdapter<String> ad = new ArrayAdapter<String>(mainView.getContext(), android.R.layout.simple_dropdown_item_1line, vals);
-		mainView.getCategories().setAdapter(ad);
+		ArrayAdapter<String> ad = new ArrayAdapter<String>(spinnersView.getContext(), android.R.layout.simple_dropdown_item_1line, vals);
+		mSpinnersView.getCategories().setAdapter(ad);
 		
-		ArrayAdapter<String> ad2 = new ArrayAdapter<String>(mainView.getContext(), android.R.layout.simple_dropdown_item_1line, vals2);
-		mainView.getLocations().setAdapter(ad2);
+		ArrayAdapter<String> ad2 = new ArrayAdapter<String>(spinnersView.getContext(), android.R.layout.simple_dropdown_item_1line, vals2);
+		mSpinnersView.getLocations().setAdapter(ad2);
 	}
 
 	@Override
