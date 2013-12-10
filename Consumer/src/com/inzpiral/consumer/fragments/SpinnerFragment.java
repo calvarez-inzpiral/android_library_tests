@@ -12,8 +12,8 @@ public class SpinnerFragment extends Fragment {
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// Inflate the layout for this fragment
-		View fragmentView = inflater.inflate(R.layout.fragment_main, container, false);
+		// 
+		View fragmentView = inflater.inflate(R.layout.spinners, container, false);
 		return fragmentView;
 		
 	}
