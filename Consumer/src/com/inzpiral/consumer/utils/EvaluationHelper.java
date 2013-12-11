@@ -12,17 +12,96 @@ import com.inzpiral.consumer.models.PresentationNode;
 
 
 public class EvaluationHelper implements Iterable<BaseNode> {
-	
+
 	private Evaluation mEvaluation;
+	
+	private Node mRoot;
+	private Node mLocation;
+	private Node mCategory;
+	private Node mQuestionType;
+	
+	private List<Node> mLocations;
+	private List<Node> mCategories;
+	private List<Node> mQuestionTypes;
 	
 	public EvaluationHelper(Evaluation evaluation) {
 		mEvaluation = evaluation;
 	}
 	
-	public BaseNode getRoot() {
-		return mEvaluation.getChildren().get(0);
+	// Root
+	public Node getRoot() {
+		if(mRoot == null) {
+			mRoot = (Node) mEvaluation.getChildren().get(0);
+		}
+		return mRoot;
 	}
-
+	
+	// Locations
+	public List<Node> getLocations() {
+		for (BaseNode baseNode : getRoot().getChildren()) {
+			mLocations.add((Node) baseNode);
+		}
+		mLocation = mLocations.get(0);
+		
+		return mLocations;
+	}
+	
+	public void setLocation(Node location) {
+		mLocation = location;
+	}
+	
+	// Categories
+	public List<Node> getCategories() {
+		if(mLocation == null) {
+			return new ArrayList<Node>();
+		}
+		
+		for (BaseNode baseNode : mLocation.getChildren()) {
+			mCategories.add((Node) baseNode);
+		}
+		mCategory = mCategories.get(0);
+		
+		return mCategories;
+	}
+	
+	public void setCategory(Node category) {
+		mCategory = category;
+	}
+	
+	// Tipo de pregunta
+	public List<Node> getQuestionTypes() {
+		if(mCategory == null) {
+			return new ArrayList<Node>();
+		}
+		
+		for (BaseNode baseNode : mCategory.getChildren()) {
+			mQuestionTypes.add((Node) baseNode);
+		}
+		mQuestionType = mQuestionTypes.get(0);
+		
+		return mQuestionTypes;
+	}
+	
+	public void setQuestionType(Node questionType) {
+		mQuestionType = questionType;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * 
+	 * Pruebas con Iterator !
+	 * 
+	 */
 	@Override
 	public Iterator<BaseNode> iterator() {
 		try{
