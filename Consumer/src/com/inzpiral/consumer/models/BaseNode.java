@@ -1,7 +1,5 @@
 package com.inzpiral.consumer.models;
 
-import java.util.Iterator;
-
 import com.google.gson.annotations.SerializedName;
 
 public class BaseNode {
