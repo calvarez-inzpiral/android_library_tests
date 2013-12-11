@@ -3,7 +3,6 @@ package com.inzpiral.consumer.activities;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.os.Bundle;
@@ -23,11 +22,9 @@ import com.inzpiral.consumer.fragments.LocationSlideMenu;
 import com.inzpiral.consumer.fragments.SpinnerFragment;
 import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.Evaluation;
-import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.utils.ConsumerDeserializer;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.utils.NetworkUtils;
-
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.viewpagerindicator.PageIndicator;
@@ -168,7 +165,19 @@ public class HomeActivity extends SlidingFragmentActivity {
 		helper.setCurrentLocation(helper.getLocations().get(position));
 		
 		SpinnerFragment spinnersFragment = (SpinnerFragment)getSupportFragmentManager().findFragmentById(R.id.spinners_fragment);
-		spinnersFragment.loadData(helper.getCurrentLocation());
+
+		Fragment newFragment = new SpinnerFragment();
+		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+		Bundle bundle = new Bundle();
+		String[] vals = { "categoria 1", "categoria2" };
+
+		bundle.putStringArray("code",vals );
+		newFragment.setArguments(bundle);
+		transaction.replace(R.id.spinners_fragment, newFragment);
+		transaction.addToBackStack(null);
+
+		// Commit the transaction
+		transaction.commit();
 		
 		new Handler().postDelayed(new Runnable() {
 			public void run() {
@@ -176,6 +185,8 @@ public class HomeActivity extends SlidingFragmentActivity {
 			}
 		}, 50);
 	}	
+	
+
 	
 }
 

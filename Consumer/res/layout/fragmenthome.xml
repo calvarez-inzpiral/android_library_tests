@@ -6,21 +6,36 @@
 
     <!-- acá va el fragments con los spinners -->
 
-    <fragment
-        android:id="@+id/spinners_fragment"
-        android:name="com.inzpiral.consumer.fragments.SpinnerFragment"
-        android:layout_width="fill_parent"
-        android:layout_height="45dip" />
+    <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
-    <!-- tabs -->
-
-    <com.viewpagerindicator.TitlePageIndicator
+        <fragment
+            android:id="@+id/spinners_fragment"
+            android:name="com.inzpiral.consumer.fragments.SpinnerFragment"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+         <com.viewpagerindicator.TitlePageIndicator
         android:id="@+id/indicator"
         style="@style/CustomTitlePageIndicator"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="20dip" />
-<!--         android:layout_below="@+id/spinners_fragment" -->
+        android:padding="20dip" 
+        android:layout_weight="1"/>
+    </LinearLayout>
+
+    <!-- tabs -->
+
+<!--     <com.viewpagerindicator.TitlePageIndicator -->
+<!--         android:id="@+id/indicator" -->
+<!--         style="@style/CustomTitlePageIndicator" -->
+<!--         android:layout_width="fill_parent" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:padding="20dip" /> -->
+    <!-- android:layout_below="@+id/spinners_fragment" -->
+
 
     <!-- vista donde se cargan los fragments -->
 
@@ -29,23 +44,27 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
-<!--         android:layout_below="@+id/indicator"  -->
-    
-	<!-- looper de loading -->
-	
-<!--     <RelativeLayout -->
-<!--         android:layout_width="fill_parent" -->
-<!--         android:layout_height="fill_parent" -->
-<!--         android:gravity="center" > -->
+    <!-- android:layout_below="@+id/indicator" -->
 
-<!--         <ProgressBar -->
-<!--             android:id="@+id/wait" -->
-<!--             style="?android:attr/progressBarStyleLarge" -->
-<!--             android:layout_width="wrap_content" -->
-<!--             android:layout_height="wrap_content" -->
-<!--             android:visibility="gone" -->
-<!--             android:layout_marginBottom="100dp" /> -->
 
-<!--     </RelativeLayout> -->
+    <!-- looper de loading -->
+
+
+    <!-- <RelativeLayout -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="fill_parent" -->
+    <!-- android:gravity="center" > -->
+
+
+    <!-- <ProgressBar -->
+    <!-- android:id="@+id/wait" -->
+    <!-- style="?android:attr/progressBarStyleLarge" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:visibility="gone" -->
+    <!-- android:layout_marginBottom="100dp" /> -->
+
+
+    <!-- </RelativeLayout> -->
 
 </LinearLayout>
