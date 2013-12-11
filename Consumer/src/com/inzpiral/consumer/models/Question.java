@@ -5,6 +5,14 @@ import com.google.gson.annotations.SerializedName;
 public class Question extends FrogmiActivity {
 
 	@SerializedName("question")
-	public String mQuestion;
+	private String mQuestion;
+
+	public String getQuestion() {
+		return mQuestion;
+	}
+
+	public void setQuestion(String mQuestion) {
+		this.mQuestion = mQuestion;
+	}
 	
 }

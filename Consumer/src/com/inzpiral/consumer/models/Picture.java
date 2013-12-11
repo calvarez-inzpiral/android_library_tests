@@ -5,9 +5,25 @@ import com.google.gson.annotations.SerializedName;
 public class Picture extends FrogmiActivity {
 
 	@SerializedName("question")
-	public String mQuestion;
+	private String mQuestion;
 
 	@SerializedName("quality")
-	public int mQuality;
+	private int mQuality;
+
+	public String getQuestion() {
+		return mQuestion;
+	}
+
+	public void setQuestion(String mQuestion) {
+		this.mQuestion = mQuestion;
+	}
+
+	public int getQuality() {
+		return mQuality;
+	}
+
+	public void setQuality(int mQuality) {
+		this.mQuality = mQuality;
+	}
 	
 }

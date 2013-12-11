@@ -5,18 +5,58 @@ import com.google.gson.annotations.SerializedName;
 public class Alternative {
 	
 	@SerializedName("node")
-	public String mNode;
+	private String mNode;
 	
 	@SerializedName("name")
-	public String mName;
+	private String mName;
 	
 	@SerializedName("selection_id")
-	public String mSelectionId;
+	private String mSelectionId;
 	
 	@SerializedName("code")
-	public String mCode;
+	private String mCode;
 	
 	@SerializedName("position")
-	public String mPosition;
+	private String mPosition;
+
+	public String getmNode() {
+		return mNode;
+	}
+
+	public void setNode(String mNode) {
+		this.mNode = mNode;
+	}
+
+	public String getName() {
+		return mName;
+	}
+
+	public void setName(String mName) {
+		this.mName = mName;
+	}
+
+	public String getSelectionId() {
+		return mSelectionId;
+	}
+
+	public void setSelectionId(String mSelectionId) {
+		this.mSelectionId = mSelectionId;
+	}
+
+	public String getCode() {
+		return mCode;
+	}
+
+	public void setCode(String mCode) {
+		this.mCode = mCode;
+	}
+
+	public String getPosition() {
+		return mPosition;
+	}
+
+	public void setPosition(String mPosition) {
+		this.mPosition = mPosition;
+	}
 
 }

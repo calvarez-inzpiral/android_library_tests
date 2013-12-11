@@ -7,12 +7,36 @@ import com.google.gson.annotations.SerializedName;
 public class MultipleChoiceQuestion extends FrogmiActivity {
 
 	@SerializedName("question")
-	public String mQuestion;
+	private String mQuestion;
 	
 	@SerializedName("multiple")
-	public int mMultiple;
+	private int mMultiple;
 	
 	@SerializedName("alternatives")
-	public List<Alternative> mAlternatives;
+	private List<Alternative> mAlternatives;
+
+	public String getQuestion() {
+		return mQuestion;
+	}
+
+	public void setQuestion(String mQuestion) {
+		this.mQuestion = mQuestion;
+	}
+
+	public int getMultiple() {
+		return mMultiple;
+	}
+
+	public void setMultiple(int mMultiple) {
+		this.mMultiple = mMultiple;
+	}
+
+	public List<Alternative> getAlternatives() {
+		return mAlternatives;
+	}
+
+	public void setAlternatives(List<Alternative> mAlternatives) {
+		this.mAlternatives = mAlternatives;
+	}
 	
 }

@@ -6,17 +6,48 @@ import com.google.gson.annotations.SerializedName;
 
 public class Evaluation {
 	
-	
 	@SerializedName("node")
-	public String mNode;
+	private String mNode;
 	
 	@SerializedName("name")
-	public String mName;
+	private String mName;
 	
 	@SerializedName("code")
-	public String mCode;
+	private String mCode;
 
 	@SerializedName("children")
-	public List<? extends BaseNode> mChildren;
+	private List<? extends BaseNode> mChildren;
+
+	public String getNode() {
+		return mNode;
+	}
+
+	public void setNode(String mNode) {
+		this.mNode = mNode;
+	}
+
+	public String getName() {
+		return mName;
+	}
+
+	public void setName(String mName) {
+		this.mName = mName;
+	}
+
+	public String getCode() {
+		return mCode;
+	}
+
+	public void setCode(String mCode) {
+		this.mCode = mCode;
+	}
+
+	public List<? extends BaseNode> getChildren() {
+		return mChildren;
+	}
+
+	public void setChildren(List<? extends BaseNode> mChildren) {
+		this.mChildren = mChildren;
+	}
 	
 }

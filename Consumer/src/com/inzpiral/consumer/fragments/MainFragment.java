@@ -33,7 +33,7 @@ public class MainFragment extends SherlockFragment implements MainControllerList
 
 		// Obtener evaluacion
 		Evaluation ev = ((HomeActivity) getActivity()).getEvaluation();
-		System.out.println("Desde Main: " + ev.mName);
+		System.out.println("Desde Main: " + ev.getName());
 		
 		// Activity links the view and the controller
     	MainController mainController = new MainController((MainView) view.findViewById(R.id.main_view), this);

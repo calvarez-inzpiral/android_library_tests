@@ -27,7 +27,7 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
 
 		// Obtener evaluacion
 		Evaluation ev = ((HomeActivity) getActivity()).getEvaluation();
-		System.out.println("Desde Spinners: " + ev.mName);
+		System.out.println("Desde Spinners: " + ev.getName());
 		
 		// Activity links the view and the controller
 		SpinnerController spinnerController = new SpinnerController((SpinnersView) view.findViewById(R.id.spinners_view), this);
