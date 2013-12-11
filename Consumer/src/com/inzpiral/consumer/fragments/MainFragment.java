@@ -1,24 +1,18 @@
 package com.inzpiral.consumer.fragments;
 
-import java.io.InputStream;
-
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.activities.HomeActivity;
 import com.inzpiral.consumer.controllers.MainController;
 import com.inzpiral.consumer.controllers.MainController.MainControllerListener;
-import com.inzpiral.consumer.controllers.SpinnerController;
-import com.inzpiral.consumer.controllers.SpinnerController.SpinnerControllerListener;
 import com.inzpiral.consumer.models.Evaluation;
-import com.inzpiral.consumer.utils.NetworkUtils;
 import com.inzpiral.consumer.views.MainView;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class MainFragment extends SherlockFragment implements MainControllerListener {
 
@@ -40,7 +34,7 @@ public class MainFragment extends SherlockFragment implements MainControllerList
 		
 		// Intercept the events of MainView
 //		((MainView) view.findViewById(R.id.main_view)).setListeners(spinnerController);
-		
+
 	}
 
 }

@@ -5,7 +5,11 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Calendar;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
+import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
+import android.support.v4.view.ViewPager;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.inzpiral.consumer.R;
@@ -14,32 +18,49 @@ import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.Evaluation;
 import com.inzpiral.consumer.utils.ConsumerDeserializer;
 import com.inzpiral.consumer.utils.NetworkUtils;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
-import android.view.Menu;
-
-public class HomeActivity extends SherlockFragmentActivity {
+public class HomeActivity extends SlidingFragmentActivity {
 	
 	// Manejo de tabs
 	private FragmentAdapter mAdapter;
 	private ViewPager mPager;
 	private PageIndicator mIndicator;
+	protected ListFragment mFrag;
 
 	// Manejo de evaluacion
 	private Evaluation mEvaluation;
 	private String mURL = "http://10.0.1.13/test/consumo_masivo.json";
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.loadEvaluation();
 		setContentView(R.layout.fragmenthome);
 		
+		setBehindContentView(R.layout.menu_frame);
+		if (savedInstanceState == null) {
+			FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
+			mFrag = new com.inzpiral.consumer.fragments.SampleListFragment();
+			t.replace(R.id.menu_frame, mFrag);
+			t.commit();
+		} else {
+			mFrag = (ListFragment)this.getSupportFragmentManager().findFragmentById(R.id.menu_frame);
+		}
+
+		// customize the SlidingMenu
+		SlidingMenu sm = getSlidingMenu();
+		sm.setShadowWidthRes(R.dimen.shadow_width);
+		sm.setShadowDrawable(R.drawable.shadow);
+		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+		sm.setFadeDegree(0.35f);
+		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 		this.loadTabs();
 	}
 

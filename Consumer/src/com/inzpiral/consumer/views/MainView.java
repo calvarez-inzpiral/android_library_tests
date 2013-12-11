@@ -10,7 +10,6 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import com.inzpiral.consumer.R;
-import com.inzpiral.consumer.controllers.MainController.MainControllerListener;
 
 public class MainView extends RelativeLayout{
 
