@@ -3,9 +3,11 @@ package com.inzpiral.consumer.activities;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
@@ -16,9 +18,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.fragments.FragmentAdapter;
+import com.inzpiral.consumer.fragments.LocationSlideMenu;
 import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.Evaluation;
+import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.utils.ConsumerDeserializer;
+import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.utils.NetworkUtils;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -44,10 +49,15 @@ public class HomeActivity extends SlidingFragmentActivity {
 		this.loadEvaluation();
 		setContentView(R.layout.fragmenthome);
 		
+		this.loadSlideBar(savedInstanceState);
+		this.loadTabs();
+	}
+
+	private void loadSlideBar(Bundle savedInstanceState) {
 		setBehindContentView(R.layout.menu_frame);
 		if (savedInstanceState == null) {
 			FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
-			mFrag = new com.inzpiral.consumer.fragments.SampleListFragment();
+			mFrag = new LocationSlideMenu();
 			t.replace(R.id.menu_frame, mFrag);
 			t.commit();
 		} else {
@@ -65,14 +75,6 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-		this.loadTabs();
-		
-	}
-
-
-	@Override
-	public void onBackPressed(){
-		moveTaskToBack(true);
 	}
 
 	private void loadTabs(){
@@ -123,6 +125,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 	public Evaluation getEvaluation() {
 		return mEvaluation;
 	}
+	
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
@@ -134,9 +137,25 @@ public class HomeActivity extends SlidingFragmentActivity {
 	}
 
 	@Override
+	public void onBackPressed(){
+		moveTaskToBack(true);
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getSupportMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	@Override
+	public void onPostCreate(Bundle savedInstanceState) {
+	    super.onPostCreate(savedInstanceState);
+	    new Handler().postDelayed(new Runnable() {
+	        @Override
+	        public void run() {
+	            toggle();
+	        }
+	    }, 1000);
 	}
 	
 }
