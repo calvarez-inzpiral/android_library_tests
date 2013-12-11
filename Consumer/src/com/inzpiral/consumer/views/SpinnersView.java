@@ -2,15 +2,11 @@ package com.inzpiral.consumer.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import com.inzpiral.consumer.R;
-import com.inzpiral.consumer.controllers.MainController.MainControllerListener;
 
 public class SpinnersView extends RelativeLayout{
 

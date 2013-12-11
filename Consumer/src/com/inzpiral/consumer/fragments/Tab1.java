@@ -1,12 +1,12 @@
 package com.inzpiral.consumer.fragments;
 
-import com.inzpiral.consumer.R;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.inzpiral.consumer.R;
 
 public class Tab1 extends Fragment {
 	
@@ -17,4 +17,6 @@ public class Tab1 extends Fragment {
 		return fragmentView;
 		
 	}
+	
+	
 }

@@ -5,7 +5,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 
-import com.inzpiral.consumer.views.MainView;
 import com.inzpiral.consumer.views.SpinnersView;
 
 /**
