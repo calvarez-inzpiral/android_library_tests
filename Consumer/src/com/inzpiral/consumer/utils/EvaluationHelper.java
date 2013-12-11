@@ -26,6 +26,9 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 	
 	public EvaluationHelper(Evaluation evaluation) {
 		mEvaluation = evaluation;
+		mLocations = new ArrayList<Node>();
+		mCategories = new ArrayList<Node>();
+		mQuestionTypes = new ArrayList<Node>();
 	}
 	
 	// Root
@@ -73,12 +76,12 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 		if(mCategory == null) {
 			return new ArrayList<Node>();
 		}
-		
+
 		for (BaseNode baseNode : mCategory.getChildren()) {
 			mQuestionTypes.add((Node) baseNode);
 		}
 		mQuestionType = mQuestionTypes.get(0);
-		
+
 		return mQuestionTypes;
 	}
 	

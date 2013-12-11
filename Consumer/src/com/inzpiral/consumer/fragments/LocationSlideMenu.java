@@ -1,6 +1,12 @@
 package com.inzpiral.consumer.fragments;
 
+import java.util.ArrayList;
+
 import com.inzpiral.consumer.R;
+import com.inzpiral.consumer.activities.HomeActivity;
+import com.inzpiral.consumer.models.Evaluation;
+import com.inzpiral.consumer.models.Node;
+import com.inzpiral.consumer.utils.EvaluationHelper;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,9 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
-public class SampleListFragment extends ListFragment {
+public class LocationSlideMenu extends ListFragment {
+
+	private Evaluation mEvaluation;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.list, null);
@@ -20,11 +29,31 @@ public class SampleListFragment extends ListFragment {
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+
+		mEvaluation = ((HomeActivity)getActivity()).getEvaluation();
+		ArrayList<String> locations = getLocationsAsString();
+		
 		SampleAdapter adapter = new SampleAdapter(getActivity());
-		for (int i = 0; i < 20; i++) {
-			adapter.add(new SampleItem("hola", android.R.drawable.ic_menu_search));
+		for (String item : locations) {
+			adapter.add(new SampleItem(item, android.R.drawable.ic_menu_search));
 		}
 		setListAdapter(adapter);
+	}
+
+	private ArrayList<String> getLocationsAsString() {
+		ArrayList<String> result = new ArrayList<String>();
+		for (Node node : new EvaluationHelper(mEvaluation).getLocations()) {
+			result.add(node.getName());
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+		
+		
 	}
 
 	private class SampleItem {
