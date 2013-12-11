@@ -16,9 +16,9 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 	private Evaluation mEvaluation;
 	
 	private Node mRoot;
-	private Node mLocation;
-	private Node mCategory;
-	private Node mQuestionType;
+	private Node mCurrentLocation;
+	private Node mCurrentCategory;
+	private Node mCurrentQuestionType;
 	
 	private List<Node> mLocations;
 	private List<Node> mCategories;
@@ -44,49 +44,52 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 		for (BaseNode baseNode : getRoot().getChildren()) {
 			mLocations.add((Node) baseNode);
 		}
-		mLocation = mLocations.get(0);
 		
 		return mLocations;
 	}
-	
-	public void setLocation(Node location) {
-		mLocation = location;
+	public void setCurrentLocation(Node location) {
+		mCurrentLocation = location;
+	}
+	public Node getCurrentLocation() {
+		return mCurrentLocation;
 	}
 	
 	// Categories
 	public List<Node> getCategories() {
-		if(mLocation == null) {
+		if(mCurrentLocation == null) {
 			return new ArrayList<Node>();
 		}
 		
-		for (BaseNode baseNode : mLocation.getChildren()) {
+		for (BaseNode baseNode : mCurrentLocation.getChildren()) {
 			mCategories.add((Node) baseNode);
 		}
-		mCategory = mCategories.get(0);
 		
 		return mCategories;
 	}
-	
-	public void setCategory(Node category) {
-		mCategory = category;
+	public void setCurrentCategory(Node category) {
+		mCurrentCategory = category;
+	}
+	public Node getCurrentCategory() {
+		return mCurrentCategory;
 	}
 	
 	// Tipo de pregunta
 	public List<Node> getQuestionTypes() {
-		if(mCategory == null) {
+		if(mCurrentCategory == null) {
 			return new ArrayList<Node>();
 		}
 
-		for (BaseNode baseNode : mCategory.getChildren()) {
+		for (BaseNode baseNode : mCurrentCategory.getChildren()) {
 			mQuestionTypes.add((Node) baseNode);
 		}
-		mQuestionType = mQuestionTypes.get(0);
 
 		return mQuestionTypes;
 	}
-	
-	public void setQuestionType(Node questionType) {
-		mQuestionType = questionType;
+	public void setCurrentQuestionType(Node questionType) {
+		mCurrentQuestionType = questionType;
+	}
+	public Node getCurrentQuestionType() {
+		return mCurrentQuestionType;
 	}
 	
 	

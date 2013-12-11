@@ -12,6 +12,7 @@ import com.inzpiral.consumer.activities.HomeActivity;
 import com.inzpiral.consumer.controllers.SpinnerController;
 import com.inzpiral.consumer.controllers.SpinnerController.SpinnerControllerListener;
 import com.inzpiral.consumer.models.Evaluation;
+import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.views.SpinnersView;
 
 public class SpinnerFragment extends SherlockFragment implements SpinnerControllerListener {
@@ -41,5 +42,10 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
 	public void onDoSomething(String msg) {
 		// Do something
 		Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+	}
+
+	public void loadData(Node currentLocation) {
+		System.out.println("currentLocation name: " + currentLocation.getName());
+		System.out.println("currentLocation code: " + currentLocation.getCode());
 	}
 }

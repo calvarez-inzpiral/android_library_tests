@@ -8,6 +8,7 @@ import java.util.Calendar;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
@@ -19,6 +20,7 @@ import com.google.gson.GsonBuilder;
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.fragments.FragmentAdapter;
 import com.inzpiral.consumer.fragments.LocationSlideMenu;
+import com.inzpiral.consumer.fragments.SpinnerFragment;
 import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.Evaluation;
 import com.inzpiral.consumer.models.Node;
@@ -157,6 +159,23 @@ public class HomeActivity extends SlidingFragmentActivity {
 	        }
 	    }, 1000);
 	}
+
+	public void loadCategories(long id, int position) {
+		// TODO: Cargar datos en el Spinner
+		System.out.println("id:" + id + ", position:" + position);
+		
+		EvaluationHelper helper = new EvaluationHelper(mEvaluation);
+		helper.setCurrentLocation(helper.getLocations().get(position));
+		
+		SpinnerFragment spinnersFragment = (SpinnerFragment)getSupportFragmentManager().findFragmentById(R.id.spinners_fragment);
+		spinnersFragment.loadData(helper.getCurrentLocation());
+		
+		new Handler().postDelayed(new Runnable() {
+			public void run() {
+				getSlidingMenu().showContent();
+			}
+		}, 50);
+	}	
 	
 }
 
