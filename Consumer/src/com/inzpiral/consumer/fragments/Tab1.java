@@ -9,14 +9,14 @@ import android.view.ViewGroup;
 import com.inzpiral.consumer.R;
 
 public class Tab1 extends Fragment {
-	
+
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View fragmentView = inflater.inflate(R.layout.tab1, container, false);
 		return fragmentView;
-		
+
 	}
-	
-	
+
+
 }
