@@ -31,7 +31,7 @@ import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 
 public class HomeActivity extends SlidingFragmentActivity {
-	
+
 	// Manejo de tabs
 	private FragmentAdapter mAdapter;
 	private ViewPager mPager;
@@ -47,7 +47,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 		super.onCreate(savedInstanceState);
 		this.loadEvaluation();
 		setContentView(R.layout.fragmenthome);
-		
+
 		this.loadSlideBar(savedInstanceState);
 		this.loadTabs();
 	}
@@ -70,7 +70,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		sm.setFadeDegree(0.35f);
 		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
-		
+
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -85,52 +85,52 @@ public class HomeActivity extends SlidingFragmentActivity {
 		mIndicator = (TitlePageIndicator)findViewById(R.id.indicator);
 		mIndicator.setViewPager(mPager);		
 	}
-	
+
 	public void loadEvaluation() {
-//		mMainView.enableAll(false);
-		
+		//		mMainView.enableAll(false);
+
 		InputStream source = NetworkUtils.retrieveStream(mURL);
 
-        GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapter(BaseNode.class, new ConsumerDeserializer());
-        
-        final Gson gson = builder.create();
-        final Reader reader = new InputStreamReader(source);
-        
-        Thread t = new Thread(null, new Runnable() {
-            @Override
-            public void run() {
+		GsonBuilder builder = new GsonBuilder();
+		builder.registerTypeAdapter(BaseNode.class, new ConsumerDeserializer());
+
+		final Gson gson = builder.create();
+		final Reader reader = new InputStreamReader(source);
+
+		Thread t = new Thread(null, new Runnable() {
+			@Override
+			public void run() {
 				Calendar cal = Calendar.getInstance();
 				long init = cal.getTimeInMillis();
-				
-            	mEvaluation = gson.fromJson(reader, Evaluation.class);
-            	
+
+				mEvaluation = gson.fromJson(reader, Evaluation.class);
+
 				cal = Calendar.getInstance();
 				System.out.println("Parsing time: " + (cal.getTimeInMillis() - init));
 				init = cal.getTimeInMillis();
-            }
-        }, "parsing", 1024 * 1024);
-        t.start();
-        
-        try {
+			}
+		}, "parsing", 1024 * 1024);
+		t.start();
+
+		try {
 			t.join();
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
 
-//		mMainView.enableAll(true);
+		//		mMainView.enableAll(true);
 	}
 
 	public Evaluation getEvaluation() {
 		return mEvaluation;
 	}
-	
+
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			toggle();
 			return true;
-		
+
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -145,25 +145,25 @@ public class HomeActivity extends SlidingFragmentActivity {
 		getSupportMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+
 	@Override
 	public void onPostCreate(Bundle savedInstanceState) {
-	    super.onPostCreate(savedInstanceState);
-	    new Handler().postDelayed(new Runnable() {
-	        @Override
-	        public void run() {
-	            toggle();
-	        }
-	    }, 1000);
+		super.onPostCreate(savedInstanceState);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				toggle();
+			}
+		}, 1000);
 	}
 
 	public void loadCategories(long id, int position) {
 		// TODO: Cargar datos en el Spinner
 		System.out.println("id:" + id + ", position:" + position);
-		
+
 		EvaluationHelper helper = new EvaluationHelper(mEvaluation);
 		helper.setCurrentLocation(helper.getLocations().get(position));
-		
+
 		SpinnerFragment spinnersFragment = (SpinnerFragment)getSupportFragmentManager().findFragmentById(R.id.spinners_fragment);
 
 		Fragment newFragment = new SpinnerFragment();
@@ -171,22 +171,22 @@ public class HomeActivity extends SlidingFragmentActivity {
 		Bundle bundle = new Bundle();
 		String[] vals = { "categoria 1", "categoria2" };
 
-		bundle.putStringArray("code",vals );
+		bundle.putStringArray("code",vals);
 		newFragment.setArguments(bundle);
 		transaction.replace(R.id.spinners_fragment, newFragment);
 		transaction.addToBackStack(null);
 
 		// Commit the transaction
 		transaction.commit();
-		
+
 		new Handler().postDelayed(new Runnable() {
 			public void run() {
 				getSlidingMenu().showContent();
 			}
 		}, 50);
 	}	
-	
 
-	
+
+
 }
 
