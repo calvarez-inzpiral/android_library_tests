@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
+import android.widget.ImageView;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -27,6 +28,7 @@ import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.utils.ConsumerDeserializer;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.utils.NetworkUtils;
+import com.inzpiral.consumer.utils.RingGraphic;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
