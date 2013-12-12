@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,22 +59,23 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
 	@Override
 	public void onLoadQuestionTypes(int position) {
 		
-//		EvaluationHelper helper = new EvaluationHelper(((HomeActivity)getActivity()).getEvaluation());
-//		helper.setCurrentQuestionType(helper.getQuestionTypes().get(position));
-//
-//		Fragment newFragment = new SpinnerFragment();
-//		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//		Bundle bundle = new Bundle();
-//		ArrayList<String> categories = helper.getNodesAsString(helper.getQuestionTypes());
-//
-//		bundle.putStringArray("categories", categories.toArray(new String[0]));
-//		newFragment.setArguments(bundle);
-//		
-//		transaction.replace(R.id.spinners_frame, newFragment);
-//		transaction.addToBackStack(null);
-//
-//		// Commit the transaction
-//		transaction.commit();
+		EvaluationHelper helper = new EvaluationHelper(((HomeActivity)getActivity()).getEvaluation());
+		helper.setCurrentCategory(helper.getCategories().get(position));
+
+		Fragment newFragment = new MainFragment();
+		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+		Bundle bundle = new Bundle();
+		ArrayList<String> questionTypes = helper.getNodesAsString(helper.getQuestionTypes());
+
+		bundle.putStringArray("question_types", questionTypes.toArray(new String[0]));
+		newFragment.setArguments(bundle);
+		
+//		((ViewPager)getActivity().findViewById(R.id.pager)).getAdapter().getItemPosition(0).ge;
+		transaction.replace(R.id.main_view, newFragment);
+		transaction.addToBackStack(null);
+
+		// Commit the transaction
+		transaction.commit();
 		
 	}
 }

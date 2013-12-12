@@ -23,23 +23,6 @@
             android:layout_height="wrap_content"
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-        
-	<!-- looper de loading -->
-	
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center" >
-
-        <ProgressBar
-            android:id="@+id/wait"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_marginBottom="100dp" />
-
-    </RelativeLayout>
 
     </LinearLayout>
 
