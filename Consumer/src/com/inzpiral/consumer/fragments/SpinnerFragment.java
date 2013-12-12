@@ -33,40 +33,37 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
     	super.onViewCreated(view, savedInstanceState);
-    	if (getArguments() != null){
-    		System.out.println(getArguments().getStringArray("categories"));
-    		 vals = getArguments().getStringArray("categories");
-    	}
     		
 		// Obtener evaluacion
 		Evaluation ev = ((HomeActivity) getActivity()).getEvaluation();
 		System.out.println("Desde Spinners: " + ev.getName());
 		
 		// Activity links the view and the controller
-		SpinnerController spinnerController = new SpinnerController((SpinnersView) view.findViewById(R.id.spinners_view), this, vals);
+		SpinnerController spinnerController = new SpinnerController((SpinnersView) view.findViewById(R.id.spinners_view), this, getArguments());
 		
 		// Intercept the events of MainView
-		((SpinnersView) view.findViewById(R.id.spinners_view)).setListeners(spinnerController);
+		if(getArguments() != null) {
+			((SpinnersView) view.findViewById(R.id.spinners_view)).setListeners(spinnerController);
+		}
 		
-	}
-
-	@Override
-	public void onDoSomething(String msg) {
-		// Do something
-//		Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onLoadQuestionTypes(int position) {
 		
 		EvaluationHelper helper = new EvaluationHelper(((HomeActivity)getActivity()).getEvaluation());
+		if(helper.getCategories().size() == 0) {
+			return;
+		}
+		
 		helper.setCurrentCategory(helper.getCategories().get(position));
+		
+		ArrayList<String> questionTypes = helper.getNodesAsString(helper.getQuestionTypes());
 
 		Fragment newFragment = new MainFragment();
 		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		Bundle bundle = new Bundle();
-		ArrayList<String> questionTypes = helper.getNodesAsString(helper.getQuestionTypes());
 
+		Bundle bundle = new Bundle();
 		bundle.putStringArray("question_types", questionTypes.toArray(new String[0]));
 		newFragment.setArguments(bundle);
 		

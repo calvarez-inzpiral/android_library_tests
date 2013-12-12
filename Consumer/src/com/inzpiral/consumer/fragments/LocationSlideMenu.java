@@ -36,26 +36,29 @@ public class LocationSlideMenu extends ListFragment {
 		((RingGraphic)getActivity().findViewById(R.id.ring_graph)).setPercent(45);
 
 		mEvaluation = ((HomeActivity)getActivity()).getEvaluation();
-		ArrayList<String> locations = getLocationsAsString();
+		EvaluationHelper helper = new EvaluationHelper(mEvaluation);
+		ArrayList<String> locations = helper.getNodesAsString(helper.getLocations());
 
 		rowAdapter adapter = new rowAdapter(getActivity());
 
 		for (String item : locations) {
-			adapter.add(new rowItem(item,"0%", android.R.drawable.ic_menu_search));
+			adapter.add(new rowItem(item, "0%", android.R.drawable.ic_menu_search));
 		}
 
 		setListAdapter(adapter);
-
 	}
-	private ArrayList<String> getLocationsAsString() {
-		ArrayList<String> result = new ArrayList<String>();
-		for (Node node : new EvaluationHelper(mEvaluation).getLocations()) {
-			result.add(node.getName());
+
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+
+		if (getActivity() == null) return;
+
+		if (getActivity() instanceof HomeActivity) {
+			((HomeActivity) getActivity()).loadCategories(id, position);
 		}
-
-		return result;
 	}
-
+	
 	private class rowItem {
 		public String tag, tag2;
 		public int iconRes;
