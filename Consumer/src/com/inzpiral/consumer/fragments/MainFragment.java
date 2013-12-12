@@ -1,5 +1,7 @@
 package com.inzpiral.consumer.fragments;
 
+import java.util.Arrays;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,13 +26,19 @@ public class MainFragment extends SherlockFragment implements MainControllerList
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
     	super.onViewCreated(view, savedInstanceState);
-
+    	
+    	String msg = "Debe seleccionar Ubicacion y categoria";
+    	if (getArguments() != null){
+    		System.out.println(getArguments().getStringArray("question_types"));
+    		msg = Arrays.toString(getArguments().getStringArray("question_types"));
+    	}
+    	
 		// Obtener evaluacion
 		Evaluation ev = ((HomeActivity) getActivity()).getEvaluation();
 		System.out.println("Desde Main: " + ev.getName());
 		
 		// Activity links the view and the controller
-    	MainController mainController = new MainController((MainView) view.findViewById(R.id.main_view), this);
+    	MainController mainController = new MainController((MainView) view.findViewById(R.id.main_view), this, msg);
 		
 		// Intercept the events of MainView
 //		((MainView) view.findViewById(R.id.main_view)).setListeners(spinnerController);

@@ -17,7 +17,7 @@ public class SpinnerController implements OnItemSelectedListener {
 	private SpinnerControllerListener listener;
 
 
-	public SpinnerController(SpinnersView spinnersView, SpinnerControllerListener listener,String[] vals) {
+	public SpinnerController(SpinnersView spinnersView, SpinnerControllerListener listener, String[] vals) {
 		this.mSpinnersView = spinnersView;
 		this.listener = listener;
 		
@@ -30,6 +30,10 @@ public class SpinnerController implements OnItemSelectedListener {
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 		System.out.println("SELECTED: {id:" + id + ", position:" + position + "}");
 		listener.onDoSomething("SELECTED: {id:" + id + ", position:" + position + "}");
+		
+		if(false) {
+			listener.onLoadQuestionTypes(position);
+		}
 	}
 
 	@Override
@@ -40,6 +44,7 @@ public class SpinnerController implements OnItemSelectedListener {
 	// Interfaces
 	public interface SpinnerControllerListener {
 		public void onDoSomething(String msg);
+		public void onLoadQuestionTypes(int position);
 	}
 
 }

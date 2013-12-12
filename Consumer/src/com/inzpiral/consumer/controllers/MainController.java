@@ -11,9 +11,11 @@ public class MainController {
 	private MainView mMainView;
 	private MainControllerListener mListener;
 
-	public MainController(MainView loginView, MainControllerListener listener) {
+	public MainController(MainView loginView, MainControllerListener listener, String msg) {
 		this.mMainView = loginView;
 		this.mListener = listener;
+		
+		mMainView.getTestTextView().setText(msg);
 	}
 
 	// Interfaces

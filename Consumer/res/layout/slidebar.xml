@@ -4,9 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-<include
-    android:layout_width="match_parent"
-    layout="@layout/ring_graphic" />
+    
+<!-- 	<include layout="@layout/ring_graphic" /> -->
+
 
     <ListView
        android:id="@android:id/list"

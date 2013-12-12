@@ -1,6 +1,11 @@
 package com.inzpiral.consumer.fragments;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +18,13 @@ import com.inzpiral.consumer.controllers.SpinnerController;
 import com.inzpiral.consumer.controllers.SpinnerController.SpinnerControllerListener;
 import com.inzpiral.consumer.models.Evaluation;
 import com.inzpiral.consumer.models.Node;
+import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.SpinnersView;
 
 public class SpinnerFragment extends SherlockFragment implements SpinnerControllerListener {
-	String[] vals = { "debe seleccionar un valor" };
+	
+	private String[] vals = { "Seleccione ubicacion" };
+	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.spinners, container, false);
@@ -46,5 +54,28 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
 	public void onDoSomething(String msg) {
 		// Do something
 //		Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void onLoadQuestionTypes(int position) {
+		
+		EvaluationHelper helper = new EvaluationHelper(((HomeActivity)getActivity()).getEvaluation());
+		helper.setCurrentCategory(helper.getCategories().get(position));
+
+		Fragment newFragment = new MainFragment();
+		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+		Bundle bundle = new Bundle();
+		ArrayList<String> questionTypes = helper.getNodesAsString(helper.getQuestionTypes());
+
+		bundle.putStringArray("question_types", questionTypes.toArray(new String[0]));
+		newFragment.setArguments(bundle);
+		
+//		((ViewPager)getActivity().findViewById(R.id.pager)).getAdapter().getItemPosition(0).ge;
+		transaction.replace(R.id.main_view, newFragment);
+		transaction.addToBackStack(null);
+
+		// Commit the transaction
+		transaction.commit();
+		
 	}
 }

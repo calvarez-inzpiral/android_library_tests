@@ -25,11 +25,11 @@ public class LocationSlideMenu extends ListFragment {
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.slidebar, null);
-		//((RingGraphic)getActivity().findViewById(R.id.ring_graph)).setPercent(66);
 	}
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+//		((RingGraphic)getActivity().findViewById(R.id.ring_graph)).setPercent(66);
 
 		mEvaluation = ((HomeActivity)getActivity()).getEvaluation();
 		//RingGraphic rg = new RingGraphic(context, attrs)
