@@ -2,6 +2,7 @@ package com.jeremyfeinstein.slidingmenu.example;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,14 +11,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class SampleListFragment extends ListFragment {
+public class SampleListFragment extends Fragment {
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.list, null);
+		// ((RingGraphic)getActivity().findViewById(R.id.ring_graph)).setPercent(66);
 	}
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+	//	 ((RingGraphic)getActivity().findViewById(R.id.ring_graph)).setPercent(66);
 		SampleAdapter adapter = new SampleAdapter(getActivity());
 		for (int i = 0; i < 20; i++) {
 			adapter.add(new SampleItem("Sample List", android.R.drawable.ic_menu_search));

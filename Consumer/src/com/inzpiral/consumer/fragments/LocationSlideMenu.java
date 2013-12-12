@@ -3,6 +3,7 @@ package com.inzpiral.consumer.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,8 @@ public class LocationSlideMenu extends Fragment {
 	private Evaluation mEvaluation;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.sidebar_row, null);
+		return inflater.inflate(R.layout.slidebar, null);
+		//((RingGraphic)getActivity().findViewById(R.id.ring_graph)).setPercent(66);
 	}
 
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -31,13 +33,13 @@ public class LocationSlideMenu extends Fragment {
 		mEvaluation = ((HomeActivity)getActivity()).getEvaluation();
 		
 	
-		ListView lv = (ListView) getActivity().findViewById(R.id.customList);
+	//	ListView lv = (ListView) getActivity().findViewById(R.id.customList);
 		rowAdapter adapter = new rowAdapter(getActivity());
 		for (int i = 0; i < 3; i++) {
 			adapter.add(new rowItem("titulo","1%", android.R.drawable.ic_menu_search));
 		}
-		lv.setAdapter(adapter);
-
+	//	setListAdapter(adapter);
+		
 	}
 	
 
