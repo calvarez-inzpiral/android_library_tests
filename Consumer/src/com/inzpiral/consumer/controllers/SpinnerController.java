@@ -30,7 +30,10 @@ public class SpinnerController implements OnItemSelectedListener {
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 		System.out.println("SELECTED: {id:" + id + ", position:" + position + "}");
 		listener.onDoSomething("SELECTED: {id:" + id + ", position:" + position + "}");
-		listener.onLoadQuestionTypes(position);
+		
+		if(false) {
+			listener.onLoadQuestionTypes(position);
+		}
 	}
 
 	@Override
