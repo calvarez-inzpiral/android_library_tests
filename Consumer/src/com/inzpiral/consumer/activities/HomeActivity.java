@@ -45,7 +45,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 	private FragmentAdapter mAdapter;
 	private ViewPager mPager;
 	private PageIndicator mIndicator;
-	protected ListFragment mFrag;
+	protected Fragment mFrag;
 
 	// Manejo de evaluacion
 	private Evaluation mEvaluation;

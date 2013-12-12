@@ -48,6 +48,9 @@ public class SampleListFragment extends ListFragment {
 			icon.setImageResource(getItem(position).iconRes);
 			TextView title = (TextView) convertView.findViewById(R.id.row_title);
 			title.setText(getItem(position).tag);
+			TextView percent = (TextView) convertView.findViewById(R.id.row_title);
+			percent.setText(getItem(position).tag);
+			
 
 			return convertView;
 		}

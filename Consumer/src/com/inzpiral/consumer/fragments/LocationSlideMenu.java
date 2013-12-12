@@ -1,10 +1,8 @@
 package com.inzpiral.consumer.fragments;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +14,10 @@ import android.widget.TextView;
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.activities.HomeActivity;
 import com.inzpiral.consumer.models.Evaluation;
-import com.inzpiral.consumer.models.Node;
-import com.inzpiral.consumer.utils.EvaluationHelper;
 
-public class LocationSlideMenu extends ListFragment {
+
+
+public class LocationSlideMenu extends Fragment {
 
 	private Evaluation mEvaluation;
 
@@ -31,54 +29,54 @@ public class LocationSlideMenu extends ListFragment {
 		super.onActivityCreated(savedInstanceState);
 
 		mEvaluation = ((HomeActivity)getActivity()).getEvaluation();
-		EvaluationHelper helper = new EvaluationHelper(mEvaluation);
-		ArrayList<String> locations = helper.getNodesAsString(helper.getLocations());
-		
-		SampleAdapter adapter = new SampleAdapter(getActivity());
-		for (String item : locations) {
-			adapter.add(new SampleItem(item, android.R.drawable.ic_menu_search));
+		ListView lv = new ListView(getActivity());
+		lv.findViewById();
+		rowAdapter adapter = new rowAdapter(getActivity());
+		for (int i = 0; i < 3; i++) {
+			adapter.add(new rowItem("titulo","1%", android.R.drawable.ic_menu_search));
 		}
-		setListAdapter(adapter);
+		lv.setAdapter(adapter);
+
 	}
 	
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
-		
-		if (getActivity() == null)
-			return;
-		
-		if (getActivity() instanceof HomeActivity) {
-			((HomeActivity) getActivity()).loadCategories(id, position);
-		}
-	}
 
-	private class SampleItem {
-		public String tag;
+
+	private class rowItem {
+		public String tag, tag2;
 		public int iconRes;
-		public SampleItem(String tag, int iconRes) {
+		public rowItem(String tag,String tag2, int iconRes) {
 			this.tag = tag; 
+			this.tag2 = tag2; 
 			this.iconRes = iconRes;
 		}
 	}
 
-	public class SampleAdapter extends ArrayAdapter<SampleItem> {
+	public class rowAdapter extends ArrayAdapter<rowItem> {
 
-		public SampleAdapter(Context context) {
+		public rowAdapter(Context context) {
 			super(context, 0);
 		}
 
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView = LayoutInflater.from(getContext()).inflate(R.layout.row, null);
+				convertView = LayoutInflater.from(getContext()).inflate(R.layout.sidebar_row, null);
 			}
 			ImageView icon = (ImageView) convertView.findViewById(R.id.row_icon);
 			icon.setImageResource(getItem(position).iconRes);
 			TextView title = (TextView) convertView.findViewById(R.id.row_title);
 			title.setText(getItem(position).tag);
+			TextView percent = (TextView) convertView.findViewById(R.id.row_percent);
+			percent.setText(getItem(position).tag);
+			
 
 			return convertView;
 		}
 
 	}
+
+	
+
+
+	
 }
+
