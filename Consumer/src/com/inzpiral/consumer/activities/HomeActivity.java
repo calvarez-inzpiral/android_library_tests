@@ -6,12 +6,15 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.actionbarsherlock.view.Menu;
@@ -19,6 +22,8 @@ import com.actionbarsherlock.view.MenuItem;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.inzpiral.consumer.R;
+import com.inzpiral.consumer.customs.RingGraphic;
+import com.inzpiral.consumer.customs.RingGraphicDrawable;
 import com.inzpiral.consumer.fragments.FragmentAdapter;
 import com.inzpiral.consumer.fragments.LocationSlideMenu;
 import com.inzpiral.consumer.fragments.SpinnerFragment;
@@ -27,7 +32,6 @@ import com.inzpiral.consumer.models.Evaluation;
 import com.inzpiral.consumer.utils.ConsumerDeserializer;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.utils.NetworkUtils;
-import com.inzpiral.consumer.utils.RingGraphic;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
@@ -60,7 +64,6 @@ public class HomeActivity extends SlidingFragmentActivity {
 	}
 
 	private void loadSpinners() {
-//		findViewById(R.id.spinners_frame).
 		getSupportFragmentManager().beginTransaction().add(R.id.spinners_frame, new SpinnerFragment(), "SpinnerFragment").commit();
 	}
 

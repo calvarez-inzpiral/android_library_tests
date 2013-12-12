@@ -1,4 +1,4 @@
-package com.inzpiral.consumer.utils;
+package com.inzpiral.consumer.customs;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,7 +9,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 
-public class RingGraphic extends Drawable {
+public class RingGraphicDrawable extends Drawable {
 
     private Paint paint;
     private RectF rectF;
@@ -24,11 +24,11 @@ public class RingGraphic extends Drawable {
         BOTTOM
     }
 
-    public RingGraphic(int degrees) {
+    public RingGraphicDrawable(int degrees) {
         this(Color.GREEN, Direction.RIGHT, degrees);
     }
 
-    public RingGraphic(int color, Direction angle, int degrees) {
+    public RingGraphicDrawable(int color, Direction angle, int degrees) {
         this.color = color;
         this.angle = angle;
         this.degrees = degrees;
@@ -89,5 +89,10 @@ public class RingGraphic extends Drawable {
         // Not Implemented
         return 0;
     }
+    
+    public void setDegrees(int degrees) {
+		this.degrees = degrees;
+		invalidateSelf();
+	}
 
 }
