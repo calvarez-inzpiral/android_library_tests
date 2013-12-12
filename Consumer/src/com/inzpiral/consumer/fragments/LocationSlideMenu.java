@@ -31,22 +31,14 @@ public class LocationSlideMenu extends ListFragment {
 		super.onActivityCreated(savedInstanceState);
 
 		mEvaluation = ((HomeActivity)getActivity()).getEvaluation();
-		ArrayList<String> locations = getLocationsAsString();
+		EvaluationHelper helper = new EvaluationHelper(mEvaluation);
+		ArrayList<String> locations = helper.getNodesAsString(helper.getLocations());
 		
 		SampleAdapter adapter = new SampleAdapter(getActivity());
 		for (String item : locations) {
 			adapter.add(new SampleItem(item, android.R.drawable.ic_menu_search));
 		}
 		setListAdapter(adapter);
-	}
-
-	private ArrayList<String> getLocationsAsString() {
-		ArrayList<String> result = new ArrayList<String>();
-		for (Node node : new EvaluationHelper(mEvaluation).getLocations()) {
-			result.add(node.getName());
-		}
-		
-		return result;
 	}
 	
 	@Override

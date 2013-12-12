@@ -3,6 +3,7 @@ package com.inzpiral.consumer.activities;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.os.Bundle;
@@ -44,7 +45,8 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 	// Manejo de evaluacion
 	private Evaluation mEvaluation;
-	private String mURL = "http://192.168.0.117/test/consumo_masivo.json";
+	private String mURL = "http://10.0.1.13/test/consumo_masivo.json";
+//	private String mURL = "http://192.168.0.117/test/consumo_masivo.json";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,12 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 		this.loadSlideBar(savedInstanceState);
 		this.loadTabs();
+		this.loadSpinners();
+	}
+
+	private void loadSpinners() {
+//		findViewById(R.id.spinners_frame).
+		getSupportFragmentManager().beginTransaction().add(R.id.spinners_frame, new SpinnerFragment(), "SpinnerFragment").commit();
 	}
 
 	private void loadSlideBar(Bundle savedInstanceState) {
@@ -74,7 +82,6 @@ public class HomeActivity extends SlidingFragmentActivity {
 		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		sm.setFadeDegree(0.35f);
 		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
-
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -162,22 +169,20 @@ public class HomeActivity extends SlidingFragmentActivity {
 	}
 
 	public void loadCategories(long id, int position) {
-		// TODO: Cargar datos en el Spinner
 		System.out.println("id:" + id + ", position:" + position);
 
 		EvaluationHelper helper = new EvaluationHelper(mEvaluation);
 		helper.setCurrentLocation(helper.getLocations().get(position));
 
-		SpinnerFragment spinnersFragment = (SpinnerFragment)getSupportFragmentManager().findFragmentById(R.id.spinners_fragment);
-
 		Fragment newFragment = new SpinnerFragment();
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		Bundle bundle = new Bundle();
-		String[] vals = { "categoria 1", "categoria2" };
+		ArrayList<String> categories = helper.getNodesAsString(helper.getCategories());
 
-		bundle.putStringArray("code",vals);
+		bundle.putStringArray("categories", categories.toArray(new String[0]));
 		newFragment.setArguments(bundle);
-		transaction.replace(R.id.spinners_fragment, newFragment);
+		
+		transaction.replace(R.id.spinners_frame, newFragment);
 		transaction.addToBackStack(null);
 
 		// Commit the transaction

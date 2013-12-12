@@ -25,9 +25,9 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
     	super.onViewCreated(view, savedInstanceState);
-    	if (getArguments()!=null){
-    		System.out.println(getArguments().getStringArray("code"));
-    		 vals = getArguments().getStringArray("code");
+    	if (getArguments() != null){
+    		System.out.println(getArguments().getStringArray("categories"));
+    		 vals = getArguments().getStringArray("categories");
     	}
     		
 		// Obtener evaluacion
@@ -45,11 +45,6 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
 	@Override
 	public void onDoSomething(String msg) {
 		// Do something
-		Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
-	}
-
-	public void loadData(Node currentLocation) {
-		System.out.println("currentLocation name: " + currentLocation.getName());
-		System.out.println("currentLocation code: " + currentLocation.getCode());
+//		Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
 	}
 }

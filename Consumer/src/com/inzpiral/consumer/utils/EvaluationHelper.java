@@ -93,8 +93,15 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 	}
 	
 	
-	
-	
+	// Otros
+	public ArrayList<String> getNodesAsString(List<Node> list) {
+		ArrayList<String> result = new ArrayList<String>();
+		for (Node node : list) {
+			result.add(node.getName());
+		}
+		
+		return result;
+	}
 	
 	
 	

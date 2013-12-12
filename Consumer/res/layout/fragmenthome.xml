@@ -11,12 +11,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
-        <fragment
-            android:id="@+id/spinners_fragment"
-            android:name="com.inzpiral.consumer.fragments.SpinnerFragment"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+<!--         <fragment -->
+<!--             android:id="@+id/spinners_fragment" -->
+<!--             android:name="com.inzpiral.consumer.fragments.SpinnerFragment" -->
+<!--             android:layout_width="fill_parent" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:layout_weight="2" /> -->
+        
         <!-- <com.viewpagerindicator.TitlePageIndicator -->
         <!-- android:id="@+id/indicator" -->
         <!-- style="@style/CustomTitlePageIndicator" -->
@@ -25,11 +26,18 @@
         <!-- android:padding="20dip" -->
         <!-- android:layout_weight="1"/> -->
 
+        <FrameLayout
+            android:id="@+id/spinners_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2" >
+        </FrameLayout>
+
         <com.viewpagerindicator.IconPageIndicator
             android:id="@+id/indicator"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="3" />
     </LinearLayout>
 
     <!-- tabs -->
