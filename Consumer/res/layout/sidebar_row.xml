@@ -11,7 +11,7 @@
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:text="Medium Text"
+        android:text="title"
         android:textAppearance="@android:style/TextAppearance.Medium" />
     <TextView
         android:id="@+id/row_percent"
@@ -20,7 +20,7 @@
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:text="Medium Text"
+        android:text="%"
         android:textAppearance="@android:style/TextAppearance.Medium" />
 
     <ImageView
