@@ -3,9 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-<include layout="@layout/ring_graphic"/>
+
+<include
+    android:layout_width="match_parent"
+    layout="@layout/ring_graphic" />
+
     <ListView
-        android:id="@+id/customList"
+       android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="404dp"
         android:layout_weight="0.83" >

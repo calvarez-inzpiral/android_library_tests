@@ -14,11 +14,12 @@ import android.widget.TextView;
 
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.activities.HomeActivity;
+import com.inzpiral.consumer.customs.RingGraphic;
 import com.inzpiral.consumer.models.Evaluation;
 
 
 
-public class LocationSlideMenu extends Fragment {
+public class LocationSlideMenu extends ListFragment {
 
 	private Evaluation mEvaluation;
 
@@ -31,14 +32,14 @@ public class LocationSlideMenu extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 
 		mEvaluation = ((HomeActivity)getActivity()).getEvaluation();
-		
+		//RingGraphic rg = new RingGraphic(context, attrs)
 	
-	//	ListView lv = (ListView) getActivity().findViewById(R.id.customList);
+		//ListView lv = (ListView) getActivity().findViewById(R.id.customList);
 		rowAdapter adapter = new rowAdapter(getActivity());
 		for (int i = 0; i < 3; i++) {
 			adapter.add(new rowItem("titulo","1%", android.R.drawable.ic_menu_search));
 		}
-	//	setListAdapter(adapter);
+		setListAdapter(adapter);
 		
 	}
 	
