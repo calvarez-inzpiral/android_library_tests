@@ -56,6 +56,17 @@ public class LocationSlideMenu extends ListFragment {
 		return result;
 	}
 
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+
+		if (getActivity() == null)
+			return;
+
+		if (getActivity() instanceof HomeActivity) {
+			((HomeActivity) getActivity()).loadCategories(id, position);
+		}
+	}
 	private class rowItem {
 		public String tag, tag2;
 		public int iconRes;
