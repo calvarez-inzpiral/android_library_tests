@@ -1,6 +1,10 @@
 package com.inzpiral.consumer.fragments;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +17,13 @@ import com.inzpiral.consumer.controllers.SpinnerController;
 import com.inzpiral.consumer.controllers.SpinnerController.SpinnerControllerListener;
 import com.inzpiral.consumer.models.Evaluation;
 import com.inzpiral.consumer.models.Node;
+import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.SpinnersView;
 
 public class SpinnerFragment extends SherlockFragment implements SpinnerControllerListener {
-	String[] vals = { "debe seleccionar un valor" };
+	
+	private String[] vals = { "Seleccione ubicacion" };
+	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.spinners, container, false);
@@ -46,5 +53,27 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
 	public void onDoSomething(String msg) {
 		// Do something
 //		Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void onLoadQuestionTypes(int position) {
+		
+//		EvaluationHelper helper = new EvaluationHelper(((HomeActivity)getActivity()).getEvaluation());
+//		helper.setCurrentQuestionType(helper.getQuestionTypes().get(position));
+//
+//		Fragment newFragment = new SpinnerFragment();
+//		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//		Bundle bundle = new Bundle();
+//		ArrayList<String> categories = helper.getNodesAsString(helper.getQuestionTypes());
+//
+//		bundle.putStringArray("categories", categories.toArray(new String[0]));
+//		newFragment.setArguments(bundle);
+//		
+//		transaction.replace(R.id.spinners_frame, newFragment);
+//		transaction.addToBackStack(null);
+//
+//		// Commit the transaction
+//		transaction.commit();
+		
 	}
 }
