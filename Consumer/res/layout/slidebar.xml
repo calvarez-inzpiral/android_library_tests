@@ -3,16 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </RelativeLayout>
-
+<include layout="@layout/ring_graphic"/>
     <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/customList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="404dp"
+        android:layout_weight="0.83" >
+
     </ListView>
+    
+        <Button 
+            android:id="@+id/btnEnd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Finalizar"
+            android:layout_weight="1"
+            />
+<!--         acá va el boton -->
+
 
 </LinearLayout>
