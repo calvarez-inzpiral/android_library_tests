@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,7 @@ import com.inzpiral.consumer.models.Evaluation;
 import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 
-public class LocationSlideMenu extends ListFragment {
+public class LocationSlideMenu extends Fragment {
 
 	private Evaluation mEvaluation;
 
@@ -33,11 +34,7 @@ public class LocationSlideMenu extends ListFragment {
 		mEvaluation = ((HomeActivity)getActivity()).getEvaluation();
 		ArrayList<String> locations = getLocationsAsString();
 		
-		SampleAdapter adapter = new SampleAdapter(getActivity());
-		for (String item : locations) {
-			adapter.add(new SampleItem(item, android.R.drawable.ic_menu_search));
-		}
-		setListAdapter(adapter);
+
 	}
 
 	private ArrayList<String> getLocationsAsString() {
@@ -49,44 +46,8 @@ public class LocationSlideMenu extends ListFragment {
 		return result;
 	}
 	
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
-		
-		if (getActivity() == null)
-			return;
-		
-		if (getActivity() instanceof HomeActivity) {
-			((HomeActivity) getActivity()).loadCategories(id, position);
-		}
-	}
 
-	private class SampleItem {
-		public String tag;
-		public int iconRes;
-		public SampleItem(String tag, int iconRes) {
-			this.tag = tag; 
-			this.iconRes = iconRes;
-		}
-	}
 
-	public class SampleAdapter extends ArrayAdapter<SampleItem> {
-
-		public SampleAdapter(Context context) {
-			super(context, 0);
-		}
-
-		public View getView(int position, View convertView, ViewGroup parent) {
-			if (convertView == null) {
-				convertView = LayoutInflater.from(getContext()).inflate(R.layout.row, null);
-			}
-			ImageView icon = (ImageView) convertView.findViewById(R.id.row_icon);
-			icon.setImageResource(getItem(position).iconRes);
-			TextView title = (TextView) convertView.findViewById(R.id.row_title);
-			title.setText(getItem(position).tag);
-
-			return convertView;
-		}
-
-	}
+	
 }
+
