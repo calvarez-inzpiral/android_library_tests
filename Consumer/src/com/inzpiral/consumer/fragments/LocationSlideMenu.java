@@ -32,18 +32,10 @@ public class LocationSlideMenu extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 
 		mEvaluation = ((HomeActivity)getActivity()).getEvaluation();
-		ArrayList<String> locations = getLocationsAsString();
+		EvaluationHelper helper = new EvaluationHelper(mEvaluation);
+		ArrayList<String> locations = helper.getNodesAsString(helper.getLocations());
 		
 
-	}
-
-	private ArrayList<String> getLocationsAsString() {
-		ArrayList<String> result = new ArrayList<String>();
-		for (Node node : new EvaluationHelper(mEvaluation).getLocations()) {
-			result.add(node.getName());
-		}
-		
-		return result;
 	}
 	
 
