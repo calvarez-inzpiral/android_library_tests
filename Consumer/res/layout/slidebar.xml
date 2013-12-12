@@ -5,14 +5,23 @@
     android:orientation="vertical" >
 
     <RelativeLayout
+        android:id="@+id/graph"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
+        
+<!--         acá va el grafico -->
     </RelativeLayout>
 
     <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/customList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </ListView>
+     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+<!--         acá va el boton -->
+    </RelativeLayout>
 
 </LinearLayout>

@@ -22,15 +22,16 @@ public class LocationSlideMenu extends Fragment {
 	private Evaluation mEvaluation;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.list, null);
+		return inflater.inflate(R.layout.sidebar_row, null);
 	}
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
 		mEvaluation = ((HomeActivity)getActivity()).getEvaluation();
-		ListView lv = new ListView(getActivity());
-		lv.findViewById();
+		
+	
+		ListView lv = (ListView) getActivity().findViewById(R.id.customList);
 		rowAdapter adapter = new rowAdapter(getActivity());
 		for (int i = 0; i < 3; i++) {
 			adapter.add(new rowItem("titulo","1%", android.R.drawable.ic_menu_search));
@@ -66,7 +67,7 @@ public class LocationSlideMenu extends Fragment {
 			TextView title = (TextView) convertView.findViewById(R.id.row_title);
 			title.setText(getItem(position).tag);
 			TextView percent = (TextView) convertView.findViewById(R.id.row_percent);
-			percent.setText(getItem(position).tag);
+			percent.setText(getItem(position).tag2);
 			
 
 			return convertView;
