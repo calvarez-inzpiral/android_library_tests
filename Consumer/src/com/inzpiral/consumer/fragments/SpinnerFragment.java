@@ -16,7 +16,7 @@ import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.views.SpinnersView;
 
 public class SpinnerFragment extends SherlockFragment implements SpinnerControllerListener {
-
+	String[] vals = { "debe seleccionar un valor" };
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.spinners, container, false);
@@ -25,13 +25,17 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
     	super.onViewCreated(view, savedInstanceState);
-
+    	if (getArguments()!=null){
+    		System.out.println(getArguments().getStringArray("code"));
+    		 vals = getArguments().getStringArray("code");
+    	}
+    		
 		// Obtener evaluacion
 		Evaluation ev = ((HomeActivity) getActivity()).getEvaluation();
 		System.out.println("Desde Spinners: " + ev.getName());
 		
 		// Activity links the view and the controller
-		SpinnerController spinnerController = new SpinnerController((SpinnersView) view.findViewById(R.id.spinners_view), this);
+		SpinnerController spinnerController = new SpinnerController((SpinnersView) view.findViewById(R.id.spinners_view), this, vals);
 		
 		// Intercept the events of MainView
 		((SpinnersView) view.findViewById(R.id.spinners_view)).setListeners(spinnerController);

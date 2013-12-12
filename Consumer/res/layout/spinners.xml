@@ -7,10 +7,10 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" >
 
-    <Spinner
-        android:id="@+id/location"
-        android:layout_width="161dp"
-        android:layout_height="wrap_content" />
+<!--     <Spinner -->
+<!--         android:id="@+id/location" -->
+<!--         android:layout_width="161dp" -->
+<!--         android:layout_height="wrap_content" /> -->
 
     <Spinner
         android:id="@+id/categories"
