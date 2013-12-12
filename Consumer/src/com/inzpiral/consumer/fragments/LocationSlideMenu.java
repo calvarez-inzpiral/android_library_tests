@@ -1,5 +1,7 @@
 package com.inzpiral.consumer.fragments;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +18,8 @@ import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.activities.HomeActivity;
 import com.inzpiral.consumer.customs.RingGraphic;
 import com.inzpiral.consumer.models.Evaluation;
+import com.inzpiral.consumer.models.Node;
+import com.inzpiral.consumer.utils.EvaluationHelper;
 
 
 
@@ -32,18 +36,25 @@ public class LocationSlideMenu extends ListFragment {
 		((RingGraphic)getActivity().findViewById(R.id.ring_graph)).setPercent(66);
 
 		mEvaluation = ((HomeActivity)getActivity()).getEvaluation();
-		//RingGraphic rg = new RingGraphic(context, attrs)
-	
-		//ListView lv = (ListView) getActivity().findViewById(R.id.customList);
-		rowAdapter adapter = new rowAdapter(getActivity());
-		for (int i = 0; i < 3; i++) {
-			adapter.add(new rowItem("titulo","1%", android.R.drawable.ic_menu_search));
-		}
-		setListAdapter(adapter);
-		
-	}
-	
+		ArrayList<String> locations = getLocationsAsString();
 
+		rowAdapter adapter = new rowAdapter(getActivity());
+
+		for (String item : locations) {
+			adapter.add(new rowItem(item,"0%", android.R.drawable.ic_menu_search));
+		}
+
+		setListAdapter(adapter);
+
+	}
+	private ArrayList<String> getLocationsAsString() {
+		ArrayList<String> result = new ArrayList<String>();
+		for (Node node : new EvaluationHelper(mEvaluation).getLocations()) {
+			result.add(node.getName());
+		}
+
+		return result;
+	}
 
 	private class rowItem {
 		public String tag, tag2;
@@ -71,16 +82,12 @@ public class LocationSlideMenu extends ListFragment {
 			title.setText(getItem(position).tag);
 			TextView percent = (TextView) convertView.findViewById(R.id.row_percent);
 			percent.setText(getItem(position).tag2);
-			
+
 
 			return convertView;
 		}
 
 	}
 
-	
-
-
-	
 }
 
