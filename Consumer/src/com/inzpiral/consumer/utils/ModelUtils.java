@@ -14,6 +14,7 @@ import com.inzpiral.consumer.models.Repetition;
 import com.inzpiral.consumer.models.Row;
 import com.inzpiral.consumer.models.Section;
 import com.inzpiral.consumer.models.Timestamp;
+import com.inzpiral.consumer.models.Boolean;
 
 
 public class ModelUtils {
@@ -60,6 +61,9 @@ public class ModelUtils {
 		}
 		else if(tag.equals("Frogmi::Activities::Manual::ChainedChoice")) {
 	        return ChainedChoice.class;
+		}
+		else if(tag.equals("Frogmi::Activities::Manual::Boolean")) {
+	        return Boolean.class;
 		}
 		
 		return PresentationNode.class;
