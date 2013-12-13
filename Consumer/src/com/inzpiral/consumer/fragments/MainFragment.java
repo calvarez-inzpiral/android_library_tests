@@ -20,6 +20,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 public class MainFragment extends SherlockFragment implements MainControllerListener {
 
 	private EvaluationHelper mHelper;
+	private MainController mMainController;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,11 +32,16 @@ public class MainFragment extends SherlockFragment implements MainControllerList
     	super.onViewCreated(view, savedInstanceState);
 		
 		// Activity links the view and the controller
-    	MainController mainController = new MainController((MainView) view.findViewById(R.id.main_view), this, getArguments());
+    	 mMainController = new MainController((MainView) view.findViewById(R.id.main_view), this);
 		
 		// Intercept the events of MainView
 //		((MainView) view.findViewById(R.id.main_view)).setListeners(spinnerController);
 
 	}
+
+//	@Override
+//	public void redraw() {
+//		mMainController.redraw();
+//	}
 
 }

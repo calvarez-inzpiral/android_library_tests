@@ -24,8 +24,7 @@ import com.inzpiral.consumer.utils.EvaluationHelper;
 
 
 public class LocationSlideMenu extends ListFragment {
-
-//	private Evaluation mEvaluation;
+	
 	private EvaluationHelper mHelper;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

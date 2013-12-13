@@ -9,7 +9,7 @@ import com.viewpagerindicator.IconPagerAdapter;
 
 
 public class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAdapter{
-
+	
 	protected static final String TAB_NAME_1 = "Oferta";
 	protected static final String TAB_NAME_2 = "Visibilidad";
 	protected static final String TAB_NAME_3 = "Otros";
@@ -24,7 +24,7 @@ public class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAd
 	};
 
 	private int mCount = CONTENT.length;
-
+	
 	public FragmentAdapter(FragmentManager fm) {
 		super(fm);
 	}

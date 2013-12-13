@@ -82,7 +82,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 	}
 
-	private void loadTabs(){
+	public void loadTabs(){
 		mAdapter = new FragmentAdapter(getSupportFragmentManager());
 
 		mPager = (ViewPager)findViewById(R.id.pager);
@@ -158,23 +158,15 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 	public void loadCategories(long id, int position) {
 		System.out.println("id:" + id + ", position:" + position);
-
-//		EvaluationHelper helper = new EvaluationHelper(mEvaluation);
+		
 		mHelper = EvaluationHelper.getInstance();
 		mHelper.setCurrentLocation(mHelper.getLocations().get(position));
 
 		Fragment newFragment = new SpinnerFragment();
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		Bundle bundle = new Bundle();
-		ArrayList<String> categories = mHelper.getNodesAsString(mHelper.getCategories());
-
-		bundle.putStringArray("categories", categories.toArray(new String[0]));
-		newFragment.setArguments(bundle);
 		
 		transaction.replace(R.id.spinners_frame, newFragment);
 		transaction.addToBackStack(null);
-
-		// Commit the transaction
 		transaction.commit();
 
 		new Handler().postDelayed(new Runnable() {

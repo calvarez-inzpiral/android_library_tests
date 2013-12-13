@@ -36,13 +36,10 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
     	super.onViewCreated(view, savedInstanceState);
 		
 		// Activity links the view and the controller
-		SpinnerController spinnerController = new SpinnerController((SpinnersView) view.findViewById(R.id.spinners_view), this, getArguments());
+		SpinnerController spinnerController = new SpinnerController((SpinnersView) view.findViewById(R.id.spinners_view), this);
 		
 		// Intercept the events of MainView
-		if(getArguments() != null) {
-			((SpinnersView) view.findViewById(R.id.spinners_view)).setListeners(spinnerController);
-		}
-		
+		((SpinnersView) view.findViewById(R.id.spinners_view)).setListeners(spinnerController);
 	}
 
 	@Override
@@ -54,22 +51,6 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
 		}
 		
 		mHelper.setCurrentCategory(mHelper.getCategories().get(position));
-		
-		ArrayList<String> questionTypes = mHelper.getNodesAsString(mHelper.getQuestionTypes());
-
-		Fragment newFragment = new MainFragment();
-		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-
-		Bundle bundle = new Bundle();
-		bundle.putStringArray("question_types", questionTypes.toArray(new String[0]));
-		newFragment.setArguments(bundle);
-		
-//		((ViewPager)getActivity().findViewById(R.id.pager)).getAdapter().getItemPosition(0).ge;
-		transaction.replace(R.id.main_view, newFragment);
-		transaction.addToBackStack(null);
-
-		// Commit the transaction
-		transaction.commit();
-		
+		((HomeActivity) getActivity()).loadTabs();
 	}
 }

@@ -46,7 +46,6 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 			mCategories = new ArrayList<Node>();
 			mQuestionTypes = new ArrayList<Node>();
 		}
-		
 		return mInstance;
 	}
 	
@@ -60,6 +59,9 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 	
 	// Locations
 	public List<Node> getLocations() {
+		mLocations = new ArrayList<Node>();
+		mCategories = new ArrayList<Node>();
+		mQuestionTypes = new ArrayList<Node>();
 		for (BaseNode baseNode : getRoot().getChildren()) {
 			mLocations.add((Node) baseNode);
 		}
@@ -75,6 +77,8 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 	
 	// Categories
 	public List<Node> getCategories() {
+		mCategories = new ArrayList<Node>();
+		mQuestionTypes = new ArrayList<Node>();
 		if(mCurrentLocation == null) {
 			return new ArrayList<Node>();
 		}
@@ -94,6 +98,7 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 	
 	// Tipo de pregunta
 	public List<Node> getQuestionTypes() {
+		mQuestionTypes = new ArrayList<Node>();
 		if(mCurrentCategory == null) {
 			return new ArrayList<Node>();
 		}
