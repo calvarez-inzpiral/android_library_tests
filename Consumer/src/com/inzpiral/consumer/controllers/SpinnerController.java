@@ -18,15 +18,15 @@ public class SpinnerController implements OnItemSelectedListener {
 	private SpinnerControllerListener listener;
 
 
-	public SpinnerController(SpinnersView spinnersView, SpinnerControllerListener listener, Bundle data) {
+	public SpinnerController(SpinnersView spinnersView, SpinnerControllerListener listener, Bundle arguments) {
 		this.mSpinnersView = spinnersView;
 		this.listener = listener;
 		
 		String[] vals = new String[0];
 //		String[] vals = { "Seleccione ubicacion" };
-    	if (data != null){
-    		System.out.println(data.getStringArray("categories"));
-    		vals = data.getStringArray("categories");
+    	if (arguments != null){
+    		System.out.println(arguments.getStringArray("categories"));
+    		vals = arguments.getStringArray("categories");
     	}
 		
 		ArrayAdapter<String> ad = new ArrayAdapter<String>(spinnersView.getContext(), android.R.layout.simple_dropdown_item_1line, vals);

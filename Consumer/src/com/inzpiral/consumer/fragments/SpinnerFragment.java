@@ -24,6 +24,7 @@ import com.inzpiral.consumer.views.SpinnersView;
 public class SpinnerFragment extends SherlockFragment implements SpinnerControllerListener {
 	
 	private String[] vals = { "Seleccione ubicacion" };
+	private EvaluationHelper mHelper;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -33,10 +34,6 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
     	super.onViewCreated(view, savedInstanceState);
-    		
-		// Obtener evaluacion
-		Evaluation ev = ((HomeActivity) getActivity()).getEvaluation();
-		System.out.println("Desde Spinners: " + ev.getName());
 		
 		// Activity links the view and the controller
 		SpinnerController spinnerController = new SpinnerController((SpinnersView) view.findViewById(R.id.spinners_view), this, getArguments());
@@ -50,15 +47,15 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
 
 	@Override
 	public void onLoadQuestionTypes(int position) {
-		
-		EvaluationHelper helper = new EvaluationHelper(((HomeActivity)getActivity()).getEvaluation());
-		if(helper.getCategories().size() == 0) {
+
+		mHelper = EvaluationHelper.getInstance();
+		if(mHelper.getCategories().size() == 0) {
 			return;
 		}
 		
-		helper.setCurrentCategory(helper.getCategories().get(position));
+		mHelper.setCurrentCategory(mHelper.getCategories().get(position));
 		
-		ArrayList<String> questionTypes = helper.getNodesAsString(helper.getQuestionTypes());
+		ArrayList<String> questionTypes = mHelper.getNodesAsString(mHelper.getQuestionTypes());
 
 		Fragment newFragment = new MainFragment();
 		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();

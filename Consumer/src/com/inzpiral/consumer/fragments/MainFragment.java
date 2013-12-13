@@ -13,10 +13,13 @@ import com.inzpiral.consumer.activities.HomeActivity;
 import com.inzpiral.consumer.controllers.MainController;
 import com.inzpiral.consumer.controllers.MainController.MainControllerListener;
 import com.inzpiral.consumer.models.Evaluation;
+import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.MainView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class MainFragment extends SherlockFragment implements MainControllerListener {
+
+	private EvaluationHelper mHelper;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -26,19 +29,9 @@ public class MainFragment extends SherlockFragment implements MainControllerList
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
     	super.onViewCreated(view, savedInstanceState);
-    	
-    	String msg = "Debe seleccionar Ubicacion y categoria";
-    	if (getArguments() != null){
-    		System.out.println(getArguments().getStringArray("question_types"));
-    		msg = Arrays.toString(getArguments().getStringArray("question_types"));
-    	}
-    	
-		// Obtener evaluacion
-		Evaluation ev = ((HomeActivity) getActivity()).getEvaluation();
-		System.out.println("Desde Main: " + ev.getName());
 		
 		// Activity links the view and the controller
-    	MainController mainController = new MainController((MainView) view.findViewById(R.id.main_view), this, msg);
+    	MainController mainController = new MainController((MainView) view.findViewById(R.id.main_view), this, getArguments());
 		
 		// Intercept the events of MainView
 //		((MainView) view.findViewById(R.id.main_view)).setListeners(spinnerController);

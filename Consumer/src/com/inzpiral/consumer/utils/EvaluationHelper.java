@@ -13,22 +13,41 @@ import com.inzpiral.consumer.models.PresentationNode;
 
 public class EvaluationHelper implements Iterable<BaseNode> {
 
-	private Evaluation mEvaluation;
+	public static EvaluationHelper mInstance;
+	private static Evaluation mEvaluation;
 	
-	private Node mRoot;
-	private Node mCurrentLocation;
-	private Node mCurrentCategory;
-	private Node mCurrentQuestionType;
+	private static Node mRoot;
+	private static Node mCurrentLocation;
+	private static Node mCurrentCategory;
+	private static Node mCurrentQuestionType;
 	
-	private List<Node> mLocations;
-	private List<Node> mCategories;
-	private List<Node> mQuestionTypes;
+	private static List<Node> mLocations;
+	private static List<Node> mCategories;
+	private static List<Node> mQuestionTypes;
 	
-	public EvaluationHelper(Evaluation evaluation) {
+	public static void setEvaluation(Evaluation evaluation) {
 		mEvaluation = evaluation;
-		mLocations = new ArrayList<Node>();
-		mCategories = new ArrayList<Node>();
-		mQuestionTypes = new ArrayList<Node>();
+	}
+	
+	public static EvaluationHelper getInstance(Evaluation ev) {
+		mEvaluation = ev;
+		return getInstance();
+	}
+	public static EvaluationHelper getInstance() {
+		if(mEvaluation == null) {
+//			throw new Exception("Evaluation no configurado!");
+			System.out.println("Evaluation no configurado! la primera vez debe llamar a getInstance(Evaluation ev)");
+			return null;
+		}
+		
+		if(mInstance == null) {
+			mInstance = new EvaluationHelper();
+			mLocations = new ArrayList<Node>();
+			mCategories = new ArrayList<Node>();
+			mQuestionTypes = new ArrayList<Node>();
+		}
+		
+		return mInstance;
 	}
 	
 	// Root

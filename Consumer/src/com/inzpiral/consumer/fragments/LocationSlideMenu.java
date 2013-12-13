@@ -25,7 +25,8 @@ import com.inzpiral.consumer.utils.EvaluationHelper;
 
 public class LocationSlideMenu extends ListFragment {
 
-	private Evaluation mEvaluation;
+//	private Evaluation mEvaluation;
+	private EvaluationHelper mHelper;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.slidebar, null);
@@ -34,10 +35,9 @@ public class LocationSlideMenu extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		((RingGraphic)getActivity().findViewById(R.id.ring_graph)).setPercent(45);
-
-		mEvaluation = ((HomeActivity)getActivity()).getEvaluation();
-		EvaluationHelper helper = new EvaluationHelper(mEvaluation);
-		ArrayList<String> locations = helper.getNodesAsString(helper.getLocations());
+		
+		mHelper = EvaluationHelper.getInstance();
+		ArrayList<String> locations = mHelper.getNodesAsString(mHelper.getLocations());
 
 		rowAdapter adapter = new rowAdapter(getActivity());
 

@@ -40,7 +40,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 	protected Fragment mFrag;
 
 	// Manejo de evaluacion
-	private Evaluation mEvaluation;
+	private EvaluationHelper mHelper;
 	private String mURL = "http://10.0.1.13/test/consumo_masivo.json";
 //	private String mURL = "http://192.168.0.117/test/consumo_masivo.json";
 
@@ -93,8 +93,6 @@ public class HomeActivity extends SlidingFragmentActivity {
 	}
 
 	public void loadEvaluation() {
-		//		mMainView.enableAll(false);
-
 		InputStream source = NetworkUtils.retrieveStream(mURL);
 
 		GsonBuilder builder = new GsonBuilder();
@@ -109,7 +107,8 @@ public class HomeActivity extends SlidingFragmentActivity {
 				Calendar cal = Calendar.getInstance();
 				long init = cal.getTimeInMillis();
 
-				mEvaluation = gson.fromJson(reader, Evaluation.class);
+				Evaluation evaluation = gson.fromJson(reader, Evaluation.class);
+				mHelper = EvaluationHelper.getInstance(evaluation);
 
 				cal = Calendar.getInstance();
 				System.out.println("Parsing time: " + (cal.getTimeInMillis() - init));
@@ -123,12 +122,6 @@ public class HomeActivity extends SlidingFragmentActivity {
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
-
-		//		mMainView.enableAll(true);
-	}
-
-	public Evaluation getEvaluation() {
-		return mEvaluation;
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -166,13 +159,14 @@ public class HomeActivity extends SlidingFragmentActivity {
 	public void loadCategories(long id, int position) {
 		System.out.println("id:" + id + ", position:" + position);
 
-		EvaluationHelper helper = new EvaluationHelper(mEvaluation);
-		helper.setCurrentLocation(helper.getLocations().get(position));
+//		EvaluationHelper helper = new EvaluationHelper(mEvaluation);
+		mHelper = EvaluationHelper.getInstance();
+		mHelper.setCurrentLocation(mHelper.getLocations().get(position));
 
 		Fragment newFragment = new SpinnerFragment();
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		Bundle bundle = new Bundle();
-		ArrayList<String> categories = helper.getNodesAsString(helper.getCategories());
+		ArrayList<String> categories = mHelper.getNodesAsString(mHelper.getCategories());
 
 		bundle.putStringArray("categories", categories.toArray(new String[0]));
 		newFragment.setArguments(bundle);
@@ -188,9 +182,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 				getSlidingMenu().showContent();
 			}
 		}, 50);
-	}	
-
-
+	}
 
 }
 
