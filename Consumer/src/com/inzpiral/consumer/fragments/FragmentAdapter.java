@@ -4,29 +4,18 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.inzpiral.consumer.R;
 import com.viewpagerindicator.IconPagerAdapter;
 
 
 public class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAdapter{
-	
-	protected static final String TAB_NAME_1 = "Oferta";
-	protected static final String TAB_NAME_2 = "Visibilidad";
-	protected static final String TAB_NAME_3 = "Otros";
-	protected static final String[] CONTENT = new String[] {
-		TAB_NAME_1 , TAB_NAME_2	, TAB_NAME_3
-	};
-	protected static final int[] ICONS = new int[] {
-		R.drawable.perm_group_calendar,
-		R.drawable.perm_group_camera,
-		R.drawable.perm_group_device_alarms,
+	private int mCount ;
 
-	};
+	private int[] ICONS; 
 
-	private int mCount = CONTENT.length;
-	
-	public FragmentAdapter(FragmentManager fm) {
+	public FragmentAdapter(FragmentManager fm, int tabsNumber, int [] icons) {
 		super(fm);
+		mCount = tabsNumber;
+		ICONS  = icons;
 	}
 
 	@Override
@@ -54,24 +43,6 @@ public class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAd
 	@Override
 	public int getCount() {
 		return mCount;
-	}
-
-	@Override
-	public CharSequence getPageTitle(int position){
-		String title = "";
-		switch(position){
-		case 0:
-			title = TAB_NAME_1;
-			break;
-		case 1:
-			title = TAB_NAME_2;
-			break;
-		case 2:
-			title = TAB_NAME_3;
-			break;	
-		}
-		return title;
-
 	}
 
 	public void setCount(int count){

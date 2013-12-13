@@ -22,8 +22,6 @@ import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.SpinnersView;
 
 public class SpinnerFragment extends SherlockFragment implements SpinnerControllerListener {
-	
-	private String[] vals = { "Seleccione ubicacion" };
 	private EvaluationHelper mHelper;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,6 +49,7 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
 		}
 		
 		mHelper.setCurrentCategory(mHelper.getCategories().get(position));
-		((HomeActivity) getActivity()).loadTabs();
+		
+		((HomeActivity) getActivity()).loadTabs(mHelper.getNodesAsString(mHelper.getQuestionTypes()).size());
 	}
 }

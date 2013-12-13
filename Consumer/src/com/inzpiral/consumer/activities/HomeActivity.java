@@ -38,11 +38,11 @@ public class HomeActivity extends SlidingFragmentActivity {
 	private ViewPager mPager;
 	private PageIndicator mIndicator;
 	protected Fragment mFrag;
+	protected int tabNumber;
 
 	// Manejo de evaluacion
 	private EvaluationHelper mHelper;
 	private String mURL = "http://10.0.1.13/test/consumo_masivo.json";
-//	private String mURL = "http://192.168.0.117/test/consumo_masivo.json";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,9 @@ public class HomeActivity extends SlidingFragmentActivity {
 		setContentView(R.layout.fragmenthome);
 
 		this.loadSlideBar(savedInstanceState);
-		this.loadTabs();
+		if(mHelper.getNodesAsString(mHelper.getQuestionTypes()).size()==0) tabNumber=3;
+	
+		this.loadTabs(tabNumber);
 		this.loadSpinners();
 	}
 
@@ -82,8 +84,16 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 	}
 
-	public void loadTabs(){
-		mAdapter = new FragmentAdapter(getSupportFragmentManager());
+	public void loadTabs(int tabNumber){
+		//hay que indicar dinamicamente el numero de tabs el numero DEBE ser entre 1 y 3
+		System.out.println("tengo que hacer taaaabs"+ tabNumber);
+		int [] icons = new int[] {
+				R.drawable.perm_group_calendar,
+				R.drawable.perm_group_camera,
+				R.drawable.perm_group_device_alarms,
+
+			};
+		mAdapter = new FragmentAdapter(getSupportFragmentManager(), tabNumber, icons);
 
 		mPager = (ViewPager)findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
