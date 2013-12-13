@@ -56,11 +56,11 @@ public class RingGraphicDrawable extends Drawable {
         canvas.save();
 
         Rect bounds = getBounds();
-
         canvas.scale(0.8F, 0.8F);
         canvas.translate(10, 10);
 
         rectF.set(bounds);
+        paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(10);
         

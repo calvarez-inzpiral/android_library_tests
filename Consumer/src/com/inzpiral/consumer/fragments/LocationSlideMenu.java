@@ -33,7 +33,7 @@ public class LocationSlideMenu extends ListFragment {
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		((RingGraphic)getActivity().findViewById(R.id.ring_graph)).setPercent(45);
+		((RingGraphic)getActivity().findViewById(R.id.ring_graph)).setPercent(66);
 		
 		mHelper = EvaluationHelper.getInstance();
 		ArrayList<String> locations = mHelper.getNodesAsString(mHelper.getLocations());
