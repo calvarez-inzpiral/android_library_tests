@@ -109,13 +109,23 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 
 		return mQuestionTypes;
 	}
-	public void setCurrentQuestionType(Node questionType) {
-		mCurrentQuestionType = questionType;
-	}
-	public Node getCurrentQuestionType() {
-		return mCurrentQuestionType;
-	}
+//	public void setCurrentQuestionType(Node questionType) {
+//		mCurrentQuestionType = questionType;
+//	}
+//	public Node getCurrentQuestionType() {
+//		return mCurrentQuestionType;
+//	}
 	
+	// Find question type by node's name
+	public Node getQuestionTypeByName(String name) {
+		for (Node node : mQuestionTypes) {
+			if(node.getName().equals(name)) {
+				return node;
+			}
+		}
+		
+		return null;
+	}
 	
 	// Otros
 	public ArrayList<String> getNodesAsString(List<Node> list) {

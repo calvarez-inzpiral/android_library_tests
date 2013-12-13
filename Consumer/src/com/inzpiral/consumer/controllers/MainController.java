@@ -5,6 +5,8 @@ import java.util.Arrays;
 
 import android.os.Bundle;
 
+import com.inzpiral.consumer.models.BaseNode;
+import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.MainView;
 
@@ -24,12 +26,19 @@ public class MainController {
 		this.mHelper = EvaluationHelper.getInstance();
 		
     	String msg = "Debe seleccionar Ubicacion y categoria";
-    	if (mHelper.getQuestionTypes().size() > 0){
-    		ArrayList<String> questionTypes = mHelper.getNodesAsString(mHelper.getQuestionTypes());
-    		msg = Arrays.toString(questionTypes.toArray(new String[0]));
+    	if (mHelper.getQuestionTypes().size() == 0){
+    		mMainView.getTestTextView().setText(msg);
+    		return;
     	}
+    	
+		ArrayList<String> questionTypes = mHelper.getNodesAsString(mHelper.getQuestionTypes());
+		msg = Arrays.toString(questionTypes.toArray(new String[0]));
 		
-		mMainView.getTestTextView().setText(msg);
+		Node sale = mHelper.getQuestionTypeByName("Oferta");
+		
+		for (BaseNode baseNode : sale.getChildren()) {
+			System.out.println("SECTION: " + ((Node)baseNode).getName());
+		}
 	}
 
 	// Interfaces
