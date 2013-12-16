@@ -16,7 +16,8 @@ public class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAd
 		super(fm);
 	
 		if (tabsNumber==0 ){
-			mCount = tabsNumber;
+			mCount = 1;
+			tabsNumber=1;
 		}else{
 			mCount = tabsNumber;
 		}
@@ -51,19 +52,7 @@ public class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAd
 		}
 		
 	}
-	public FragmentAdapter(FragmentManager fm) {
-		super(fm);
-		mCount = 1;
-		
-		int[] ICONS1 = new int[] {
-					R.drawable.perm_group_calendar,
-			};
-		ICONS = ICONS1;
-		setICONS(ICONS1);
-			
-		
-		
-	}
+
 
 	public void setICONS(int[] iCONS) {
 		notifyDataSetChanged();

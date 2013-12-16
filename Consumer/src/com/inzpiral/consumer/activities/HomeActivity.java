@@ -53,7 +53,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 		setContentView(R.layout.fragmenthome);
 
 		this.loadSlideBar(savedInstanceState);
-		this.loadTabs();
+		this.loadTabs(0);
 		this.loadSpinners();
 	}
 
@@ -84,25 +84,6 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 	}
 
-	public void loadTabs(){
-	
-	
-		this.runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				mAdapter = new FragmentAdapter(getSupportFragmentManager());
-
-				mPager = (ViewPager)findViewById(R.id.pager);
-				mPager.setAdapter(mAdapter);
-
-				mIndicator = (IconPageIndicator)findViewById(R.id.indicator);
-				mIndicator.setViewPager(mPager);
-				mIndicator.notifyDataSetChanged();
-
-			}
-			});
-
-	}
 	public void loadTabs(final int tabNumber){
 	
 		this.runOnUiThread(new Runnable() {
