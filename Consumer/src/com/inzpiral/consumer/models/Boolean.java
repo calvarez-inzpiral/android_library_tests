@@ -2,6 +2,7 @@ package com.inzpiral.consumer.models;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -25,8 +26,9 @@ public class Boolean extends FrogmiActivity {
 	}
 	
 	@Override
-	public void display(Activity activity, int parentId) {
+	public void display(Activity activity, View ParentView, int parentId) {
 		mActivity = activity;
+		mParentView = ParentView;
 		mParentId = parentId;
 		
 		System.out.println("MOSTRANDOME! Soy un 'Boolean' de question: " + getQuestion());
@@ -36,7 +38,7 @@ public class Boolean extends FrogmiActivity {
 	
 	private class BooleanController {
 		public BooleanController(BooleanView sectionView) {
-			((LinearLayout) mActivity.findViewById(mParentId)).addView(sectionView);
+			((LinearLayout) mParentView.findViewById(mParentId)).addView(sectionView);
 			sectionView.getRadioButton().setText(getQuestion());
 		}
 	}

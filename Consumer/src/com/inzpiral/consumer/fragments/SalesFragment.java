@@ -38,10 +38,10 @@ public class SalesFragment extends SherlockFragment implements SalesControllerLi
 	}
 
 	@Override
-	public void displayChildren(Node sale) {
+	public void displayChildren(View view, Node sale) {
 		for (BaseNode baseNode : sale.getChildren()) {
 			if(baseNode instanceof IDisplayable) {
-				((IDisplayable)baseNode).display(getActivity(), R.id.sales_content);
+				((IDisplayable)baseNode).display(getActivity(), view, R.id.sales_content);
 			}
 		}
 	}

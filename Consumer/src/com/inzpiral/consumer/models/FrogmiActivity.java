@@ -1,12 +1,14 @@
 package com.inzpiral.consumer.models;
 
 import android.app.Activity;
+import android.view.View;
 
 import com.google.gson.annotations.SerializedName;
 
 public class FrogmiActivity extends BaseNode implements IDisplayable {
 	
 	transient protected Activity mActivity;
+	transient protected View mParentView;
 	transient protected int mParentId;
 
 	@SerializedName("node_order")
@@ -32,7 +34,7 @@ public class FrogmiActivity extends BaseNode implements IDisplayable {
 	}
 
 	@Override
-	public void display(Activity activity, int parentId) {
+	public void display(Activity activity, View ParentView, int parentId) {
 		System.out.println("MOSTRANDOME! Soy un 'FrogmiActivity' de tipo: " + getNode());
 	}
 

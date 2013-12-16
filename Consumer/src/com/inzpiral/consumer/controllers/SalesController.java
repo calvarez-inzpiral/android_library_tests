@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.IDisplayable;
@@ -34,12 +35,12 @@ public class SalesController {
 		System.out.println(Arrays.toString(questionTypes.toArray(new String[0])));
 		
 		Node sale = mHelper.getQuestionTypeByName("Oferta");
-		mListener.displayChildren(sale);
+		mListener.displayChildren(mMainView, sale);
 	}
 
 	// Interfaces
 	public interface SalesControllerListener {
-		void displayChildren(Node sale);
+		void displayChildren(View view, Node sale);
 	}
 
 }
