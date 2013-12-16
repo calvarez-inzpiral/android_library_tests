@@ -3,6 +3,7 @@ package com.inzpiral.consumer.models;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,8 +50,8 @@ public class Boolean extends FrogmiActivity {
 			addView(mInflater.inflate(R.layout.module_boolean, null));
 		}
 		
-		public TextView getRadioButton() {
-			return (TextView)findViewById(R.id.radio_button);
+		public CheckBox getRadioButton() {
+			return (CheckBox)findViewById(R.id.checkBox1);
 		}
 	}
 
