@@ -2,12 +2,7 @@ package com.inzpiral.consumer.customs;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.inzpiral.consumer.R;
