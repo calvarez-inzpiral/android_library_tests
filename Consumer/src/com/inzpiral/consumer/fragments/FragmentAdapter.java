@@ -20,6 +20,7 @@ public class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAd
 
 	@Override
 	public int getIconResId(int index) {
+	
 		return ICONS[index % ICONS.length];
 	}
 
