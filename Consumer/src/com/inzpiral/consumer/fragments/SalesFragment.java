@@ -19,6 +19,8 @@ import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.SalesView;
 
 public class SalesFragment extends SherlockFragment implements SalesControllerListener {
+	
+	private String mNodeName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class SalesFragment extends SherlockFragment implements SalesControllerLi
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
     	super.onViewCreated(view, savedInstanceState);
+    	mNodeName = getArguments().getString("node_name");
 		
 		// Activity links the view and the controller
     	SalesController salesController = new SalesController((SalesView) view.findViewById(R.id.sales_view), this);
@@ -44,6 +47,11 @@ public class SalesFragment extends SherlockFragment implements SalesControllerLi
 				((IDisplayable)baseNode).display(getActivity(), view, R.id.sales_content);
 			}
 		}
+	}
+
+	@Override
+	public String getNodeName() {
+		return mNodeName;
 	}
 
 }

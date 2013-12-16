@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.inzpiral.consumer.R;
 
-public class Tab3 extends Fragment {
+public class QualityFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// Inflate the layout for this fragment

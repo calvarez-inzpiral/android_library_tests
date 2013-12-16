@@ -32,15 +32,15 @@ public class SalesController {
     	}
     	
 		ArrayList<String> questionTypes = mHelper.getNodesAsString(mHelper.getQuestionTypes());
-		System.out.println(Arrays.toString(questionTypes.toArray(new String[0])));
 		
-		Node sale = mHelper.getQuestionTypeByName("Oferta");
+		Node sale = mHelper.getQuestionTypeByName(mListener.getNodeName());
 		mListener.displayChildren(mMainView, sale);
 	}
 
 	// Interfaces
 	public interface SalesControllerListener {
 		void displayChildren(View view, Node sale);
+		String getNodeName();
 	}
 
 }
