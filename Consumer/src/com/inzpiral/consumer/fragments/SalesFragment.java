@@ -22,7 +22,7 @@ public class SalesFragment extends SherlockFragment implements SalesControllerLi
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    	return inflater.inflate(R.layout.fragment_main, container, false);
+    	return inflater.inflate(R.layout.fragment_sales, container, false);
     }
     
     @Override
@@ -41,7 +41,7 @@ public class SalesFragment extends SherlockFragment implements SalesControllerLi
 	public void displayChildren(Node sale) {
 		for (BaseNode baseNode : sale.getChildren()) {
 			if(baseNode instanceof IDisplayable) {
-				((IDisplayable)baseNode).display(getActivity(), R.id.content);
+				((IDisplayable)baseNode).display(getActivity(), R.id.sales_content);
 			}
 		}
 	}

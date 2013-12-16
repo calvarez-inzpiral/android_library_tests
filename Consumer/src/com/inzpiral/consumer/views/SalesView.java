@@ -25,11 +25,7 @@ public class SalesView extends RelativeLayout{
 	
 	// Getters
 	public LinearLayout getContent() {
-		return ((LinearLayout) this.findViewById(R.id.content));
-	}
-
-	public TextView getTestTextView() {
-		return ((TextView) this.findViewById(R.id.textView1));
+		return ((LinearLayout) this.findViewById(R.id.sales_content));
 	}
 	
 }

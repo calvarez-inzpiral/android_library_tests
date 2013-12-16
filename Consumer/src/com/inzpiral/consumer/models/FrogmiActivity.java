@@ -5,6 +5,9 @@ import android.app.Activity;
 import com.google.gson.annotations.SerializedName;
 
 public class FrogmiActivity extends BaseNode implements IDisplayable {
+	
+	transient protected Activity mActivity;
+	transient protected int mParentId;
 
 	@SerializedName("node_order")
 	private int mNodeOrder;

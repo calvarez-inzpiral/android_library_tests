@@ -26,14 +26,12 @@ public class SalesController {
 		this.mListener = listener;
 		this.mHelper = EvaluationHelper.getInstance();
 		
-    	String msg = "Debe seleccionar Ubicacion y categoria";
     	if (mHelper.getQuestionTypes().size() == 0){
-    		mMainView.getTestTextView().setText(msg);
     		return;
     	}
     	
 		ArrayList<String> questionTypes = mHelper.getNodesAsString(mHelper.getQuestionTypes());
-		msg = Arrays.toString(questionTypes.toArray(new String[0]));
+		System.out.println(Arrays.toString(questionTypes.toArray(new String[0])));
 		
 		Node sale = mHelper.getQuestionTypeByName("Oferta");
 		mListener.displayChildren(sale);
