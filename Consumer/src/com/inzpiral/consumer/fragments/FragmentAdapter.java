@@ -3,9 +3,6 @@ package com.inzpiral.consumer.fragments;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.View;
-import android.view.ViewGroup;
-
 
 import com.inzpiral.consumer.R;
 import com.viewpagerindicator.IconPagerAdapter;
@@ -17,7 +14,12 @@ public class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAd
 	
 	public FragmentAdapter(FragmentManager fm, int tabsNumber) {
 		super(fm);
-		mCount = tabsNumber;
+	
+		if (tabsNumber==0 ){
+			mCount = tabsNumber;
+		}else{
+			mCount = tabsNumber;
+		}
 		
 		switch(tabsNumber){
 		case 1:

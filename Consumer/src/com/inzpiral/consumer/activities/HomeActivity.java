@@ -85,7 +85,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 	}
 
 	public void loadTabs(){
-		//hay que indicar dinamicamente el numero de tabs el numero DEBE ser entre 1 y 3
+	
 	
 		this.runOnUiThread(new Runnable() {
 			@Override
