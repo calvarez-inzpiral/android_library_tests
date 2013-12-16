@@ -29,7 +29,7 @@ public class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAd
 		Fragment fragment = new Fragment();
 		switch(position){
 		case 0:
-			fragment = new MainFragment();
+			fragment = new SalesFragment();
 			break;
 		case 1:
 			fragment = new Tab2();

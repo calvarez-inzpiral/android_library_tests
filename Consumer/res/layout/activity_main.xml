@@ -11,7 +11,7 @@
     tools:context=".MainActivity" >
     
     <fragment
-        android:name="com.inzpiral.consumer.fragments.MainFragment"
+        android:name="com.inzpiral.consumer.fragments.SalesFragment"
 		android:id="@+id/main_fragment_view"
 		android:layout_width="wrap_content"
 		android:layout_height="match_parent" />
