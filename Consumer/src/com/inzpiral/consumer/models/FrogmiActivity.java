@@ -1,8 +1,10 @@
 package com.inzpiral.consumer.models;
 
+import android.app.Activity;
+
 import com.google.gson.annotations.SerializedName;
 
-public class FrogmiActivity extends BaseNode {
+public class FrogmiActivity extends BaseNode implements IDisplayable {
 
 	@SerializedName("node_order")
 	private int mNodeOrder;
@@ -24,6 +26,11 @@ public class FrogmiActivity extends BaseNode {
 
 	public void setOriginalCode(String mOriginalCode) {
 		this.mOriginalCode = mOriginalCode;
+	}
+
+	@Override
+	public void display(Activity activity, int parentId) {
+		System.out.println("MOSTRANDOME! Soy un 'FrogmiActivity' de tipo: " + getNode());
 	}
 
 }

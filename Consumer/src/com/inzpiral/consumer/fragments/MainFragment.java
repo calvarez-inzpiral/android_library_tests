@@ -9,13 +9,16 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.controllers.MainController;
 import com.inzpiral.consumer.controllers.MainController.MainControllerListener;
+
+import com.inzpiral.consumer.models.BaseNode;
+import com.inzpiral.consumer.models.Evaluation;
+import com.inzpiral.consumer.models.IDisplayable;
+import com.inzpiral.consumer.models.Node;
+
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.MainView;
 
 public class MainFragment extends SherlockFragment implements MainControllerListener {
-
-	private EvaluationHelper mHelper;
-	private MainController mMainController;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -27,16 +30,20 @@ public class MainFragment extends SherlockFragment implements MainControllerList
     	super.onViewCreated(view, savedInstanceState);
 		
 		// Activity links the view and the controller
-    	 mMainController = new MainController((MainView) view.findViewById(R.id.main_view), this);
+    	MainController mMainController = new MainController((MainView) view.findViewById(R.id.main_view), this);
 		
 		// Intercept the events of MainView
-//		((MainView) view.findViewById(R.id.main_view)).setListeners(spinnerController);
+//		((MainView) view.findViewById(R.id.main_view)).setListeners(mMainController);
 
 	}
 
-//	@Override
-//	public void redraw() {
-//		mMainController.redraw();
-//	}
+	@Override
+	public void displayChildren(Node sale) {
+		for (BaseNode baseNode : sale.getChildren()) {
+			if(baseNode instanceof IDisplayable) {
+				((IDisplayable)baseNode).display(getActivity(), R.id.content);
+			}
+		}
+	}
 
 }

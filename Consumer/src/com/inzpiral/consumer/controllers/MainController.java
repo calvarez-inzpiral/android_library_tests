@@ -6,6 +6,7 @@ import java.util.Arrays;
 import android.os.Bundle;
 
 import com.inzpiral.consumer.models.BaseNode;
+import com.inzpiral.consumer.models.IDisplayable;
 import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.MainView;
@@ -35,15 +36,17 @@ public class MainController {
 		msg = Arrays.toString(questionTypes.toArray(new String[0]));
 		
 		Node sale = mHelper.getQuestionTypeByName("Oferta");
-		
-		for (BaseNode baseNode : sale.getChildren()) {
-			System.out.println("SECTION: " + ((Node)baseNode).getName());
-		}
+		mListener.displayChildren(sale);
+//		for (BaseNode baseNode : sale.getChildren()) {
+//			if(baseNode instanceof IDisplayable) {
+//				((IDisplayable)baseNode).display();
+//			}
+//		}
 	}
 
 	// Interfaces
 	public interface MainControllerListener {
-		
+		void displayChildren(Node sale);
 	}
 
 }

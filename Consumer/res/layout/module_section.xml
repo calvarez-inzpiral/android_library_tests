@@ -1,0 +1,18 @@
+<RelativeLayout    
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/section_view"
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+	<TextView
+	    android:id="@+id/textview_section_title"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:background="#153483"
+	    android:textColor="#FFFFFF"
+	    android:text="Titulo de seccion"
+	    android:layout_marginBottom="5dp"
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>
