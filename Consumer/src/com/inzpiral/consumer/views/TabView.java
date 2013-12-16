@@ -8,9 +8,9 @@ import android.widget.RelativeLayout;
 
 import com.inzpiral.consumer.R;
 
-public class SalesView extends RelativeLayout{
+public class TabView extends RelativeLayout{
 
-	public SalesView(Context context, AttributeSet attrs) {
+	public TabView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 	
@@ -21,7 +21,7 @@ public class SalesView extends RelativeLayout{
 	
 	// Getters
 	public LinearLayout getContent() {
-		return ((LinearLayout) this.findViewById(R.id.sales_content));
+		return ((LinearLayout) this.findViewById(R.id.tab_content));
 	}
 	
 }

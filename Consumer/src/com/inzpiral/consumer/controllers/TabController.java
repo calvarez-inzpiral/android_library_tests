@@ -10,20 +10,20 @@ import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.IDisplayable;
 import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.utils.EvaluationHelper;
-import com.inzpiral.consumer.views.SalesView;
+import com.inzpiral.consumer.views.TabView;
 
 /**
  * LoginController intercepts the on click login button event, verify the inputs 
  *
  */
-public class SalesController {
+public class TabController {
 	
-	private SalesView mMainView;
-	private SalesControllerListener mListener;
+	private TabView mTabView;
+	private TabControllerListener mListener;
 	private EvaluationHelper mHelper;
 
-	public SalesController(SalesView loginView, SalesControllerListener listener) {
-		this.mMainView = loginView;
+	public TabController(TabView tabView, TabControllerListener listener) {
+		this.mTabView = tabView;
 		this.mListener = listener;
 		this.mHelper = EvaluationHelper.getInstance();
 		
@@ -34,12 +34,12 @@ public class SalesController {
 		ArrayList<String> questionTypes = mHelper.getNodesAsString(mHelper.getQuestionTypes());
 		
 		Node sale = mHelper.getQuestionTypeByName(mListener.getNodeName());
-		mListener.displayChildren(mMainView, sale);
+		mListener.displayChildren(mTabView, sale);
 	}
 
 	// Interfaces
-	public interface SalesControllerListener {
-		void displayChildren(View view, Node sale);
+	public interface TabControllerListener {
+		void displayChildren(View view, Node node);
 		String getNodeName();
 	}
 

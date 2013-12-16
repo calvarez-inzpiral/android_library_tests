@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.inzpiral.consumer.R;
-import com.inzpiral.consumer.controllers.SalesController;
-import com.inzpiral.consumer.controllers.SalesController.SalesControllerListener;
+import com.inzpiral.consumer.controllers.TabController;
+import com.inzpiral.consumer.controllers.TabController.TabControllerListener;
 
 import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.Evaluation;
@@ -16,9 +16,9 @@ import com.inzpiral.consumer.models.IDisplayable;
 import com.inzpiral.consumer.models.Node;
 
 import com.inzpiral.consumer.utils.EvaluationHelper;
-import com.inzpiral.consumer.views.SalesView;
+import com.inzpiral.consumer.views.TabView;
 
-public class SalesFragment extends SherlockFragment implements SalesControllerListener {
+public class TabFragment extends SherlockFragment implements TabControllerListener {
 	
 	private String mNodeName;
 
@@ -33,18 +33,18 @@ public class SalesFragment extends SherlockFragment implements SalesControllerLi
     	mNodeName = getArguments().getString("node_name");
 		
 		// Activity links the view and the controller
-    	SalesController salesController = new SalesController((SalesView) view.findViewById(R.id.sales_view), this);
+    	TabController salesController = new TabController((TabView) view.findViewById(R.id.tab_view), this);
 		
 		// Intercept the events of MainView
-//		((MainView) view.findViewById(R.id.main_view)).setListeners(mMainController);
+//		((TabView) view.findViewById(R.id.tab_view)).setListeners(salesController);
 
 	}
 
 	@Override
-	public void displayChildren(View view, Node sale) {
-		for (BaseNode baseNode : sale.getChildren()) {
+	public void displayChildren(View parentView, Node node) {
+		for (BaseNode baseNode : node.getChildren()) {
 			if(baseNode instanceof IDisplayable) {
-				((IDisplayable)baseNode).display(getActivity(), view, R.id.sales_content);
+				((IDisplayable)baseNode).display(getActivity(), parentView, R.id.tab_content);
 			}
 		}
 	}
