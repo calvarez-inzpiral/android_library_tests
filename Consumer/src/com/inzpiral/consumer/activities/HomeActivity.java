@@ -3,7 +3,6 @@ package com.inzpiral.consumer.activities;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.os.Bundle;
@@ -30,8 +29,6 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.viewpagerindicator.IconPageIndicator;
 import com.viewpagerindicator.PageIndicator;
-import com.viewpagerindicator.TitlePageIndicator;
-import com.viewpagerindicator.TitlePageIndicator.IndicatorStyle;
 
 public class HomeActivity extends SlidingFragmentActivity {
 
@@ -40,8 +37,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 	private ViewPager mPager;
 	private PageIndicator mIndicator;
 	protected Fragment mFrag;
-	protected int tabNumber;
-
+	
 	// Manejo de evaluacion
 	private EvaluationHelper mHelper;
 	private String mURL = "http://10.0.1.13/test/consumo_masivo.json";
@@ -53,6 +49,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 		setContentView(R.layout.fragmenthome);
 
 		this.loadSlideBar(savedInstanceState);
+		//cuando comienza no se ha seleccionado nada, se muestra tab por default
 		this.loadTabs(0);
 		this.loadSpinners();
 	}
@@ -85,7 +82,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 	}
 
 	public void loadTabs(final int tabNumber){
-	
+
 		this.runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -96,9 +93,9 @@ public class HomeActivity extends SlidingFragmentActivity {
 				mIndicator = (IconPageIndicator)findViewById(R.id.indicator);
 				mIndicator.setViewPager(mPager);
 				mIndicator.notifyDataSetChanged();
-		
+
 			}
-			});
+		});
 
 	}
 
@@ -168,13 +165,13 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 	public void loadCategories(long id, int position) {
 		System.out.println("id:" + id + ", position:" + position);
-		
+
 		mHelper = EvaluationHelper.getInstance();
 		mHelper.setCurrentLocation(mHelper.getLocations().get(position));
 
 		Fragment newFragment = new SpinnerFragment();
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		
+
 		transaction.replace(R.id.spinners_frame, newFragment);
 		transaction.addToBackStack(null);
 		transaction.commit();
