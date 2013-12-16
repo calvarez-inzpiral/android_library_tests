@@ -1,23 +1,15 @@
 package com.inzpiral.consumer.fragments;
 
-import java.util.ArrayList;
-
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.activities.HomeActivity;
 import com.inzpiral.consumer.controllers.SpinnerController;
 import com.inzpiral.consumer.controllers.SpinnerController.SpinnerControllerListener;
-import com.inzpiral.consumer.models.Evaluation;
-import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.SpinnersView;
 

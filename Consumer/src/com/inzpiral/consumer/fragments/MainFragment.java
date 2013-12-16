@@ -1,7 +1,5 @@
 package com.inzpiral.consumer.fragments;
 
-import java.util.Arrays;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,16 +7,16 @@ import android.view.ViewGroup;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.inzpiral.consumer.R;
-import com.inzpiral.consumer.activities.HomeActivity;
 import com.inzpiral.consumer.controllers.MainController;
 import com.inzpiral.consumer.controllers.MainController.MainControllerListener;
+
 import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.Evaluation;
 import com.inzpiral.consumer.models.IDisplayable;
 import com.inzpiral.consumer.models.Node;
+
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.MainView;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class MainFragment extends SherlockFragment implements MainControllerListener {
 

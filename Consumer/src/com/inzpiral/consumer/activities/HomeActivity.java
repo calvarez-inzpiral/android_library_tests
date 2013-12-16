@@ -39,6 +39,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 	private PageIndicator mIndicator;
 	protected Fragment mFrag;
 	protected int tabNumber;
+	int [] icons;
 
 	// Manejo de evaluacion
 	private EvaluationHelper mHelper;
@@ -51,7 +52,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 		setContentView(R.layout.fragmenthome);
 
 		this.loadSlideBar(savedInstanceState);
-		if(mHelper.getNodesAsString(mHelper.getQuestionTypes()).size()==0) tabNumber=3;
+		if(mHelper.getNodesAsString(mHelper.getQuestionTypes()).size()==0) tabNumber=1;
 	
 		this.loadTabs(tabNumber);
 		this.loadSpinners();
@@ -86,20 +87,32 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 	public void loadTabs(int tabNumber){
 		//hay que indicar dinamicamente el numero de tabs el numero DEBE ser entre 1 y 3
-		System.out.println("tengo que hacer taaaabs"+ tabNumber);
-		int [] icons = new int[] {
-				R.drawable.perm_group_calendar,
-				R.drawable.perm_group_camera,
-				R.drawable.perm_group_device_alarms,
-
+		System.out.println("tengo que hacer tabs"+ tabNumber);
+//		icons = new int[] {
+//					R.drawable.perm_group_calendar,
+//					R.drawable.perm_group_camera,
+//					R.drawable.perm_group_device_alarms,
+//					};
+		if (tabNumber==3) {
+			icons = new int[] {
+					R.drawable.perm_group_calendar,
+					R.drawable.perm_group_camera,
+					R.drawable.perm_group_device_alarms,
+					};
+		} else {
+			icons = new int[] {
+					R.drawable.perm_group_calendar,
 			};
+		}
+		
 		mAdapter = new FragmentAdapter(getSupportFragmentManager(), tabNumber, icons);
 
 		mPager = (ViewPager)findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
 
 		mIndicator = (IconPageIndicator)findViewById(R.id.indicator);
-		mIndicator.setViewPager(mPager);		
+		mIndicator.setViewPager(mPager);	
+
 	}
 
 	public void loadEvaluation() {
