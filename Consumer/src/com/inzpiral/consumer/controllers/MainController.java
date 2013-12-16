@@ -37,11 +37,6 @@ public class MainController {
 		
 		Node sale = mHelper.getQuestionTypeByName("Oferta");
 		mListener.displayChildren(sale);
-//		for (BaseNode baseNode : sale.getChildren()) {
-//			if(baseNode instanceof IDisplayable) {
-//				((IDisplayable)baseNode).display();
-//			}
-//		}
 	}
 
 	// Interfaces
