@@ -35,7 +35,7 @@ public class Section extends PresentationNode implements IDisplayable {
 		}
 	}
 	
-	private class SectionView extends RelativeLayout {
+	private class SectionView extends LinearLayout {
 		public SectionView() {
 			super(mActivity);
 			LayoutInflater mInflater = LayoutInflater.from(mActivity);

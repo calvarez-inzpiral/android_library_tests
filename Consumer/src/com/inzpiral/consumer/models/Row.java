@@ -3,8 +3,6 @@ package com.inzpiral.consumer.models;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.inzpiral.consumer.R;
 
@@ -33,7 +31,7 @@ public class Row extends PresentationNode implements IDisplayable {
 		}
 	}
 	
-	private class RowView extends RelativeLayout {
+	private class RowView extends LinearLayout {
 		public RowView() {
 			super(mActivity);
 			LayoutInflater mInflater = LayoutInflater.from(mActivity);

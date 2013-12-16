@@ -2,6 +2,7 @@ package com.inzpiral.consumer.models;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,7 +41,7 @@ public class Boolean extends FrogmiActivity {
 		}
 	}
 	
-	private class BooleanView extends RelativeLayout {
+	private class BooleanView extends FrameLayout {
 		public BooleanView() {
 			super(mActivity);
 			LayoutInflater mInflater = LayoutInflater.from(mActivity);
