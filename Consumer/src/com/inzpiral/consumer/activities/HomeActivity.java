@@ -37,7 +37,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 	private ViewPager mPager;
 	private PageIndicator mIndicator;
 	protected Fragment mFrag;
-	
+
 	// Manejo de evaluacion
 	private EvaluationHelper mHelper;
 	private String mURL = "http://10.0.1.13/test/consumo_masivo.json";
@@ -49,8 +49,6 @@ public class HomeActivity extends SlidingFragmentActivity {
 		setContentView(R.layout.fragmenthome);
 
 		this.loadSlideBar(savedInstanceState);
-		//cuando comienza no se ha seleccionado nada, se muestra tab por default
-		//this.loadTabs(0);
 		this.loadSpinners();
 	}
 
@@ -82,20 +80,14 @@ public class HomeActivity extends SlidingFragmentActivity {
 	}
 
 	public void loadTabs(final int tabNumber){
-//
-//		this.runOnUiThread(new Runnable() {
-//			@Override
-//			public void run() {
-				mAdapter = new FragmentAdapter(getSupportFragmentManager(), tabNumber);
-				mPager = (ViewPager)findViewById(R.id.pager);
-				mPager.setAdapter(mAdapter);
 
-				mIndicator = (IconPageIndicator)findViewById(R.id.indicator);
-				mIndicator.setViewPager(mPager);
-				mIndicator.notifyDataSetChanged();
-//
-//			}
-//		});
+		mAdapter = new FragmentAdapter(getSupportFragmentManager(), tabNumber);
+		mPager = (ViewPager)findViewById(R.id.pager);
+		mPager.setAdapter(mAdapter);
+
+		mIndicator = (IconPageIndicator)findViewById(R.id.indicator);
+		mIndicator.setViewPager(mPager);
+		mIndicator.notifyDataSetChanged();
 
 	}
 

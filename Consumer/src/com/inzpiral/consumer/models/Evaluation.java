@@ -5,13 +5,13 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class Evaluation {
-	
+
 	@SerializedName("node")
 	private String mNode;
-	
+
 	@SerializedName("name")
 	private String mName;
-	
+
 	@SerializedName("code")
 	private String mCode;
 
@@ -49,5 +49,5 @@ public class Evaluation {
 	public void setChildren(List<? extends BaseNode> mChildren) {
 		this.mChildren = mChildren;
 	}
-	
+
 }

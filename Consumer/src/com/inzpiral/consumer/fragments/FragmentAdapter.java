@@ -15,7 +15,7 @@ public class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAd
 
 	public FragmentAdapter(FragmentManager fm, int tabsNumber) {
 		super(fm);
-
+		//maneja cuando la categoria no tiene tabs
 		if (tabsNumber==0 ){
 			mCount = 1;
 			tabsNumber=1;
@@ -69,18 +69,18 @@ public class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAd
 	@Override
 	public Fragment getItem(int position) {
 		Bundle bundle = new Bundle();
-//		Fragment fragment = new Fragment();
+		//		Fragment fragment = new Fragment();
 		Fragment fragment = new TabFragment();
 		switch(position){
 		case 0:
 			bundle.putString("node_name", "Oferta");
 			break;
 		case 1:
-//			fragment = new VisibilityFragment();
+			//			fragment = new VisibilityFragment();
 			bundle.putString("node_name", "Visibilidad");
 			break;
 		case 2:
-//			fragment = new QualityFragment();
+			//			fragment = new QualityFragment();
 			bundle.putString("node_name", "Calidad");
 			break;	
 		}
