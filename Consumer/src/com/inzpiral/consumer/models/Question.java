@@ -26,9 +26,9 @@ public class Question extends FrogmiActivity {
 	}
 	
 	@Override
-	public void display(Activity activity, View ParentView, int parentId) {
+	public void display(Activity activity, View parentView, int parentId) {
 		mActivity = activity;
-		mParentView = ParentView;
+		mParentView = parentView;
 		mParentId = parentId;
 		
 		System.out.println("MOSTRANDOME! Soy un 'Question' de question: " + getQuestion());

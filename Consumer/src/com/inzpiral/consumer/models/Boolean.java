@@ -16,8 +16,6 @@ import com.inzpiral.consumer.R;
 
 public class Boolean extends FrogmiActivity {
 
-	transient protected BooleanController mController;
-
 	@SerializedName("question")
 	private String mQuestion;
 
@@ -30,13 +28,13 @@ public class Boolean extends FrogmiActivity {
 	}
 	
 	@Override
-	public void display(Activity activity, View ParentView, int parentId) {
+	public void display(Activity activity, View parentView, int parentId) {
 		mActivity = activity;
-		mParentView = ParentView;
+		mParentView = parentView;
 		mParentId = parentId;
 		
 		System.out.println("MOSTRANDOME! Soy un 'Boolean' de question: " + getQuestion());
-		mController = new BooleanController(new BooleanView());
+		BooleanController controller = new BooleanController(new BooleanView());
 	}
 
 	
@@ -55,7 +53,7 @@ public class Boolean extends FrogmiActivity {
 		
 	}
 	
-	private class BooleanView extends FrameLayout {
+	private class BooleanView extends LinearLayout {
 		public BooleanView() {
 			super(mActivity);
 			LayoutInflater mInflater = LayoutInflater.from(mActivity);

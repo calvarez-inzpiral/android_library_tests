@@ -1,13 +1,7 @@
 package com.inzpiral.consumer.controllers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import android.os.Bundle;
 import android.view.View;
 
-import com.inzpiral.consumer.models.BaseNode;
-import com.inzpiral.consumer.models.IDisplayable;
 import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.TabView;
@@ -30,8 +24,6 @@ public class TabController {
     	if (mHelper.getQuestionTypes().size() == 0){
     		return;
     	}
-    	
-		ArrayList<String> questionTypes = mHelper.getNodesAsString(mHelper.getQuestionTypes());
 		
 		Node sale = mHelper.getQuestionTypeByName(mListener.getNodeName());
 		mListener.displayChildren(mTabView, sale);

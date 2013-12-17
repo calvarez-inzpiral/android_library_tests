@@ -22,6 +22,7 @@ import com.inzpiral.consumer.fragments.LocationSlideMenu;
 import com.inzpiral.consumer.fragments.SpinnerFragment;
 import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.Evaluation;
+import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.utils.ConsumerDeserializer;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.utils.NetworkUtils;
@@ -84,6 +85,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 		mAdapter = new FragmentAdapter(getSupportFragmentManager(), tabNumber);
 		mPager = (ViewPager)findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
+		mPager.setAlwaysDrawnWithCacheEnabled(true);
 
 		mIndicator = (IconPageIndicator)findViewById(R.id.indicator);
 		mIndicator.setViewPager(mPager);
@@ -159,7 +161,14 @@ public class HomeActivity extends SlidingFragmentActivity {
 		System.out.println("id:" + id + ", position:" + position);
 
 		mHelper = EvaluationHelper.getInstance();
-		mHelper.setCurrentLocation(mHelper.getLocations().get(position));
+		Node selectedLocation = mHelper.getLocations().get(position);
+		
+		if(mHelper.getCurrentLocation() == selectedLocation) {
+			closeSlidingmenu();
+			return;
+		}
+		
+		mHelper.setCurrentLocation(selectedLocation);
 
 		Fragment newFragment = new SpinnerFragment();
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -167,7 +176,11 @@ public class HomeActivity extends SlidingFragmentActivity {
 		transaction.replace(R.id.spinners_frame, newFragment);
 		transaction.addToBackStack(null);
 		transaction.commit();
-
+		
+		closeSlidingmenu();
+	}
+	
+	private void closeSlidingmenu() {
 		new Handler().postDelayed(new Runnable() {
 			public void run() {
 				getSlidingMenu().showContent();
