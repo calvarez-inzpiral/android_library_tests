@@ -70,7 +70,7 @@ public class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAd
 	public Fragment getItem(int position) {
 		Bundle bundle = new Bundle();
 //		Fragment fragment = new Fragment();
-		Fragment fragment = new SalesFragment();
+		Fragment fragment = new TabFragment();
 		switch(position){
 		case 0:
 			bundle.putString("node_name", "Oferta");

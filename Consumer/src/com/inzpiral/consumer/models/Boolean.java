@@ -50,7 +50,7 @@ public class Boolean extends FrogmiActivity {
 		}
 		
 		public CheckBox getRadioButton() {
-			return (CheckBox)findViewById(R.id.checkBox1);
+			return (CheckBox)findViewById(R.id.check_box);
 		}
 	}
 
