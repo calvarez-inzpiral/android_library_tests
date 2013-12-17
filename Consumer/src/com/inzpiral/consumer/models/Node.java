@@ -13,7 +13,7 @@ public class Node extends BaseNode {
 	private int mNodeOrder;
 
 	@SerializedName("children")
-	private List<BaseNode> mChildren;
+	private List<? extends BaseNode> mChildren;
 
 	public String getName() {
 		return mName;
@@ -31,11 +31,11 @@ public class Node extends BaseNode {
 		this.mNodeOrder = mNodeOrder;
 	}
 
-	public List<BaseNode> getChildren() {
+	public List<? extends BaseNode> getChildren() {
 		return mChildren;
 	}
 
-	public void setChildren(List<BaseNode> mChildren) {
+	public void setChildren(List<? extends BaseNode> mChildren) {
 		this.mChildren = mChildren;
 	}
 

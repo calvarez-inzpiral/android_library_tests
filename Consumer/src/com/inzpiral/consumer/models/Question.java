@@ -24,18 +24,18 @@ public class Question extends FrogmiActivity {
 	public void setQuestion(String mQuestion) {
 		this.mQuestion = mQuestion;
 	}
-	
+
 	@Override
 	public void display(Activity activity, View parentView, int parentId) {
 		mActivity = activity;
 		mParentView = parentView;
 		mParentId = parentId;
-		
+
 		System.out.println("MOSTRANDOME! Soy un 'Question' de question: " + getQuestion());
 		QuestionController controller = new QuestionController(new QuestionView());
 	}
 
-	
+
 	private class QuestionController implements TextWatcher {
 		public QuestionController(QuestionView questionView) {
 			((LinearLayout) mParentView.findViewById(mParentId)).addView(questionView);
@@ -55,26 +55,26 @@ public class Question extends FrogmiActivity {
 			setResult(s);
 		}
 	}
-	
+
 	private class QuestionView extends LinearLayout {
 		public QuestionView() {
 			super(mActivity);
 			LayoutInflater mInflater = LayoutInflater.from(mActivity);
 			addView(mInflater.inflate(R.layout.module_question, null));
 		}
-		
+
 		public TextView getQuestionTextView() {
 			return (TextView)findViewById(R.id.question);
 		}
-		
+
 		public EditText getFieldEditText() {
 			return (EditText)findViewById(R.id.field);
 		}
-		
+
 		public void setListener(TextWatcher watcher) {
 			getFieldEditText().addTextChangedListener(watcher);
 		}
-		
+
 	}
-	
+
 }

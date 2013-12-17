@@ -3,6 +3,7 @@ package com.inzpiral.consumer.models;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,25 +35,31 @@ public class Picture extends FrogmiActivity {
 	public void setQuality(int mQuality) {
 		this.mQuality = mQuality;
 	}
-	
+
 	@Override
 	public void display(Activity activity, View ParentView, int parentId) {
 		mActivity = activity;
 		mParentView = ParentView;
 		mParentId = parentId;
-		
+
 		System.out.println("MOSTRANDOME! Soy un 'Boolean' de question: " + getQuestion());
 		PictureController controller = new PictureController(new PictureView());
 	}
 
-	
-	private class PictureController {
+
+	private class PictureController implements OnClickListener{
 		public PictureController(PictureView sectionView) {
 			((LinearLayout) mParentView.findViewById(mParentId)).addView(sectionView);
 			//sectionView.getPictureButton().setText(getQuestion());
+			sectionView.setListeners(this);
+		}
+
+		@Override
+		public void onClick(View v) {
+			setResult("photo");
 		}
 	}
-	
+
 	private class PictureView extends LinearLayout {
 		public PictureView() {
 			super(mActivity);
@@ -60,13 +67,17 @@ public class Picture extends FrogmiActivity {
 			addView(mInflater.inflate(R.layout.module_picture, null));
 			getTextViewButton().setText(getQuestion());
 		}
-		
+
 		public Button getPictureButton() {
 			return (Button)findViewById(R.id.btn_picture);
+		}
+
+		public void setListeners(OnClickListener listener){
+			getPictureButton().setOnClickListener(listener);
 		}
 		public TextView getTextViewButton() {
 			return (TextView)findViewById(R.id.txt_PictureTitle);
 		}
 	}
-	
+
 }

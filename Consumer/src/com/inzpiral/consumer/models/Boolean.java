@@ -3,10 +3,9 @@ package com.inzpiral.consumer.models;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.CheckBox;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -26,18 +25,18 @@ public class Boolean extends FrogmiActivity {
 	public void setQuestion(String mQuestion) {
 		this.mQuestion = mQuestion;
 	}
-	
+
 	@Override
 	public void display(Activity activity, View parentView, int parentId) {
 		mActivity = activity;
 		mParentView = parentView;
 		mParentId = parentId;
-		
+
 		System.out.println("MOSTRANDOME! Soy un 'Boolean' de question: " + getQuestion());
 		BooleanController controller = new BooleanController(new BooleanView());
 	}
 
-	
+
 	private class BooleanController implements OnCheckedChangeListener {
 		public BooleanController(BooleanView booleanView) {
 			((LinearLayout) mParentView.findViewById(mParentId)).addView(booleanView);
@@ -45,12 +44,12 @@ public class Boolean extends FrogmiActivity {
 			setResult(false);
 			booleanView.setListener(this);
 		}
-		
+
 		@Override
 		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 			setResult( isChecked );
 		}
-		
+
 	}
 	
 	private class BooleanView extends LinearLayout {
@@ -59,11 +58,11 @@ public class Boolean extends FrogmiActivity {
 			LayoutInflater mInflater = LayoutInflater.from(mActivity);
 			addView(mInflater.inflate(R.layout.module_boolean, null));
 		}
-		
+
 		public CheckBox getRadioButton() {
 			return (CheckBox)findViewById(R.id.check_box);
 		}
-		
+
 		public void setListener(OnCheckedChangeListener listener) {
 			getRadioButton().setOnCheckedChangeListener(listener);
 		}
