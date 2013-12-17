@@ -175,7 +175,7 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 		@Override
 		public BaseNode next() {
 			if(current instanceof Node) {
-				List<BaseNode> children = ((Node)current).getChildren();
+				List<? extends BaseNode> children = ((Node)current).getChildren();
 				if(children == null || (children != null && children.size() == 0)) {
 
 				}
@@ -188,6 +188,10 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 			// TODO Auto-generated method stub
 
 		}
+	}
+
+	public Evaluation getEvaluations() {
+		return mEvaluation;
 	}
 
 }

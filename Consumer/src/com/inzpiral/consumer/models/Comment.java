@@ -14,5 +14,5 @@ public class Comment extends FrogmiActivity {
 	public void setQuestion(String mQuestion) {
 		this.mQuestion = mQuestion;
 	}
-	
+
 }

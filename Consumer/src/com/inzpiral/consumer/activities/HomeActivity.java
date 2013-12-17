@@ -1,7 +1,11 @@
 package com.inzpiral.consumer.activities;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.util.Calendar;
 
@@ -22,7 +26,10 @@ import com.inzpiral.consumer.fragments.LocationSlideMenu;
 import com.inzpiral.consumer.fragments.SpinnerFragment;
 import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.Evaluation;
+import com.inzpiral.consumer.models.Node;
+import com.inzpiral.consumer.models.PresentationNode;
 import com.inzpiral.consumer.utils.ConsumerDeserializer;
+import com.inzpiral.consumer.utils.ConsumerSerializer;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.utils.NetworkUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -84,7 +91,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 		mAdapter = new FragmentAdapter(getSupportFragmentManager(), tabNumber);
 		mPager = (ViewPager)findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
-
+		
 		mIndicator = (IconPageIndicator)findViewById(R.id.indicator);
 		mIndicator.setViewPager(mPager);
 		mIndicator.notifyDataSetChanged();
@@ -175,5 +182,62 @@ public class HomeActivity extends SlidingFragmentActivity {
 		}, 50);
 	}
 
+	
+	public static void saveOnSD(){
+
+		
+		Thread t = new Thread(null, new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Node v = EvaluationHelper.getInstance().getRoot();
+				//EvaluationHelper.getInstance().getEvaluations();
+			//	Gson gson = new Gson();
+				GsonBuilder builder = new GsonBuilder();
+				builder.registerTypeAdapter(BaseNode.class, new ConsumerSerializer());
+				final Gson gson = builder.create();
+
+				String s = gson.toJson(v);
+				System.out.println(s);
+				File myFile = new File("/sdcard/json.txt");
+				try {
+					myFile.createNewFile();
+					FileOutputStream fOut = new FileOutputStream(myFile);
+					OutputStreamWriter myOutWriter =new OutputStreamWriter(fOut);
+					myOutWriter.append(s);
+					myOutWriter.close();
+					fOut.close();
+					System.out.println("guardé todo en un txt");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}, "saving", 1024 * 1024);
+		t.start();
+
+		try {
+			t.join();
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+
+	//	save
+
+
+
+//        File myFile = new File("/sdcard/myjsonstuff.txt");
+//        FileInputStream fIn = new FileInputStream(myFile);
+//        BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
+//        String aDataRow = "";
+//        String aBuffer = ""; //Holds the text
+//        while ((aDataRow = myReader.readLine()) != null) 
+//        {
+//            aBuffer += aDataRow ;
+//        }
+//        myReader.close();
+//		
+	}
+	
 }
 

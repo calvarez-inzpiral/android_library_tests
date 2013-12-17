@@ -9,10 +9,15 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.activities.HomeActivity;
@@ -27,12 +32,15 @@ public class LocationSlideMenu extends ListFragment {
 	
 	private EvaluationHelper mHelper;
 
+
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.slidebar, null);
+		
 	}
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+		setListeners();
 		((RingGraphic)getActivity().findViewById(R.id.ring_graph)).setPercent(66);
 		
 		mHelper = EvaluationHelper.getInstance();
@@ -68,6 +76,20 @@ public class LocationSlideMenu extends ListFragment {
 		}
 	}
 
+	private void setListeners(){
+		 Button submit = (Button) getView().findViewById(R.id.btnEnd); 
+		 submit.setOnClickListener(mSubmitButtonListener); 
+	}
+	private OnClickListener mSubmitButtonListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			HomeActivity.saveOnSD();
+		} 
+		
+	};
+  
 	public class rowAdapter extends ArrayAdapter<rowItem> {
 
 		public rowAdapter(Context context) {
@@ -90,6 +112,8 @@ public class LocationSlideMenu extends ListFragment {
 		}
 
 	}
+	
+
 
 }
 
