@@ -41,23 +41,16 @@ public class Boolean extends FrogmiActivity {
 
 	
 	private class BooleanController implements OnCheckedChangeListener {
-		private BooleanView mBooleanView;
-		
 		public BooleanController(BooleanView booleanView) {
-			mBooleanView = booleanView;
 			((LinearLayout) mParentView.findViewById(mParentId)).addView(booleanView);
-			mBooleanView.getRadioButton().setText(getQuestion());
+			booleanView.getRadioButton().setText(getQuestion());
 			setResult(false);
-			mBooleanView.setListener(this);
-		}
-		
-		public void retrieveResult() {
-			setResult( mBooleanView.getRadioButton().isChecked() );
+			booleanView.setListener(this);
 		}
 		
 		@Override
 		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-			retrieveResult();
+			setResult( isChecked );
 		}
 		
 	}
