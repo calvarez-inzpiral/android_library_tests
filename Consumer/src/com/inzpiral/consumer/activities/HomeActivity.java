@@ -50,7 +50,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 		this.loadSlideBar(savedInstanceState);
 		//cuando comienza no se ha seleccionado nada, se muestra tab por default
-		this.loadTabs(0);
+		//this.loadTabs(0);
 		this.loadSpinners();
 	}
 
@@ -82,10 +82,10 @@ public class HomeActivity extends SlidingFragmentActivity {
 	}
 
 	public void loadTabs(final int tabNumber){
-
-		this.runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
+//
+//		this.runOnUiThread(new Runnable() {
+//			@Override
+//			public void run() {
 				mAdapter = new FragmentAdapter(getSupportFragmentManager(), tabNumber);
 				mPager = (ViewPager)findViewById(R.id.pager);
 				mPager.setAdapter(mAdapter);
@@ -93,9 +93,9 @@ public class HomeActivity extends SlidingFragmentActivity {
 				mIndicator = (IconPageIndicator)findViewById(R.id.indicator);
 				mIndicator.setViewPager(mPager);
 				mIndicator.notifyDataSetChanged();
-
-			}
-		});
+//
+//			}
+//		});
 
 	}
 
