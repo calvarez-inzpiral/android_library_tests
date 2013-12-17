@@ -18,7 +18,8 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 	private static Node mRoot;
 	private static Node mCurrentLocation;
 	private static Node mCurrentCategory;
-	private static Node mCurrentQuestionType;
+
+	//	private static Node mCurrentQuestionType;
 
 	private static List<Node> mLocations;
 	private static List<Node> mCategories;
@@ -61,6 +62,8 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 		mLocations = new ArrayList<Node>();
 		mCategories = new ArrayList<Node>();
 		mQuestionTypes = new ArrayList<Node>();
+		mCurrentLocation = null;
+		mCurrentCategory = null;
 		for (BaseNode baseNode : getRoot().getChildren()) {
 			mLocations.add((Node) baseNode);
 		}
