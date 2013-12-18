@@ -16,7 +16,7 @@ public class Evaluation {
 	private String mCode;
 
 	@SerializedName("children")
-	private List<? extends BaseNode> mChildren;
+	private List<BaseNode> mChildren;
 
 	public String getNode() {
 		return mNode;
@@ -42,11 +42,11 @@ public class Evaluation {
 		this.mCode = mCode;
 	}
 
-	public List<? extends BaseNode> getChildren() {
+	public List<BaseNode> getChildren() {
 		return mChildren;
 	}
 
-	public void setChildren(List<? extends BaseNode> mChildren) {
+	public void setChildren(List<BaseNode> mChildren) {
 		this.mChildren = mChildren;
 	}
 

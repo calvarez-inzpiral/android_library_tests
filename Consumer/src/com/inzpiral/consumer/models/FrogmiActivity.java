@@ -18,7 +18,7 @@ public class FrogmiActivity extends BaseNode implements IDisplayable {
 	private String mOriginalCode;
 	
 	@SerializedName("result")
-	private Object mResult;
+	private String mResult;
 
 	public int getNodeOrder() {
 		return mNodeOrder;
@@ -41,11 +41,11 @@ public class FrogmiActivity extends BaseNode implements IDisplayable {
 		System.out.println("MOSTRANDOME! Soy un 'FrogmiActivity' de tipo: " + getNode());
 	}
 
-	public Object getResult() {
+	public String getResult() {
 		return mResult;
 	}
 
-	public void setResult(Object result) {
+	public void setResult(String result) {
 		this.mResult = result;
 	}
 

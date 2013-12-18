@@ -72,13 +72,13 @@ public class MultipleChoiceQuestion extends FrogmiActivity {
 				button.setText(getAlternatives().get(i).getName());
 				questionView.getRadioGroup().addView(button);
 			}
-			setResult(false);
+			setResult("false");
 			questionView.setListener(this);
 		}
 
 		@Override
 		public void onCheckedChanged(RadioGroup arg0, int arg1) {
-			setResult(arg1);
+			setResult(""+arg1);
 		}
 	}
 

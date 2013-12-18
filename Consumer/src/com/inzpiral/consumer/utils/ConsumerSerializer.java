@@ -20,9 +20,10 @@ public class ConsumerSerializer implements JsonSerializer<BaseNode> {
 
 	@Override
 	public JsonElement serialize(BaseNode src, Type typeOfSrc, JsonSerializationContext context) {
-		Gson gson = new Gson();
-		JsonElement s = gson.toJsonTree(src);
-		return s;
+		GsonBuilder builder = new GsonBuilder();
+		builder.registerTypeAdapter(BaseNode.class, new ConsumerSerializer());
+		Gson gson = builder.create();
+		return gson.toJsonTree(src);
 	}
 //	public BaseNode deserialize(JsonElement json, Type typeOfT,
 //			JsonDeserializationContext context) throws JsonParseException {

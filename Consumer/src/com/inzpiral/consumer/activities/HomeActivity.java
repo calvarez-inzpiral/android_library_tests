@@ -7,9 +7,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -20,6 +23,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.fragments.FragmentAdapter;
 import com.inzpiral.consumer.fragments.LocationSlideMenu;
@@ -46,7 +50,8 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 	// Manejo de evaluacion
 	private EvaluationHelper mHelper;
-	private String mURL = "http://10.0.1.13/test/consumo_masivo.json";
+	private String mURL = "http://192.168.1.153/test/consumo_masivo.json";
+//	private String mURL = "http://10.0.1.13/test/consumo_masivo.json";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -198,17 +203,15 @@ public class HomeActivity extends SlidingFragmentActivity {
 		Thread t = new Thread(null, new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
-				BaseNode v = EvaluationHelper.getInstance().getRoot();
-				//EvaluationHelper.getInstance().getEvaluations();
-				//	Gson gson = new Gson();
-				GsonBuilder builder = new GsonBuilder();
-				builder.registerTypeAdapter(BaseNode.class, new ConsumerSerializer());
-				final Gson gson = builder.create();
+
+//				Node v = (Node) EvaluationHelper.getInstance().getRoot();
+				Evaluation v = EvaluationHelper.getInstance().getEvaluations();
+				Gson gson = new Gson();
 
 				String s = gson.toJson(v);
 				System.out.println(s);
-				File myFile = new File("/sdcard/json.txt");
+				System.out.println(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/json.txt");
+				File myFile = new File(Environment.getExternalStorageDirectory() + "/json.txt");
 				try {
 					myFile.createNewFile();
 					FileOutputStream fOut = new FileOutputStream(myFile);
@@ -218,7 +221,6 @@ public class HomeActivity extends SlidingFragmentActivity {
 					fOut.close();
 					System.out.println("guardo todo en un txt");
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
