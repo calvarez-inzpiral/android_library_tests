@@ -165,12 +165,12 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 		mHelper = EvaluationHelper.getInstance();
 		Node selectedLocation = mHelper.getLocations().get(position);
-		
+
 		if(mHelper.getCurrentLocation() == selectedLocation) {
 			closeSlidingmenu();
 			return;
 		}
-		
+
 		mHelper.setCurrentLocation(selectedLocation);
 
 		Fragment newFragment = new SpinnerFragment();
@@ -179,10 +179,10 @@ public class HomeActivity extends SlidingFragmentActivity {
 		transaction.replace(R.id.spinners_frame, newFragment);
 		transaction.addToBackStack(null);
 		transaction.commit();
-		
+
 		closeSlidingmenu();
 	}
-	
+
 	private void closeSlidingmenu() {
 		new Handler().postDelayed(new Runnable() {
 			public void run() {
@@ -191,17 +191,17 @@ public class HomeActivity extends SlidingFragmentActivity {
 		}, 50);
 	}
 
-	
+
 	public static void saveOnSD(){
 
-		
+
 		Thread t = new Thread(null, new Runnable() {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				Node v = EvaluationHelper.getInstance().getRoot();
+				BaseNode v = EvaluationHelper.getInstance().getRoot();
 				//EvaluationHelper.getInstance().getEvaluations();
-			//	Gson gson = new Gson();
+				//	Gson gson = new Gson();
 				GsonBuilder builder = new GsonBuilder();
 				builder.registerTypeAdapter(BaseNode.class, new ConsumerSerializer());
 				final Gson gson = builder.create();
@@ -231,22 +231,22 @@ public class HomeActivity extends SlidingFragmentActivity {
 			e1.printStackTrace();
 		}
 
-	//	save
+		//	save
 
 
 
-//        File myFile = new File("/sdcard/myjsonstuff.txt");
-//        FileInputStream fIn = new FileInputStream(myFile);
-//        BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
-//        String aDataRow = "";
-//        String aBuffer = ""; //Holds the text
-//        while ((aDataRow = myReader.readLine()) != null) 
-//        {
-//            aBuffer += aDataRow ;
-//        }
-//        myReader.close();
-//		
+		//        File myFile = new File("/sdcard/myjsonstuff.txt");
+		//        FileInputStream fIn = new FileInputStream(myFile);
+		//        BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
+		//        String aDataRow = "";
+		//        String aBuffer = ""; //Holds the text
+		//        while ((aDataRow = myReader.readLine()) != null) 
+		//        {
+		//            aBuffer += aDataRow ;
+		//        }
+		//        myReader.close();
+		//		
 	}
-	
+
 }
 
