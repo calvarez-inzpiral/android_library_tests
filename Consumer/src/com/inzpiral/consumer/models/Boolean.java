@@ -41,13 +41,13 @@ public class Boolean extends FrogmiActivity {
 		public BooleanController(BooleanView booleanView) {
 			((LinearLayout) mParentView.findViewById(mParentId)).addView(booleanView);
 			booleanView.getRadioButton().setText(getQuestion());
-			setResult(false);
+			setResult(""+false);
 			booleanView.setListener(this);
 		}
 
 		@Override
 		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-			setResult( isChecked );
+			setResult(""+isChecked);
 		}
 
 	}

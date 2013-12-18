@@ -11,6 +11,10 @@ import com.inzpiral.consumer.R;
 
 public class Section extends PresentationNode implements IDisplayable {
 	
+	transient protected Activity mActivity;
+	transient protected View mParentView;
+	transient protected int mParentId;
+	
 	@Override
 	public void display(Activity activity, View parentView, int parentId) {
 		mActivity = activity;

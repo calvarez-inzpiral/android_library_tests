@@ -45,14 +45,15 @@ public class Question extends FrogmiActivity {
 		}
 
 		@Override
-		public void afterTextChanged(Editable s) { }
+		public void afterTextChanged(Editable s) {
+			setResult(s.toString());
+		}
 
 		@Override
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
 		@Override
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			setResult(s);
 		}
 	}
 
