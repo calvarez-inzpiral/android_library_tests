@@ -51,8 +51,8 @@ public class HomeActivity extends SlidingFragmentActivity {
 	// Manejo de evaluacion
 	private EvaluationHelper mHelper;
 	//private String mURL = "http://192.168.1.153/test/consumo_masivo.json";
-//	private String mURL = "http://10.0.1.13/test/consumo_masivo.json";
-//	private String mURL = "http://192.168.1.72/test/consumo_masivo.json";
+	//	private String mURL = "http://10.0.1.13/test/consumo_masivo.json";
+	//	private String mURL = "http://192.168.1.72/test/consumo_masivo.json";
 	private String mURL = "http://www.frogmi.com/consumo_masivo.json";
 
 	@Override
@@ -97,7 +97,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 		mAdapter = new FragmentAdapter(getSupportFragmentManager(), tabNumber);
 		mPager = (ViewPager)findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
-	
+
 		mIndicator = (IconPageIndicator)findViewById(R.id.indicator);
 		mIndicator.setViewPager(mPager);
 		mIndicator.notifyDataSetChanged();
@@ -207,7 +207,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 			@Override
 			public void run() {
 
-//				Node v = (Node) EvaluationHelper.getInstance().getRoot();
+				//				Node v = (Node) EvaluationHelper.getInstance().getRoot();
 				Evaluation v = EvaluationHelper.getInstance().getEvaluations();
 				Gson gson = new Gson();
 
