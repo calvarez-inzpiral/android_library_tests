@@ -1,6 +1,7 @@
 package com.inzpiral.consumer.fragments;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,25 +19,25 @@ import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.TabView;
 
-public class TabFragment extends SherlockFragment implements TabControllerListener {
-	
+public class TabFragment extends Fragment implements TabControllerListener {
+
 	private String mNodeName;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    	return inflater.inflate(R.layout.fragment_sales, container, false);
-    }
-    
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-    	super.onViewCreated(view, savedInstanceState);
-    	mNodeName = getArguments().getString("node_name");
-		
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		return inflater.inflate(R.layout.fragment_sales, container, false);
+	}
+
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		mNodeName = getArguments().getString("node_name");
+
 		// Activity links the view and the controller
-    	TabController salesController = new TabController((TabView) view.findViewById(R.id.tab_view), this);
-		
+		TabController salesController = new TabController((TabView) view.findViewById(R.id.tab_view), this);
+
 		// Intercept the events of MainView
-//		((TabView) view.findViewById(R.id.tab_view)).setListeners(salesController);
+		//		((TabView) view.findViewById(R.id.tab_view)).setListeners(salesController);
 
 	}
 

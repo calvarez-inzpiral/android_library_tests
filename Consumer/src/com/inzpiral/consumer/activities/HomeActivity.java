@@ -50,8 +50,10 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 	// Manejo de evaluacion
 	private EvaluationHelper mHelper;
-	private String mURL = "http://192.168.1.153/test/consumo_masivo.json";
+	//private String mURL = "http://192.168.1.153/test/consumo_masivo.json";
 //	private String mURL = "http://10.0.1.13/test/consumo_masivo.json";
+//	private String mURL = "http://192.168.1.72/test/consumo_masivo.json";
+	private String mURL = "http://www.frogmi.com/consumo_masivo.json";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -95,6 +97,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 		mAdapter = new FragmentAdapter(getSupportFragmentManager(), tabNumber);
 		mPager = (ViewPager)findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
+	
 		mIndicator = (IconPageIndicator)findViewById(R.id.indicator);
 		mIndicator.setViewPager(mPager);
 		mIndicator.notifyDataSetChanged();

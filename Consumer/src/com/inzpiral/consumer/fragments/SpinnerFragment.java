@@ -15,19 +15,19 @@ import com.inzpiral.consumer.views.SpinnersView;
 
 public class SpinnerFragment extends SherlockFragment implements SpinnerControllerListener {
 	private EvaluationHelper mHelper;
-	
+
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.spinners, container, false);
 	}
-    
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-    	super.onViewCreated(view, savedInstanceState);
-		
+
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+
 		// Activity links the view and the controller
 		SpinnerController spinnerController = new SpinnerController((SpinnersView) view.findViewById(R.id.spinners_view), this);
-		
+
 		// Intercept the events of MainView
 		((SpinnersView) view.findViewById(R.id.spinners_view)).setListeners(spinnerController);
 	}
@@ -39,9 +39,8 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
 		if(mHelper.getCategories().size() == 0) {
 			return;
 		}
-		
 		mHelper.setCurrentCategory(mHelper.getCategories().get(position));
-		
+
 		((HomeActivity) getActivity()).loadTabs(mHelper.getNodesAsString(mHelper.getQuestionTypes()).size());
 	}
 }
