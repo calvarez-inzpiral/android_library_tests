@@ -1,0 +1,18 @@
+<!-- <RelativeLayout -->
+<com.inzpiral.consumer.views.TabView
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tab_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TabFragment" >
+
+	<LinearLayout
+	    android:id="@+id/tab_content"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+	</LinearLayout>
+
+</com.inzpiral.consumer.views.TabView>
+<!-- </RelativeLayout> -->

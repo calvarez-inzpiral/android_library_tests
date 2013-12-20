@@ -4,12 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.inzpiral.consumer.R;
 import com.viewpagerindicator.IconPagerAdapter;
 
 
-public class FragmentAdapter extends FragmentPagerAdapter implements IconPagerAdapter{
+public class FragmentAdapter extends FragmentStatePagerAdapter implements IconPagerAdapter{
 	private int mCount ;
 	private int[] ICONS; 
 

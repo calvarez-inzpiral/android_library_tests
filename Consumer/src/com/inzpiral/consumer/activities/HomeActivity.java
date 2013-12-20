@@ -53,7 +53,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.loadEvaluation();
-		setContentView(R.layout.fragmenthome);
+		setContentView(R.layout.fragment_home);
 		this.loadSlideBar(savedInstanceState);
 		this.loadSpinners();
 	}
