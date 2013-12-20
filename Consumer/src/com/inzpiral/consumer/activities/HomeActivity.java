@@ -7,8 +7,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.os.Bundle;
@@ -23,7 +21,6 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.fragments.FragmentAdapter;
 import com.inzpiral.consumer.fragments.LocationSlideMenu;
@@ -32,7 +29,6 @@ import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.Evaluation;
 import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.utils.ConsumerDeserializer;
-import com.inzpiral.consumer.utils.ConsumerSerializer;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.utils.NetworkUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -51,7 +47,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 	// Manejo de evaluacion
 	private EvaluationHelper mHelper;
 	private String mURL = "http://www.frogmi.com/consumo_masivo.json";
-//	private String mURL = "http://192.168.1.153/test/consumo_masivo.json";
+	//	private String mURL = "http://192.168.1.153/test/consumo_masivo.json";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -79,30 +75,33 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 		// customize the SlidingMenu
 		SlidingMenu sm = getSlidingMenu();
+		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
 		//	sm.setShadowWidthRes(R.dimen.shadow_width);
 		//	sm.setShadowDrawable(R.drawable.shadow);
-		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		//	sm.setFadeDegree(0.35f);
-		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
 		sm.destroyDrawingCache();
-
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 	}
 
 	public void loadTabs(final int tabNumber){
+		runOnUiThread(new Runnable() {
 
-		mAdapter = new FragmentAdapter(getSupportFragmentManager(), tabNumber);
-		mPager = (ViewPager)findViewById(R.id.pager);
-		mPager.setAdapter(mAdapter);
-		mPager.setOffscreenPageLimit(3);
-		mPager.destroyDrawingCache();
+			@Override
+			public void run() {
 
-		System.gc();
+				mAdapter = new FragmentAdapter(getSupportFragmentManager(), tabNumber);
+				mPager = (ViewPager)findViewById(R.id.pager);
+				mPager.setAdapter(mAdapter);
+				mPager.setOffscreenPageLimit(3);
+				mPager.getAdapter().notifyDataSetChanged();
+				mIndicator = (IconPageIndicator)findViewById(R.id.indicator);
+				mIndicator.setViewPager(mPager);
+				mIndicator.notifyDataSetChanged();
 
-		mIndicator = (IconPageIndicator)findViewById(R.id.indicator);
-		mIndicator.setViewPager(mPager);
-		mIndicator.notifyDataSetChanged();
+			}
+		});
 
 	}
 
