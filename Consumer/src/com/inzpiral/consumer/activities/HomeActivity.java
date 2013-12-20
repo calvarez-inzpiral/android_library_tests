@@ -51,6 +51,7 @@ public class HomeActivity extends SlidingFragmentActivity {
 	// Manejo de evaluacion
 	private EvaluationHelper mHelper;
 	private String mURL = "http://www.frogmi.com/consumo_masivo.json";
+//	private String mURL = "http://192.168.1.153/test/consumo_masivo.json";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

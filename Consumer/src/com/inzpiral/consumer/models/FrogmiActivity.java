@@ -36,17 +36,21 @@ public class FrogmiActivity extends BaseNode implements IDisplayable {
 		this.mOriginalCode = mOriginalCode;
 	}
 
-	@Override
-	public void display(Activity activity, View ParentView, int parentId) {
-		System.out.println("MOSTRANDOME! Soy un 'FrogmiActivity' de tipo: " + getNode());
-	}
-
 	public String getResult() {
 		return mResult;
 	}
 
 	public void setResult(String result) {
 		this.mResult = result;
+	}
+
+	public boolean hasResult() {
+		return mResult != null && !mResult.equals("");
+	}
+
+	@Override
+	public void display(Activity activity, View ParentView, int parentId) {
+		System.out.println("MOSTRANDOME! Soy un 'FrogmiActivity' de tipo: " + getNode());
 	}
 
 }

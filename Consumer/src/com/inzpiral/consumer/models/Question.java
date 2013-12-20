@@ -40,8 +40,14 @@ public class Question extends FrogmiActivity {
 		public QuestionController(QuestionView questionView) {
 			((LinearLayout) mParentView.findViewById(mParentId)).addView(questionView);
 			questionView.getQuestionTextView().setText(getQuestion());
-			setResult("");
 			questionView.setListener(this);
+
+			if(hasResult()) {
+				questionView.getFieldEditText().setText(getResult());
+			}
+			else {
+				setResult("");				
+			}		
 		}
 
 		@Override

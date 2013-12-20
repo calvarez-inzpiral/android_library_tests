@@ -1,5 +1,6 @@
 package com.inzpiral.consumer.models;
 
+import java.util.Arrays;
 import java.util.List;
 
 import android.app.Activity;
@@ -63,22 +64,42 @@ public class MultipleChoiceQuestion extends FrogmiActivity {
 
 
 	private class MultipleChoiceController implements OnCheckedChangeListener{
-		public MultipleChoiceController(MultipleChoiceView questionView) {
-			((LinearLayout) mParentView.findViewById(mParentId)).addView(questionView);
+		public MultipleChoiceController(MultipleChoiceView multipleChoiceView) {
+			((LinearLayout) mParentView.findViewById(mParentId)).addView(multipleChoiceView);
 
-			questionView.getQuestionTextView().setText(getQuestion());
+			multipleChoiceView.getQuestionTextView().setText(getQuestion());
 			for(int i = 0; i < getAlternatives().size(); i++) {
 				CompoundButton button = getMultiple() == 0 ? new RadioButton(mActivity) : new CheckBox(mActivity);
-				button.setText(getAlternatives().get(i).getName());
-				questionView.getRadioGroup().addView(button);
+				Alternative alt = getAlternatives().get(i);
+				button.setText(alt.getName());
+				button.setId(Integer.parseInt(alt.getSelectionId()));
+				multipleChoiceView.getRadioGroup().addView(button);
 			}
-			setResult("false");
-			questionView.setListener(this);
+			multipleChoiceView.setListener(this);
+
+			if(hasResult()) {
+				RadioGroup group = multipleChoiceView.getRadioGroup();
+				String[] currentResults = getResult().split(",");
+				for (int i = 0; i < group.getChildCount(); i++) {
+					int altId = group.getChildAt(i).getId();
+					if(Arrays.binarySearch(currentResults, ""+altId) >= 0) {
+						((CompoundButton)group.getChildAt(i)).setChecked(true);
+					}
+				}
+			}
+			else {
+				setResult("");				
+			}	
 		}
 
 		@Override
-		public void onCheckedChanged(RadioGroup arg0, int arg1) {
-			setResult(""+arg1);
+		public void onCheckedChanged(RadioGroup group, int checkedId) {
+			String result = "";
+			for (int i = 0; i < group.getChildCount(); i++) {
+				result += group.getChildAt(i).getId() + ",";
+			}
+			result = result.length() == 0 ? result : result.substring(0, result.length()-1); 
+			setResult(result);
 		}
 	}
 
