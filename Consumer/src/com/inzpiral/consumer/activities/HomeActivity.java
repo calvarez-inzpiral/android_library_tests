@@ -50,9 +50,6 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 	// Manejo de evaluacion
 	private EvaluationHelper mHelper;
-	//private String mURL = "http://192.168.1.153/test/consumo_masivo.json";
-	//	private String mURL = "http://10.0.1.13/test/consumo_masivo.json";
-	//	private String mURL = "http://192.168.1.72/test/consumo_masivo.json";
 	private String mURL = "http://www.frogmi.com/consumo_masivo.json";
 
 	@Override
@@ -60,7 +57,6 @@ public class HomeActivity extends SlidingFragmentActivity {
 		super.onCreate(savedInstanceState);
 		this.loadEvaluation();
 		setContentView(R.layout.fragmenthome);
-
 		this.loadSlideBar(savedInstanceState);
 		this.loadSpinners();
 	}
@@ -82,11 +78,12 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 		// customize the SlidingMenu
 		SlidingMenu sm = getSlidingMenu();
-		sm.setShadowWidthRes(R.dimen.shadow_width);
-		sm.setShadowDrawable(R.drawable.shadow);
+		//	sm.setShadowWidthRes(R.dimen.shadow_width);
+		//	sm.setShadowDrawable(R.drawable.shadow);
 		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-		sm.setFadeDegree(0.35f);
+		//	sm.setFadeDegree(0.35f);
 		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+		sm.destroyDrawingCache();
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -97,6 +94,10 @@ public class HomeActivity extends SlidingFragmentActivity {
 		mAdapter = new FragmentAdapter(getSupportFragmentManager(), tabNumber);
 		mPager = (ViewPager)findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
+		mPager.setOffscreenPageLimit(3);
+		mPager.destroyDrawingCache();
+
+		System.gc();
 
 		mIndicator = (IconPageIndicator)findViewById(R.id.indicator);
 		mIndicator.setViewPager(mPager);
@@ -235,11 +236,6 @@ public class HomeActivity extends SlidingFragmentActivity {
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
-
-		//	save
-
-
-
 		//        File myFile = new File("/sdcard/myjsonstuff.txt");
 		//        FileInputStream fIn = new FileInputStream(myFile);
 		//        BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
