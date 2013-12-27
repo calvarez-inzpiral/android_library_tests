@@ -47,6 +47,7 @@ public class Boolean extends FrogmiActivity {
 				booleanView.getRadioButton().setChecked(getResult().equals("true")); 
 			}
 			else {
+			
 				setResult(""+false);				
 			}
 		}
@@ -72,6 +73,18 @@ public class Boolean extends FrogmiActivity {
 		public void setListener(OnCheckedChangeListener listener) {
 			getRadioButton().setOnCheckedChangeListener(listener);
 		}
+	}
+
+	@Override
+	public void formPercent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void formClear() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

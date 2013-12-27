@@ -35,5 +35,17 @@ public class ChainedChoice extends FrogmiActivity {
 	public void display(Activity activity, View ParentView, int parentId) {
 		System.out.println("MOSTRANDOME! Soy un 'ChainedChoice'");
 	}
+
+	@Override
+	public void formPercent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void formClear() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

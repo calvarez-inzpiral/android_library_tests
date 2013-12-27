@@ -23,4 +23,16 @@ public class Comment extends FrogmiActivity {
 		System.out.println("MOSTRANDOME! Soy un 'Comment'");
 	}
 
+	@Override
+	public void formPercent() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void formClear() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

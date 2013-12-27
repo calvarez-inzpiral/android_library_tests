@@ -11,4 +11,16 @@ public class Timestamp extends FrogmiActivity {
 		System.out.println("MOSTRANDOME! Soy un 'Timestamp'");
 	}
 
+	@Override
+	public void formPercent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void formClear() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

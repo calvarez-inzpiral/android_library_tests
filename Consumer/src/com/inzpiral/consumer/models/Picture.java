@@ -80,4 +80,16 @@ public class Picture extends FrogmiActivity {
 		}
 	}
 
+	@Override
+	public void formPercent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void formClear() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

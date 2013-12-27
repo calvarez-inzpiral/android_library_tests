@@ -11,4 +11,16 @@ public class Geotag extends FrogmiActivity {
 		System.out.println("MOSTRANDOME! Soy un 'Geotag'");
 	}
 
+	@Override
+	public void formPercent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void formClear() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

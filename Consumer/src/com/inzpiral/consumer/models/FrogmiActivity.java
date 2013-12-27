@@ -11,6 +11,9 @@ public abstract class FrogmiActivity extends BaseNode implements IDisplayable {
 	transient protected Activity mActivity;
 	transient protected View mParentView;
 	transient protected int mParentId;
+	
+    public abstract void formPercent();
+    public abstract void formClear();
 
 	// Properties
 	@SerializedName("node_order")
