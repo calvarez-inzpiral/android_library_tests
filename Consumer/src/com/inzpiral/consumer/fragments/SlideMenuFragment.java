@@ -51,7 +51,7 @@ public class SlideMenuFragment extends ListFragment implements SlideMenuControll
 	public void onSetListAdapter(ArrayList<String> locations) {
 		rowAdapter adapter = new rowAdapter(getActivity());
 		for (String item : locations) {
-			adapter.add(new rowItem(item, "0%", android.R.drawable.ic_menu_search));
+			adapter.add(new rowItem(item, "100%", android.R.drawable.ic_menu_search));
 		}
 
 		setListAdapter(adapter);
