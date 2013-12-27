@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.inzpiral.consumer.views.SlideMenuView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/slide_menu_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -40,11 +42,11 @@
     </ListView>
     
         <Button
-            android:id="@+id/btnEnd"
+            android:id="@+id/btn_end"
             android:layout_width="match_parent"
             android:layout_height="62dp"
             android:text="Finalizar" />
 
 <!--         acá va el boton -->
 
-</LinearLayout>
+</com.inzpiral.consumer.views.SlideMenuView>

@@ -4,55 +4,35 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.activities.HomeActivity;
-import com.inzpiral.consumer.customs.RingGraphic;
-import com.inzpiral.consumer.models.Evaluation;
-import com.inzpiral.consumer.models.Node;
-import com.inzpiral.consumer.utils.EvaluationHelper;
+import com.inzpiral.consumer.controllers.SlideMenuController;
+import com.inzpiral.consumer.controllers.SlideMenuController.SlideMenuControllerListener;
+import com.inzpiral.consumer.views.SlideMenuView;
 
-
-
-public class SlideMenuFragment extends ListFragment {
-	
-	private EvaluationHelper mHelper;
-
+public class SlideMenuFragment extends ListFragment implements SlideMenuControllerListener {
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.slidebar, null);
-		
 	}
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		setListeners();
-		((RingGraphic)getActivity().findViewById(R.id.ring_graph)).setPercent(66);
 		
-		mHelper = EvaluationHelper.getInstance();
-		ArrayList<String> locations = mHelper.getNodesAsString(mHelper.getLocations());
+		// Activity links the view and the controller
+		SlideMenuController slideMenuController = new SlideMenuController((SlideMenuView) getView().findViewById(R.id.slide_menu_view), this);
 
-		rowAdapter adapter = new rowAdapter(getActivity());
-
-		for (String item : locations) {
-			adapter.add(new rowItem(item, "0%", android.R.drawable.ic_menu_search));
-		}
-
-		setListAdapter(adapter);
+		// Intercept the events of MainView
+		((SlideMenuView) getView().findViewById(R.id.slide_menu_view)).setListeners(slideMenuController);
 	}
 
 	@Override
@@ -65,7 +45,19 @@ public class SlideMenuFragment extends ListFragment {
 			((HomeActivity) getActivity()).loadCategories(id, position);
 		}
 	}
+
+	// Interfaces
+	@Override
+	public void onSetListAdapter(ArrayList<String> locations) {
+		rowAdapter adapter = new rowAdapter(getActivity());
+		for (String item : locations) {
+			adapter.add(new rowItem(item, "100%", android.R.drawable.ic_menu_search));
+		}
+
+		setListAdapter(adapter);
+	}
 	
+	// List adapter
 	private class rowItem {
 		public String tag, tag2;
 		public int iconRes;
@@ -75,21 +67,6 @@ public class SlideMenuFragment extends ListFragment {
 			this.iconRes = iconRes;
 		}
 	}
-
-	private void setListeners(){
-		 Button submit = (Button) getView().findViewById(R.id.btnEnd); 
-		 submit.setOnClickListener(mSubmitButtonListener); 
-	}
-	private OnClickListener mSubmitButtonListener = new OnClickListener() {
-
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			HomeActivity.saveOnSD();
-		} 
-		
-	};
-  
 	public class rowAdapter extends ArrayAdapter<rowItem> {
 
 		public rowAdapter(Context context) {
@@ -107,13 +84,9 @@ public class SlideMenuFragment extends ListFragment {
 			TextView percent = (TextView) convertView.findViewById(R.id.row_percent);
 			percent.setText(getItem(position).tag2);
 
-
 			return convertView;
 		}
-
 	}
 	
-
-
 }
 
