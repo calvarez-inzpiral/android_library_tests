@@ -57,12 +57,6 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 
 	// Categories
 	public List<Node> getCategories() {
-//		mLocations = new ArrayList<Node>();
-//		for (BaseNode baseNode : getRoot().getChildren()) {
-//			mLocations.add((Node) baseNode);
-//		}
-//
-//		return mLocations;
 		mCategories = new ArrayList<Node>();
 		for (BaseNode baseNode : getRoot().getChildren()) {
 			mCategories.add((Node) baseNode);
@@ -83,16 +77,6 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 
 	// Locations
 	public List<Node> getLocations() {
-//		mCategories = new ArrayList<Node>();
-//		if(mCurrentLocation == null) {
-//			return new ArrayList<Node>();
-//		}
-//
-//		for (BaseNode baseNode : mCurrentLocation.getChildren()) {
-//			mCategories.add((Node) baseNode);
-//		}
-//
-//		return mCategories;
 		mLocations = new ArrayList<Node>();
 		if(mCurrentCategory == null) {
 			return new ArrayList<Node>();
@@ -115,9 +99,6 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 	// Tipo de pregunta
 	public List<Node> getQuestionTypes() {
 		mQuestionTypes = new ArrayList<Node>();
-//		if(mCurrentCategory == null) {
-//			return new ArrayList<Node>();
-//		}
 
 		for (BaseNode baseNode : mCurrentLocation.getChildren()) {
 			mQuestionTypes.add((Node) baseNode);
@@ -125,12 +106,6 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 
 		return mQuestionTypes;
 	}
-	//	public void setCurrentQuestionType(Node questionType) {
-	//		mCurrentQuestionType = questionType;
-	//	}
-	//	public Node getCurrentQuestionType() {
-	//		return mCurrentQuestionType;
-	//	}
 
 	// Find question type by node's name
 	public Node getQuestionTypeByName(String name) {
