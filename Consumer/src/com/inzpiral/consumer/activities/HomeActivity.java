@@ -86,22 +86,15 @@ public class HomeActivity extends SlidingFragmentActivity {
 	}
 
 	public void loadTabs(final int tabNumber){
-		runOnUiThread(new Runnable() {
-
-			@Override
-			public void run() {
 
 				mAdapter = new FragmentAdapter(getSupportFragmentManager(), tabNumber);
 				mPager = (ViewPager)findViewById(R.id.pager);
 				mPager.setAdapter(mAdapter);
 				mPager.setOffscreenPageLimit(3);
-				mPager.getAdapter().notifyDataSetChanged();
+
 				mIndicator = (IconPageIndicator)findViewById(R.id.indicator);
 				mIndicator.setViewPager(mPager);
 				mIndicator.notifyDataSetChanged();
-
-			}
-		});
 
 	}
 
