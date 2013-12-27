@@ -20,13 +20,13 @@ public class Question extends FrogmiActivity {
 	@SerializedName("question")
 	private String mQuestion;
 	@SerializedName("regex")
-	private String mRegExp;
+	transient private String mRegExp;
 	@SerializedName("errorMessage")
-	private String mErrorMsg;
+	transient private String mErrorMsg;
 	@SerializedName("keyboard")
-	private int mKeyboard;
-	private EditText mInputField;
-	private String NULL_VALUE = "null";
+	transient private int mKeyboard;
+	transient private EditText mInputField;
+	transient private String NULL_VALUE = "null";
 
 
 	// Getters and Setters
@@ -78,7 +78,8 @@ public class Question extends FrogmiActivity {
 			((LinearLayout) mParentView.findViewById(mParentId)).addView(questionView);
 			questionView.getQuestionTextView().setText(getQuestion());
 			questionView.setListener(this);
-			formValidation(questionView.getFieldEditText());
+			mInputField = questionView.getFieldEditText();
+			//formValidation(questionView.getFieldEditText());
 			if(hasResult()) {
 				questionView.getFieldEditText().setText(getResult());
 			}
@@ -100,9 +101,9 @@ public class Question extends FrogmiActivity {
 
 						//cambia el color del texto segun version de Andorid
 						if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-							mInputField.setError( mErrorMsg);
+							mInputField.setError( "hola");
 						}else{
-							mInputField.setError( Html.fromHtml("<font color='black'>"+mErrorMsg+"</font>"));
+							mInputField.setError( Html.fromHtml("<font color='black'>"+"hola"+"</font>"));
 						}
 					}
 				}       
@@ -143,7 +144,7 @@ public class Question extends FrogmiActivity {
 		//				!mErrorMsg.equals(NULL_VALUE)){
 		//			return true;
 		//		}
-		return false;
+		return true;
 	}
 
 	@Override
