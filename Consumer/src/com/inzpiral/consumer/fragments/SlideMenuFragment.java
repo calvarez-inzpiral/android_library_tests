@@ -28,7 +28,7 @@ import com.inzpiral.consumer.utils.EvaluationHelper;
 
 
 
-public class LocationSlideMenu extends ListFragment {
+public class SlideMenuFragment extends ListFragment {
 	
 	private EvaluationHelper mHelper;
 
