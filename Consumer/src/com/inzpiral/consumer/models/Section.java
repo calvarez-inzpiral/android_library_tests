@@ -25,6 +25,28 @@ public class Section extends PresentationNode implements IDisplayable {
 		SectionController controller = new SectionController(new SectionView());
 	}
 
+//	@Override
+//	public int countAnswers() {
+//		int count = 0;
+//		for (BaseNode baseNode : getChildren()) {
+//			if(baseNode instanceof IAnwerable) {
+//				count += ((IAnwerable) baseNode).countAnswers();
+//			}
+//		}
+//		return count;
+//	}
+//
+//	@Override
+//	public int totalAnswers() {
+//		int count = 0;
+//		for (BaseNode baseNode : getChildren()) {
+//			if(baseNode instanceof IAnwerable) {
+//				count += ((IAnwerable) baseNode).totalAnswers();
+//			}
+//		}
+//		return count;
+//	}
+
 	
 	private class SectionController {
 		public SectionController(SectionView sectionView) {

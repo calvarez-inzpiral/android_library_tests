@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.google.gson.annotations.SerializedName;
 import com.inzpiral.consumer.R;
 
-public class Question extends FrogmiActivity {
+public class Question extends FrogmiActivity implements IAnwerable {
 	//temporalmente no se parsea los datos, solo question
 	@SerializedName("question")
 	private String mQuestion;
@@ -27,6 +27,8 @@ public class Question extends FrogmiActivity {
 	transient private int mKeyboard;
 	transient private EditText mInputField;
 	transient private String NULL_VALUE = "null";
+	
+	transient private QuestionController mController;
 
 
 	// Getters and Setters
@@ -69,12 +71,25 @@ public class Question extends FrogmiActivity {
 		mParentId = parentId;
 
 		System.out.println("MOSTRANDOME! Soy un 'Question' de question: " + getQuestion());
-		QuestionController controller = new QuestionController(new QuestionView());
+		mController = new QuestionController(new QuestionView());
+	}
+
+	@Override
+	public int countAnswers() {
+		return hasResult() ? 1 : 0;
+	}
+
+	@Override
+	public int totalAnswers() {
+		return 1;
 	}
 
 
 	private class QuestionController implements TextWatcher {
+		private QuestionView mQuestionView;
+		
 		public QuestionController(QuestionView questionView) {
+			mQuestionView = questionView;
 			((LinearLayout) mParentView.findViewById(mParentId)).addView(questionView);
 			questionView.getQuestionTextView().setText(getQuestion());
 			questionView.setListener(this);
@@ -87,6 +102,10 @@ public class Question extends FrogmiActivity {
 				setResult("");				
 			}		
 		}
+		
+		public QuestionView getView() {
+			return mQuestionView;
+		}
 
 		@Override
 		public void afterTextChanged( final Editable s) {
@@ -96,7 +115,7 @@ public class Question extends FrogmiActivity {
 				@Override
 				public void run() {
 
-//falta llamar al metodo isInputValueInvalid
+					//falta llamar al metodo isInputValueInvalid
 					if(  !s.toString().equals("")){
 
 						//cambia el color del texto segun version de Andorid
@@ -153,7 +172,7 @@ public class Question extends FrogmiActivity {
 
 	@Override
 	public void formPercent() {
-		// TODO dar ponderaci—n de pregunta sobre el total y setear grafico y lista
+		// TODO dar ponderacion de pregunta sobre el total y setear grafico y lista
 
 	}
 

@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.os.Bundle;
 import android.os.Environment;
@@ -17,7 +18,10 @@ import android.widget.ArrayAdapter;
 import com.google.gson.Gson;
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.customs.RingGraphic;
+import com.inzpiral.consumer.fragments.SlideMenuFragment.SlideMenuListAdapter;
 import com.inzpiral.consumer.models.Evaluation;
+import com.inzpiral.consumer.models.Node;
+import com.inzpiral.consumer.models.PresentationNode;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.SlideMenuView;
 import com.inzpiral.consumer.views.SpinnersView;
@@ -31,6 +35,7 @@ public class SlideMenuController implements OnClickListener {
 	private SlideMenuView mSpinnersView;
 	private SlideMenuControllerListener mListener;
 	private EvaluationHelper mHelper;
+	private SlideMenuListAdapter mAdapter;
 
 	public SlideMenuController(SlideMenuView slideMenuView, SlideMenuControllerListener listener) {
 		this.mSpinnersView = slideMenuView;
@@ -38,9 +43,16 @@ public class SlideMenuController implements OnClickListener {
 		this.mHelper = EvaluationHelper.getInstance();
 
 		mSpinnersView.getRingGraphic().setPercent(75);
+		mListener.onSetListAdapter(mHelper.getCategories());
 		
-		ArrayList<String> locations = mHelper.getNodesAsString(mHelper.getCategories());
-		mListener.onSetListAdapter(locations);
+//		mAdapter
+		for (Node node : mHelper.getCategories()) {
+			if(node instanceof PresentationNode) {
+				PresentationNode presentationNode = (PresentationNode)node;
+				System.out.println(node.getName() + ": " + presentationNode.countAnswers());
+				System.out.println(node.getName() + ": " + presentationNode.totalAnswers());
+			}
+		}
 	}
 	
 	@Override
@@ -76,22 +88,22 @@ public class SlideMenuController implements OnClickListener {
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
-		//        File myFile = new File("/sdcard/myjsonstuff.txt");
-		//        FileInputStream fIn = new FileInputStream(myFile);
-		//        BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
-		//        String aDataRow = "";
-		//        String aBuffer = ""; //Holds the text
-		//        while ((aDataRow = myReader.readLine()) != null) 
-		//        {
-		//            aBuffer += aDataRow ;
-		//        }
-		//        myReader.close();
-		//		
+//        File myFile = new File("/sdcard/myjsonstuff.txt");
+//        FileInputStream fIn = new FileInputStream(myFile);
+//        BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
+//        String aDataRow = "";
+//        String aBuffer = ""; //Holds the text
+//        while ((aDataRow = myReader.readLine()) != null) 
+//        {
+//            aBuffer += aDataRow ;
+//        }
+//        myReader.close();
+//		
 	}
 	
 	// Interfaces
 	public interface SlideMenuControllerListener {
-		public void onSetListAdapter(ArrayList<String> locations);
+		public void onSetListAdapter(List<Node> list);
 	}
 
 }

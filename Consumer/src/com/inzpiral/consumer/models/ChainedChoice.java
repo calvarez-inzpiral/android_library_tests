@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ChainedChoice extends FrogmiActivity {
+public class ChainedChoice extends FrogmiActivity implements IAnwerable {
 
 	@SerializedName("question")
 	public String mQuestion;
@@ -34,6 +34,16 @@ public class ChainedChoice extends FrogmiActivity {
 	@Override
 	public void display(Activity activity, View ParentView, int parentId) {
 		System.out.println("MOSTRANDOME! Soy un 'ChainedChoice'");
+	}
+
+	@Override
+	public int countAnswers() {
+		return 1;
+	}
+
+	@Override
+	public int totalAnswers() {
+		return 1;
 	}
 
 	@Override

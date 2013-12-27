@@ -13,7 +13,7 @@ import com.google.gson.annotations.SerializedName;
 import com.inzpiral.consumer.R;
 
 
-public class Boolean extends FrogmiActivity {
+public class Boolean extends FrogmiActivity implements IAnwerable {
 
 	@SerializedName("question")
 	private String mQuestion;
@@ -34,6 +34,16 @@ public class Boolean extends FrogmiActivity {
 
 		System.out.println("MOSTRANDOME! Soy un 'Boolean' de question: " + getQuestion());
 		BooleanController controller = new BooleanController(new BooleanView());
+	}
+
+	@Override
+	public int countAnswers() {
+		return 1;
+	}
+
+	@Override
+	public int totalAnswers() {
+		return 1;
 	}
 
 

@@ -29,10 +29,10 @@ public class TabFragment extends Fragment implements TabControllerListener {
 		mNodeName = getArguments().getString("node_name");
 
 		// Activity links the view and the controller
-		TabController salesController = new TabController((TabView) view.findViewById(R.id.tab_view), this);
+		TabController tabController = new TabController((TabView) view.findViewById(R.id.tab_view), this);
 
 		// Intercept the events of MainView
-		//		((TabView) view.findViewById(R.id.tab_view)).setListeners(salesController);
+//		((TabView) view.findViewById(R.id.tab_view)).setListeners(tabController);
 
 	}
 

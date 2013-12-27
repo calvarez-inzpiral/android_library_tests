@@ -1,6 +1,7 @@
 package com.inzpiral.consumer.fragments;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.activities.HomeActivity;
 import com.inzpiral.consumer.controllers.SlideMenuController;
 import com.inzpiral.consumer.controllers.SlideMenuController.SlideMenuControllerListener;
+import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.views.SlideMenuView;
 
 public class SlideMenuFragment extends ListFragment implements SlideMenuControllerListener {
@@ -48,10 +50,10 @@ public class SlideMenuFragment extends ListFragment implements SlideMenuControll
 
 	// Interfaces
 	@Override
-	public void onSetListAdapter(ArrayList<String> locations) {
-		rowAdapter adapter = new rowAdapter(getActivity());
-		for (String item : locations) {
-			adapter.add(new rowItem(item, "100%", android.R.drawable.ic_menu_search));
+	public void onSetListAdapter(List<Node> categories) {
+		SlideMenuListAdapter adapter = new SlideMenuListAdapter(getActivity());
+		for (Node category : categories) {
+			adapter.add(new rowItem(category.getCode(), category.getName(), 0, android.R.drawable.ic_menu_search));
 		}
 
 		setListAdapter(adapter);
@@ -59,17 +61,18 @@ public class SlideMenuFragment extends ListFragment implements SlideMenuControll
 	
 	// List adapter
 	private class rowItem {
-		public String tag, tag2;
+		public String code, title, percent;
 		public int iconRes;
-		public rowItem(String tag,String tag2, int iconRes) {
-			this.tag = tag; 
-			this.tag2 = tag2; 
+		public rowItem(String code, String title, int percent, int iconRes) {
+			this.code = code; 
+			this.title = title; 
+			this.percent = percent + "%"; 
 			this.iconRes = iconRes;
 		}
 	}
-	public class rowAdapter extends ArrayAdapter<rowItem> {
+	public class SlideMenuListAdapter extends ArrayAdapter<rowItem> {
 
-		public rowAdapter(Context context) {
+		public SlideMenuListAdapter(Context context) {
 			super(context, 0);
 		}
 
@@ -80,9 +83,9 @@ public class SlideMenuFragment extends ListFragment implements SlideMenuControll
 			ImageView icon = (ImageView) convertView.findViewById(R.id.row_icon);
 			icon.setImageResource(getItem(position).iconRes);
 			TextView title = (TextView) convertView.findViewById(R.id.row_title);
-			title.setText(getItem(position).tag);
+			title.setText(getItem(position).title);
 			TextView percent = (TextView) convertView.findViewById(R.id.row_percent);
-			percent.setText(getItem(position).tag2);
+			percent.setText(getItem(position).percent);
 
 			return convertView;
 		}

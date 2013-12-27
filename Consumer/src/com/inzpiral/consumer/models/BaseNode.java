@@ -12,6 +12,8 @@ public class BaseNode {
 	
 	@SerializedName("required")
 	private boolean mRequired;
+	
+//	transient protected boolean mAnswered;
 
 	public String getNode() {
 		return mNode;

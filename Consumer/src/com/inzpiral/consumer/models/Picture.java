@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName;
 import com.inzpiral.consumer.R;
 
 
-public class Picture extends FrogmiActivity {
+public class Picture extends FrogmiActivity implements IAnwerable {
 
 	@SerializedName("question")
 	private String mQuestion;
@@ -44,6 +44,16 @@ public class Picture extends FrogmiActivity {
 
 		System.out.println("MOSTRANDOME! Soy un 'Boolean' de question: " + getQuestion());
 		PictureController controller = new PictureController(new PictureView());
+	}
+
+	@Override
+	public int countAnswers() {
+		return hasResult() ? 1 : 0;
+	}
+
+	@Override
+	public int totalAnswers() {
+		return 1;
 	}
 
 
