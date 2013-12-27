@@ -39,7 +39,7 @@ public class SlideMenuController implements OnClickListener {
 
 		mSpinnersView.getRingGraphic().setPercent(75);
 		
-		ArrayList<String> locations = mHelper.getNodesAsString(mHelper.getLocations());
+		ArrayList<String> locations = mHelper.getNodesAsString(mHelper.getCategories());
 		mListener.onSetListAdapter(locations);
 	}
 	

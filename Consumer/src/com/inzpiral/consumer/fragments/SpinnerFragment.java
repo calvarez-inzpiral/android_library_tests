@@ -36,10 +36,10 @@ public class SpinnerFragment extends SherlockFragment implements SpinnerControll
 	public void onLoadQuestionTypes(int position) {
 
 		mHelper = EvaluationHelper.getInstance();
-		if(mHelper.getCategories().size() == 0) {
+		if(mHelper.getLocations().size() == 0) {
 			return;
 		}
-		mHelper.setCurrentCategory(mHelper.getCategories().get(position));
+		mHelper.setCurrentLocation(mHelper.getLocations().get(position));
 
 		((HomeActivity) getActivity()).loadTabs(mHelper.getNodesAsString(mHelper.getQuestionTypes()).size());
 	}

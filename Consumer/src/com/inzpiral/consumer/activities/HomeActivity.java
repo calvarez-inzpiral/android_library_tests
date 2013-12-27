@@ -161,14 +161,14 @@ public class HomeActivity extends SlidingFragmentActivity {
 		System.out.println("id:" + id + ", position:" + position);
 
 		mHelper = EvaluationHelper.getInstance();
-		Node selectedLocation = mHelper.getLocations().get(position);
+		Node selectedLocation = mHelper.getCategories().get(position);
 
-		if(mHelper.getCurrentLocation() == selectedLocation) {
+		if(mHelper.getCurrentCategory() == selectedLocation) {
 			closeSlidingmenu();
 			return;
 		}
 
-		mHelper.setCurrentLocation(selectedLocation);
+		mHelper.setCurrentCategory(selectedLocation);
 
 		Fragment newFragment = new SpinnerFragment();
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

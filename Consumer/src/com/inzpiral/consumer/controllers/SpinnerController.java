@@ -27,8 +27,8 @@ public class SpinnerController implements OnItemSelectedListener {
 		this.mHelper = EvaluationHelper.getInstance();
 		
 		String[] vals = new String[0];
-    	if (mHelper.getCategories().size() > 0){
-    		ArrayList<String> categories = mHelper.getNodesAsString(mHelper.getCategories());
+    	if (mHelper.getLocations().size() > 0){
+    		ArrayList<String> categories = mHelper.getNodesAsString(mHelper.getLocations());
     		vals = categories.toArray(new String[0]);
     	}
 		
