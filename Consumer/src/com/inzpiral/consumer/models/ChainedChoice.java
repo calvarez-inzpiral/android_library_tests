@@ -2,6 +2,9 @@ package com.inzpiral.consumer.models;
 
 import java.util.List;
 
+import android.app.Activity;
+import android.view.View;
+
 import com.google.gson.annotations.SerializedName;
 
 public class ChainedChoice extends FrogmiActivity {
@@ -26,6 +29,11 @@ public class ChainedChoice extends FrogmiActivity {
 
 	public void setChildren(List<Choice> mChildren) {
 		this.mChildren = mChildren;
+	}
+
+	@Override
+	public void display(Activity activity, View ParentView, int parentId) {
+		System.out.println("MOSTRANDOME! Soy un 'ChainedChoice'");
 	}
 	
 }

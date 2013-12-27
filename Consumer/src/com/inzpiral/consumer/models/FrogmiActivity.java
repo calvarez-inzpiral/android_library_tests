@@ -5,12 +5,14 @@ import android.view.View;
 
 import com.google.gson.annotations.SerializedName;
 
-public class FrogmiActivity extends BaseNode implements IDisplayable {
+public abstract class FrogmiActivity extends BaseNode implements IDisplayable {
 	
+	// Transient values
 	transient protected Activity mActivity;
 	transient protected View mParentView;
 	transient protected int mParentId;
 
+	// Properties
 	@SerializedName("node_order")
 	private int mNodeOrder;
 	
@@ -20,6 +22,7 @@ public class FrogmiActivity extends BaseNode implements IDisplayable {
 	@SerializedName("result")
 	private String mResult;
 
+	// Getters and Setters
 	public int getNodeOrder() {
 		return mNodeOrder;
 	}
@@ -43,14 +46,14 @@ public class FrogmiActivity extends BaseNode implements IDisplayable {
 	public void setResult(String result) {
 		this.mResult = result;
 	}
-
+	
+	// General methods
 	public boolean hasResult() {
 		return mResult != null && !mResult.equals("");
 	}
 
+	// Abstract methods
 	@Override
-	public void display(Activity activity, View ParentView, int parentId) {
-		System.out.println("MOSTRANDOME! Soy un 'FrogmiActivity' de tipo: " + getNode());
-	}
+	public abstract void display(Activity activity, View ParentView, int parentId);
 
 }
