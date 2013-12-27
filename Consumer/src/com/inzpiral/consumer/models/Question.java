@@ -54,11 +54,11 @@ public class Question extends FrogmiActivity {
 		this.mErrorMsg = mErrorMsg;
 	}
 
-	public int getmKeyboard() {
+	public int getKeyboard() {
 		return mKeyboard;
 	}
 
-	public void setmKeyboard(int mKeyboard) {
+	public void setKeyboard(int mKeyboard) {
 		this.mKeyboard = mKeyboard;
 	}
 
@@ -79,7 +79,7 @@ public class Question extends FrogmiActivity {
 			questionView.getQuestionTextView().setText(getQuestion());
 			questionView.setListener(this);
 			mInputField = questionView.getFieldEditText();
-			//formValidation(questionView.getFieldEditText());
+			formValidation(questionView.getFieldEditText(), 2); //getKeyboard(); cambia el numero hardcode por ese metodo
 			if(hasResult()) {
 				questionView.getFieldEditText().setText(getResult());
 			}
@@ -96,8 +96,8 @@ public class Question extends FrogmiActivity {
 				@Override
 				public void run() {
 
-//falta llamar al metodo isInputValueInvalid
-					if(  !s.toString().equals("")){
+					//falta llamar al metodo isInputValueInvalid
+					if( isInputValueInvalid(s.toString()) && !s.toString().equals("")){
 
 						//cambia el color del texto segun version de Andorid
 						if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
@@ -141,14 +141,13 @@ public class Question extends FrogmiActivity {
 
 	}
 
-	public boolean isInputValueInvalid() {		
+	public boolean isInputValueInvalid(String inputValue) {		
 		// TODO traer los regex y message desde json
-
-		//		if(mRegExp != null && mRegExp!=NULL_VALUE && !inputValue.matches(mRegExp) && 
-		//				!mErrorMsg.equals(NULL_VALUE)){
-		//			return true;
-		//		}
-		return true;
+		if(getRegExp() != null && getRegExp()!=NULL_VALUE && !inputValue.matches(getRegExp()) && 
+				!getRegMsg().equals(NULL_VALUE)){
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -158,9 +157,9 @@ public class Question extends FrogmiActivity {
 	}
 
 
-	public void formValidation(EditText questionInput) {
+	public void formValidation(EditText questionInput, int keyboard) {
 
-		switch (1) {
+		switch (keyboard) {
 		case 1:
 			questionInput.setRawInputType(InputType.TYPE_CLASS_NUMBER );
 
@@ -180,6 +179,7 @@ public class Question extends FrogmiActivity {
 	@Override
 	public void formClear() {
 		// TODO Auto-generated method stub
+
 
 	}
 
