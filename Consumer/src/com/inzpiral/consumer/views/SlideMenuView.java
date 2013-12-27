@@ -1,0 +1,31 @@
+package com.inzpiral.consumer.views;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.widget.Button;
+import android.widget.LinearLayout;
+
+import com.inzpiral.consumer.R;
+import com.inzpiral.consumer.customs.RingGraphic;
+
+public class SlideMenuView extends LinearLayout {
+
+	public SlideMenuView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+	}
+	
+	// Listeners
+	public void setListeners(OnClickListener onClickListener){
+		getFinishButton().setOnClickListener(onClickListener);
+	}
+	
+	// Getters
+	public RingGraphic getRingGraphic() {
+		return (RingGraphic) findViewById(R.id.ring_graph);
+	}
+
+	public Button getFinishButton() {
+		return (Button) findViewById(R.id.btn_end);
+	}
+	
+}
