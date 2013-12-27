@@ -16,7 +16,7 @@ import com.google.gson.annotations.SerializedName;
 import com.inzpiral.consumer.R;
 
 public class Question extends FrogmiActivity {
-
+	//temporalmente no se parsea los datos, solo question
 	@SerializedName("question")
 	private String mQuestion;
 	@SerializedName("regex")
@@ -89,15 +89,15 @@ public class Question extends FrogmiActivity {
 		}
 
 		@Override
-		public void afterTextChanged(final Editable s) {
+		public void afterTextChanged( final Editable s) {
 			setResult(s.toString());
 			Handler mHandler = new Handler();
 			Runnable mFilterTask = new Runnable() {
 				@Override
 				public void run() {
 
-
-					if( isInputValueInvalid() && !s.toString().equals("")){
+//falta llamar al metodo isInputValueInvalid
+					if(  !s.toString().equals("")){
 
 						//cambia el color del texto segun version de Andorid
 						if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
@@ -108,6 +108,8 @@ public class Question extends FrogmiActivity {
 					}
 				}       
 			};
+			mHandler.removeCallbacks(mFilterTask); 
+			mHandler.postDelayed(mFilterTask, 1000);
 		}
 
 		@Override
@@ -140,6 +142,8 @@ public class Question extends FrogmiActivity {
 	}
 
 	public boolean isInputValueInvalid() {		
+		// TODO traer los regex y message desde json
+
 		//		if(mRegExp != null && mRegExp!=NULL_VALUE && !inputValue.matches(mRegExp) && 
 		//				!mErrorMsg.equals(NULL_VALUE)){
 		//			return true;
