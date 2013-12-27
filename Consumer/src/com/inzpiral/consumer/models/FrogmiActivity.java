@@ -11,7 +11,10 @@ public abstract class FrogmiActivity extends BaseNode implements IDisplayable {
 	transient protected Activity mActivity;
 	transient protected View mParentView;
 	transient protected int mParentId;
-	
+
+	// Abstract methods
+	@Override
+	public abstract void display(Activity activity, View ParentView, int parentId);
     public abstract void formPercent();
     public abstract void formClear();
 
@@ -54,9 +57,5 @@ public abstract class FrogmiActivity extends BaseNode implements IDisplayable {
 	public boolean hasResult() {
 		return mResult != null && !mResult.equals("");
 	}
-
-	// Abstract methods
-	@Override
-	public abstract void display(Activity activity, View ParentView, int parentId);
 
 }
