@@ -27,7 +27,7 @@ public class SlideMenuFragment extends ListFragment implements SlideMenuControll
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
+
 		// Activity links the view and the controller
 		SlideMenuController slideMenuController = new SlideMenuController((SlideMenuView) getView().findViewById(R.id.slide_menu_view), this);
 
@@ -56,7 +56,7 @@ public class SlideMenuFragment extends ListFragment implements SlideMenuControll
 
 		setListAdapter(adapter);
 	}
-	
+
 	// List adapter
 	private class rowItem {
 		public String tag, tag2;
@@ -87,6 +87,6 @@ public class SlideMenuFragment extends ListFragment implements SlideMenuControll
 			return convertView;
 		}
 	}
-	
+
 }
 

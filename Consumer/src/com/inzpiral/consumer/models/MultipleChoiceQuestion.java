@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.google.gson.annotations.SerializedName;
 import com.inzpiral.consumer.R;
 
-public class MultipleChoiceQuestion extends FrogmiActivity {
+public class MultipleChoiceQuestion extends FrogmiActivity implements IAnwerable {
 
 	@SerializedName("question")
 	private String mQuestion;
@@ -60,6 +60,21 @@ public class MultipleChoiceQuestion extends FrogmiActivity {
 
 		System.out.println("MOSTRANDOME! Soy un 'MultipleChoice' de question: " + getQuestion());
 		MultipleChoiceController controller = new MultipleChoiceController(new MultipleChoiceView());
+	}
+
+	@Override
+	public int countAnswers() {
+		if(getMultiple() == 1) {
+			return 1;
+		}
+		else {
+			return hasResult() ? 1 : 0;
+		}
+	}
+
+	@Override
+	public int totalAnswers() {
+		return 1;
 	}
 
 

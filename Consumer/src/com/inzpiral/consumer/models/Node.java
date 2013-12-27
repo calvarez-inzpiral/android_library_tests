@@ -19,6 +19,7 @@ public class Node extends BaseNode {
 		return mName;
 	}
 
+	// Getters and Setters
 	public void setName(String mName) {
 		this.mName = mName;
 	}
@@ -37,6 +38,11 @@ public class Node extends BaseNode {
 
 	public void setChildren(List<BaseNode> mChildren) {
 		this.mChildren = mChildren;
+	}
+	
+	// Other methods
+	public int countChildren() {
+		return getChildren().size();
 	}
 
 }

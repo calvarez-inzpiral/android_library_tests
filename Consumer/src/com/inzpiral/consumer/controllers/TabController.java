@@ -3,6 +3,7 @@ package com.inzpiral.consumer.controllers;
 import android.view.View;
 
 import com.inzpiral.consumer.models.Node;
+import com.inzpiral.consumer.models.PresentationNode;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.TabView;
 
@@ -27,6 +28,14 @@ public class TabController {
 		
 		Node sale = mHelper.getQuestionTypeByName(mListener.getNodeName());
 		mListener.displayChildren(mTabView, sale);
+
+//		for (Node node : mHelper.getQuestionTypes()) {
+//			if(node instanceof PresentationNode) {
+//				PresentationNode presentationNode = (PresentationNode)node;
+//				System.out.println(node.getName() + ": " + presentationNode.countAnswers());
+//				System.out.println(node.getName() + ": " + presentationNode.totalAnswers());
+//			}
+//		}
 	}
 
 	// Interfaces
