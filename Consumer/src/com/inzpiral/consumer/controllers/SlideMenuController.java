@@ -45,12 +45,14 @@ public class SlideMenuController implements OnClickListener {
 		mSpinnersView.getRingGraphic().setPercent(75);
 		mListener.onSetListAdapter(mHelper.getCategories());
 		
-//		mAdapter
+		recalculateProgress();
+	}
+	
+	private void recalculateProgress() {
 		for (Node node : mHelper.getCategories()) {
 			if(node instanceof PresentationNode) {
 				PresentationNode presentationNode = (PresentationNode)node;
-				System.out.println(node.getName() + ": " + presentationNode.countAnswers());
-				System.out.println(node.getName() + ": " + presentationNode.totalAnswers());
+				System.out.println(node.getName() + ": " + (int)((float)presentationNode.countAnswers() / presentationNode.totalAnswers() * 100) + "%");
 			}
 		}
 	}
