@@ -1,6 +1,5 @@
 package com.inzpiral.consumer.fragments;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -22,7 +21,7 @@ import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.views.SlideMenuView;
 
 public class SlideMenuFragment extends ListFragment implements SlideMenuControllerListener {
-
+	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.slidebar, null);
 	}
@@ -90,6 +89,6 @@ public class SlideMenuFragment extends ListFragment implements SlideMenuControll
 			return convertView;
 		}
 	}
-	
+
 }
 
