@@ -22,15 +22,15 @@ public class SlidebarExpandableAdapter extends BaseExpandableListAdapter{
 	private ArrayList<String> parentItems, child;
 
 
-	public SlidebarExpandableAdapter(ArrayList<Object> childrens, ArrayList<String> parents) {
+	public SlidebarExpandableAdapter(Activity context, ArrayList<Object> childrens, ArrayList<String> parents) {
 		this.childtems = childrens;
 		this.parentItems = parents;
-
+		this.activity= context;
 	}
 
-	public void setInflater(LayoutInflater inflater, Activity activity) {
+	public void setInflater(LayoutInflater inflater, Activity context) {
 		this.inflater = inflater;
-		this.activity = activity;
+		this.activity = context; 
 	}
 
 	@Override
@@ -67,9 +67,11 @@ public class SlidebarExpandableAdapter extends BaseExpandableListAdapter{
 
 		return convertView;	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public int getChildrenCount(int groupPosition) {
 		return ((ArrayList<String>) childtems.get(groupPosition)).size();
+		//	return 0;
 	}
 
 	@Override
@@ -80,6 +82,7 @@ public class SlidebarExpandableAdapter extends BaseExpandableListAdapter{
 	@Override
 	public int getGroupCount() {
 		return parentItems.size();
+		//	return 0;
 	}
 
 	@Override
@@ -89,12 +92,21 @@ public class SlidebarExpandableAdapter extends BaseExpandableListAdapter{
 
 	@Override
 	public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-		if (convertView == null) {
-			convertView = inflater.inflate(R.layout.row_expandable, null);
-		}
+//		if (convertView == null) {
+//			convertView = inflater.inflate(R.layout.group_expandable, null);
+//		}
 
-		((CheckedTextView) convertView).setText(parentItems.get(groupPosition));
-		((CheckedTextView) convertView).setChecked(isExpanded);
+		   if (convertView == null) {
+	            LayoutInflater infalInflater = (LayoutInflater) activity
+	                    .getSystemService(activity.LAYOUT_INFLATER_SERVICE);
+	            convertView = infalInflater.inflate(R.layout.group_item,
+	                    null);
+	        }
+		   TextView item = (TextView) convertView.findViewById(R.id.data);
+				   item.setText(parentItems.get(groupPosition));
+		
+//				   CheckedTextView item2 = (CheckedTextView) convertView.findViewById(R.id.data);
+//				 ((CheckedTextView) item2).setChecked(isExpanded);
 
 		return convertView;
 	}
