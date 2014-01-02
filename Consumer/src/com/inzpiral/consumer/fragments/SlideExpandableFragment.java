@@ -12,13 +12,14 @@ import android.widget.ExpandableListView;
 
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.adapters.SlidebarExpandableAdapter;
+import com.inzpiral.consumer.controllers.SlideMenuController.SlideMenuControllerListener;
 import com.inzpiral.consumer.models.Node;
 
-public class SlideExpandableFragment extends Fragment{
+public class SlideExpandableFragment extends Fragment implements SlideMenuControllerListener{
 	private ExpandableListView expListView;
 	private List<Node> categories;
-	private ArrayList<Object> groupList;
-	private ArrayList<String> childList;
+	private ArrayList<String> parentItems = new ArrayList<String>();
+	private ArrayList<Object> childItems = new ArrayList<Object>();
 	public void onCreate(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 	};
@@ -35,42 +36,70 @@ public class SlideExpandableFragment extends Fragment{
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-//		createGroupList(groupList,categories);
-//		createChildList(childList,categories);
-//		expListView = (ExpandableListView) getActivity().findViewById(R.id.exp_list);
-//
-//		final SlidebarExpandableAdapter expListAdapter = new SlidebarExpandableAdapter(
-//				getActivity(), createGroupList(groupList), createChildList(childList));
-//		expListView.setAdapter(expListAdapter);
+
+		expListView = (ExpandableListView) getActivity().findViewById(R.id.exp_list);
+		expListView.setDividerHeight(2);
+		expListView.setGroupIndicator(null);
+		expListView.setClickable(true);
+
+		setGroupParents();
+		setChildData();
+
+		final SlidebarExpandableAdapter expListAdapter = new SlidebarExpandableAdapter(
+				getActivity(), parentItems, childItems);
+		expListView.setAdapter(expListAdapter);
 	}
 
-    private ArrayList<Object> createGroupList(ArrayList<Object> group) {
-    	group = new ArrayList<Object>();
-//    	for (Node category : categories) {
-//			group.add(category.getName());
-//		}
-  
-    	group.add("categoria 1");
-    	group.add("categoria 2");
-    	group.add("categoria 3");
-    	
-    	return group;
-    }
 
-    private ArrayList<String> createChildList(ArrayList<String> child) {
-    	child = new ArrayList<String>();
-    	child.add("marca 1");
-    	child.add("marca 2");
-    	child.add("marca 3");
-    	return child; 
-    }
-//    public void onSetListAdapter(List<Node> categories) {
-//		SlideMenuListAdapter adapter = new SlideMenuListAdapter(getActivity());
+	public void setGroupParents() {
+		
 //		for (Node category : categories) {
-//			adapter.add(new rowItem(category.getCode(), category.getName(), 0, android.R.drawable.ic_menu_search));
+//			parentItems.add(category.getName());
 //		}
-//
-//		setListAdapter(adapter);
-//	}
-    
+		parentItems.add("categoria 1");
+		parentItems.add("categoria 2");
+		parentItems.add("categoria 3");
+		parentItems.add("categoria 4");
+	}
+	public void setChildData() {
+
+
+		ArrayList<String> child = new ArrayList<String>();
+		child.add("marca 1");
+		child.add("marca 2");
+		childItems.add(child);
+
+
+
+		child = new ArrayList<String>();
+		child.add("marca 2");
+		child.add("marca 2");
+
+		childItems.add(child);
+
+
+		child = new ArrayList<String>();
+		child.add("marca 2");
+		child.add("marca 2");
+
+		childItems.add(child);
+
+
+
+		child = new ArrayList<String>();
+		child.add("marca 2");
+		child.add("marca 2");
+
+		childItems.add(child);
+	}
+
+	@Override
+	public void onSetListAdapter(List<Node> list) {
+		// TODO Auto-generated method stub
+		for (Node category : categories) {
+			parentItems.add(category.getName());
+		}
+	}
+
+
 }

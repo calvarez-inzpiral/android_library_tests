@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
 
 import com.actionbarsherlock.view.Menu;
@@ -19,7 +18,6 @@ import com.google.gson.GsonBuilder;
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.fragments.FragmentAdapter;
 import com.inzpiral.consumer.fragments.SlideExpandableFragment;
-import com.inzpiral.consumer.fragments.SlideMenuFragment;
 import com.inzpiral.consumer.fragments.SpinnerFragment;
 import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.Evaluation;
@@ -62,13 +60,13 @@ public class HomeActivity extends SlidingFragmentActivity {
 		setBehindContentView(R.layout.menu_frame);
 		if (savedInstanceState == null) {
 			FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
-			mFrag = new SlideMenuFragment();
-			//mFrag = new SlideExpandableFragment();
+			//mFrag = new SlideMenuFragment();
+			mFrag = new SlideExpandableFragment();
 			t.replace(R.id.menu_frame, mFrag);
 			t.commit();
 		} else {
-			mFrag = (ListFragment)this.getSupportFragmentManager().findFragmentById(R.id.menu_frame);
-			//mFrag = (Fragment)this.getSupportFragmentManager().findFragmentById(R.id.menu_frame);
+			//mFrag = (ListFragment)this.getSupportFragmentManager().findFragmentById(R.id.menu_frame);
+			mFrag = (Fragment)this.getSupportFragmentManager().findFragmentById(R.id.menu_frame);
 		}
 
 		// customize the SlidingMenu

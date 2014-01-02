@@ -4,27 +4,18 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 import java.util.List;
 
-import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 
 import com.google.gson.Gson;
-import com.inzpiral.consumer.R;
-import com.inzpiral.consumer.customs.RingGraphic;
-import com.inzpiral.consumer.fragments.SlideMenuFragment.SlideMenuListAdapter;
 import com.inzpiral.consumer.models.Evaluation;
 import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.models.PresentationNode;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.SlideMenuView;
-import com.inzpiral.consumer.views.SpinnersView;
 
 /**
  * LoginController intercepts the on click login button event, verify the inputs 
@@ -35,7 +26,7 @@ public class SlideMenuController implements OnClickListener {
 	private SlideMenuView mSpinnersView;
 	private SlideMenuControllerListener mListener;
 	private EvaluationHelper mHelper;
-	private SlideMenuListAdapter mAdapter;
+	//private SlideMenuListAdapter mAdapter;
 
 	public SlideMenuController(SlideMenuView slideMenuView, SlideMenuControllerListener listener) {
 		this.mSpinnersView = slideMenuView;

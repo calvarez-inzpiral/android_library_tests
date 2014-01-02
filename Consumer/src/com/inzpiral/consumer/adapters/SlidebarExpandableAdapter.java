@@ -22,7 +22,7 @@ public class SlidebarExpandableAdapter extends BaseExpandableListAdapter{
 	private ArrayList<String> parentItems, child;
 
 
-	public SlidebarExpandableAdapter(Activity context, ArrayList<Object> childrens, ArrayList<String> parents) {
+	public SlidebarExpandableAdapter(Activity context, ArrayList<String> parents, ArrayList<Object> childrens) {
 		this.childtems = childrens;
 		this.parentItems = parents;
 		this.activity= context;
@@ -43,6 +43,7 @@ public class SlidebarExpandableAdapter extends BaseExpandableListAdapter{
 		return 0;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public View getChildView(int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 		child = (ArrayList<String>) childtems.get(groupPosition);
@@ -50,10 +51,14 @@ public class SlidebarExpandableAdapter extends BaseExpandableListAdapter{
 		TextView textView = null;
 
 		if (convertView == null) {
-			convertView = inflater.inflate(R.layout.group_expandable, null);
+			@SuppressWarnings("static-access")
+			LayoutInflater infalInflater = (LayoutInflater) activity
+					.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
+			convertView = infalInflater.inflate(R.layout.row,
+					null);
 		}
 
-		textView = (TextView) convertView.findViewById(R.id.textView1);
+		textView = (TextView) convertView.findViewById(R.id.row_title);
 		textView.setText(child.get(childPosition));
 
 		convertView.setOnClickListener(new OnClickListener() {
@@ -71,7 +76,6 @@ public class SlidebarExpandableAdapter extends BaseExpandableListAdapter{
 	@Override
 	public int getChildrenCount(int groupPosition) {
 		return ((ArrayList<String>) childtems.get(groupPosition)).size();
-		//	return 0;
 	}
 
 	@Override
@@ -82,7 +86,6 @@ public class SlidebarExpandableAdapter extends BaseExpandableListAdapter{
 	@Override
 	public int getGroupCount() {
 		return parentItems.size();
-		//	return 0;
 	}
 
 	@Override
@@ -92,22 +95,16 @@ public class SlidebarExpandableAdapter extends BaseExpandableListAdapter{
 
 	@Override
 	public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-//		if (convertView == null) {
-//			convertView = inflater.inflate(R.layout.group_expandable, null);
-//		}
+	
 
-		   if (convertView == null) {
-	            LayoutInflater infalInflater = (LayoutInflater) activity
-	                    .getSystemService(activity.LAYOUT_INFLATER_SERVICE);
-	            convertView = infalInflater.inflate(R.layout.group_item,
-	                    null);
-	        }
-		   TextView item = (TextView) convertView.findViewById(R.id.data);
-				   item.setText(parentItems.get(groupPosition));
-		
-//				   CheckedTextView item2 = (CheckedTextView) convertView.findViewById(R.id.data);
-//				 ((CheckedTextView) item2).setChecked(isExpanded);
-
+		if (convertView == null) {
+			LayoutInflater infalInflater = (LayoutInflater) activity
+					.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
+			convertView = infalInflater.inflate(R.layout.group_item,
+					null);
+		}
+		TextView item = (TextView) convertView.findViewById(R.id.data);
+		item.setText(parentItems.get(groupPosition));
 		return convertView;
 	}
 
