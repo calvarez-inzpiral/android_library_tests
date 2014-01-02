@@ -3,6 +3,7 @@ package com.inzpiral.consumer.views;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 
 import com.inzpiral.consumer.R;
@@ -26,6 +27,10 @@ public class SlideMenuView extends LinearLayout {
 
 	public Button getFinishButton() {
 		return (Button) findViewById(R.id.btn_end);
+	}
+
+	public ExpandableListView getExpandableListView() {
+		return (ExpandableListView) findViewById(R.id.exp_list);
 	}
 	
 }

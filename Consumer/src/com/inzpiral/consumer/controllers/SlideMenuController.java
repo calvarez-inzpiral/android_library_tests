@@ -4,13 +4,18 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ExpandableListView;
 
 import com.google.gson.Gson;
+import com.inzpiral.consumer.R;
+import com.inzpiral.consumer.adapters.SlidebarExpandableAdapter;
+import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.Evaluation;
 import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.models.PresentationNode;
@@ -26,7 +31,10 @@ public class SlideMenuController implements OnClickListener {
 	private SlideMenuView mSpinnersView;
 	private SlideMenuControllerListener mListener;
 	private EvaluationHelper mHelper;
-	//private SlideMenuListAdapter mAdapter;
+	
+	private ArrayList<String> mParentItems = new ArrayList<String>();
+	private ArrayList<Object> mChildItems = new ArrayList<Object>();
+	private ExpandableListView mExpListView;
 
 	public SlideMenuController(SlideMenuView slideMenuView, SlideMenuControllerListener listener) {
 		this.mSpinnersView = slideMenuView;
@@ -34,9 +42,27 @@ public class SlideMenuController implements OnClickListener {
 		this.mHelper = EvaluationHelper.getInstance();
 
 		mSpinnersView.getRingGraphic().setPercent(75);
-		mListener.onSetListAdapter(mHelper.getCategories());
+
+		mExpListView = slideMenuView.getExpandableListView();
+		mExpListView.setDividerHeight(2);
+		mExpListView.setGroupIndicator(null);
+		mExpListView.setClickable(true);
+
+		configureList(mHelper.getCategories());
+		mListener.setAdapter(mExpListView, mParentItems, mChildItems);
 		
 		recalculateProgress();
+	}
+	
+	public void configureList(List<Node> categories) {
+		for (Node category : categories) {
+			mParentItems.add(category.getName());
+			ArrayList<String> child = new ArrayList<String>();
+			for (BaseNode node : category.getChildren()) {
+				child.add(((Node) node).getName());
+			}
+			mChildItems.add(child);
+		}
 	}
 	
 	private void recalculateProgress() {
@@ -96,7 +122,7 @@ public class SlideMenuController implements OnClickListener {
 	
 	// Interfaces
 	public interface SlideMenuControllerListener {
-		public void onSetListAdapter(List<Node> list);
+		public void setAdapter(ExpandableListView expListView, ArrayList<String> parentItems, ArrayList<Object> childItems);
 	}
 
 }
