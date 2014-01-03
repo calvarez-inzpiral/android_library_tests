@@ -1,5 +1,6 @@
 package com.inzpiral.consumer.fragments;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -43,20 +45,26 @@ public class SlideMenuFragment extends ListFragment implements SlideMenuControll
 		if (getActivity() == null) return;
 
 		if (getActivity() instanceof HomeActivity) {
-			((HomeActivity) getActivity()).loadCategories(id, position);
+//			((HomeActivity) getActivity()).loadCategories(id, position);
 		}
 	}
 
 	// Interfaces
 	@Override
-	public void onSetListAdapter(List<Node> categories) {
-		SlideMenuListAdapter adapter = new SlideMenuListAdapter(getActivity());
-		for (Node category : categories) {
-			adapter.add(new rowItem(category.getCode(), category.getName(), 0, android.R.drawable.ic_menu_search));
-		}
-
-		setListAdapter(adapter);
+	public void setAdapter(ExpandableListView expListView,
+			ArrayList<String> parentItems, ArrayList<Object> childItems) {
+		// TODO Auto-generated method stub
+		
 	}
+//	@Override
+//	public void configureList(List<Node> categories) {
+//		SlideMenuListAdapter adapter = new SlideMenuListAdapter(getActivity());
+//		for (Node category : categories) {
+//			adapter.add(new rowItem(category.getCode(), category.getName(), 0, android.R.drawable.ic_menu_search));
+//		}
+//
+//		setListAdapter(adapter);
+//	}
 	
 	// List adapter
 	private class rowItem {
@@ -88,6 +96,11 @@ public class SlideMenuFragment extends ListFragment implements SlideMenuControll
 
 			return convertView;
 		}
+	}
+	@Override
+	public boolean childClicked(int groupPosition, int childPosition) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

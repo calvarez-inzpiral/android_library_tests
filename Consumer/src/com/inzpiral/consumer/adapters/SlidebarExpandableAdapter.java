@@ -60,16 +60,17 @@ public class SlidebarExpandableAdapter extends BaseExpandableListAdapter{
 		textView = (TextView) convertView.findViewById(R.id.row_title);
 		textView.setText(child.get(childPosition));
 
-		convertView.setOnClickListener(new OnClickListener() {
+//		convertView.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View view) {
+//				Toast.makeText(activity, child.get(childPosition),
+//						Toast.LENGTH_SHORT).show();
+//			}
+//		});
 
-			@Override
-			public void onClick(View view) {
-				Toast.makeText(activity, child.get(childPosition),
-						Toast.LENGTH_SHORT).show();
-			}
-		});
-
-		return convertView;	}
+		return convertView;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -114,7 +115,7 @@ public class SlidebarExpandableAdapter extends BaseExpandableListAdapter{
 
 	@Override
 	public boolean isChildSelectable(int groupPosition, int childPosition) {
-		return false;
+		return true;
 	}
 
 }

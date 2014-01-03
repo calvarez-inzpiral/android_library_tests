@@ -16,11 +16,13 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 	private static Evaluation mEvaluation;
 
 	private static Node mRoot;
-	private static Node mCurrentLocation;
 	private static Node mCurrentCategory;
+	private static Node mCurrentBrand;
+	private static Node mCurrentLocation;
 
-	private static List<Node> mLocations;
 	private static List<Node> mCategories;
+	private static List<Node> mBrands;
+	private static List<Node> mLocations;
 	private static List<Node> mQuestionTypes;
 
 	public static void setEvaluation(Evaluation evaluation) {
@@ -40,7 +42,7 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 
 		if(mInstance == null) {
 			mInstance = new EvaluationHelper();
-			mCategories = new ArrayList<Node>();
+			mBrands = new ArrayList<Node>();
 			mLocations = new ArrayList<Node>();
 			mQuestionTypes = new ArrayList<Node>();
 		}
@@ -65,24 +67,50 @@ public class EvaluationHelper implements Iterable<BaseNode> {
 		return mCategories;
 	}
 	public void setCurrentCategory(Node category) {
+		mBrands = new ArrayList<Node>();
 		mLocations = new ArrayList<Node>();
 		mQuestionTypes = new ArrayList<Node>();
-		mCurrentLocation = null;
 		
 		mCurrentCategory = category;
+		mCurrentBrand = null;
+		mCurrentLocation = null;
 	}
 	public Node getCurrentCategory() {
 		return mCurrentCategory;
 	}
 
+	// Brands
+	public List<Node> getBrands() {
+		mBrands = new ArrayList<Node>();
+		if(mCurrentCategory == null) {
+			return mBrands;
+		}
+		
+		for (BaseNode baseNode : mCurrentCategory.getChildren()) {
+			mBrands.add((Node) baseNode);
+		}
+
+		return mBrands;
+	}
+	public void setCurrentBrand(Node brand) {
+		mLocations = new ArrayList<Node>();
+		mQuestionTypes = new ArrayList<Node>();
+		
+		mCurrentBrand = brand;
+		mCurrentLocation = null;
+	}
+	public Node getCurrentBrand() {
+		return mCurrentBrand;
+	}
+
 	// Locations
 	public List<Node> getLocations() {
 		mLocations = new ArrayList<Node>();
-		if(mCurrentCategory == null) {
-			return new ArrayList<Node>();
+		if(mCurrentBrand == null) {
+			return mLocations;
 		}
 
-		for (BaseNode baseNode : mCurrentCategory.getChildren()) {
+		for (BaseNode baseNode : mCurrentBrand.getChildren()) {
 			mLocations.add((Node) baseNode);
 		}
 
