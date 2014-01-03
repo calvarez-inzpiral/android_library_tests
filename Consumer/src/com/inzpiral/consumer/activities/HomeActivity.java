@@ -57,7 +57,7 @@ public class HomeActivity extends SlidingFragmentActivity implements
 
 	// Manejo de evaluacion
 	private EvaluationHelper mHelper;
-	private String mURL = "http://www.frogmi.com/consumo_masivo.json";
+	private String mURL = "http://www.frogmi.com/consumo_masivo_lider.json";
 	//	private String mURL = "http://192.168.1.153/test/consumo_masivo.json";
 	
 	// Geotag
@@ -204,18 +204,20 @@ public class HomeActivity extends SlidingFragmentActivity implements
 		}, 1000);
 	}
 
-	public void loadCategories(long id, int position) {
-		System.out.println("id:" + id + ", position:" + position);
+	public void loadCategories(int groupPosition, int childPosition) {
+		System.out.println("groupPosition:" + groupPosition + ", childPosition:" + childPosition);
 
 		mHelper = EvaluationHelper.getInstance();
-		Node selectedLocation = mHelper.getCategories().get(position);
+		Node selectedCategory = mHelper.getCategories().get(groupPosition);
+		Node selectedBrand = (Node) selectedCategory.getChildren().get(groupPosition);
 
-		if(mHelper.getCurrentCategory() == selectedLocation) {
+		if(mHelper.getCurrentCategory() == selectedCategory && mHelper.getCurrentBrand() == selectedBrand) {
 			closeSlidingmenu();
 			return;
 		}
 
-		mHelper.setCurrentCategory(selectedLocation);
+		mHelper.setCurrentCategory(selectedCategory);
+		mHelper.setCurrentBrand(selectedBrand);
 
 		Fragment newFragment = new SpinnerFragment();
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

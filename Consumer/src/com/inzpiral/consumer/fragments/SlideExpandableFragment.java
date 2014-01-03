@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
 import com.inzpiral.consumer.R;
+import com.inzpiral.consumer.activities.HomeActivity;
 import com.inzpiral.consumer.adapters.SlidebarExpandableAdapter;
 import com.inzpiral.consumer.controllers.SlideMenuController;
 import com.inzpiral.consumer.controllers.SlideMenuController.SlideMenuControllerListener;
@@ -45,6 +46,18 @@ public class SlideExpandableFragment extends Fragment implements SlideMenuContro
 	public void setAdapter(ExpandableListView expListView, ArrayList<String> parentItems, ArrayList<Object> childItems) {
 		SlidebarExpandableAdapter expListAdapter = new SlidebarExpandableAdapter(getActivity(), parentItems, childItems);
 		expListView.setAdapter(expListAdapter);
+	}
+
+	@Override
+	public boolean childClicked(int groupPosition, int childPosition) {
+		if (getActivity() == null) return false;
+
+		if (getActivity() instanceof HomeActivity) {
+			((HomeActivity) getActivity()).loadCategories(groupPosition, childPosition);
+			return true;
+		}
+		
+		return false;
 	}
 
 }

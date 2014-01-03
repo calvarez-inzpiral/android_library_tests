@@ -11,9 +11,12 @@ import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.inzpiral.consumer.R;
+import com.inzpiral.consumer.activities.HomeActivity;
 import com.inzpiral.consumer.adapters.SlidebarExpandableAdapter;
 import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.Evaluation;
@@ -50,6 +53,7 @@ public class SlideMenuController implements OnClickListener {
 
 		configureList(mHelper.getCategories());
 		mListener.setAdapter(mExpListView, mParentItems, mChildItems);
+		mExpListView.setOnChildClickListener(mOnChildClickListener);
 		
 		recalculateProgress();
 	}
@@ -66,13 +70,20 @@ public class SlideMenuController implements OnClickListener {
 	}
 	
 	private void recalculateProgress() {
-		for (Node node : mHelper.getCategories()) {
+		for (Node node : mHelper.getBrands()) {
 			if(node instanceof PresentationNode) {
 				PresentationNode presentationNode = (PresentationNode)node;
 				System.out.println(node.getName() + ": " + (int)((float)presentationNode.countAnswers() / presentationNode.totalAnswers() * 100) + "%");
 			}
 		}
 	}
+
+	private OnChildClickListener mOnChildClickListener = new OnChildClickListener() {
+		@Override
+		public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+			return mListener.childClicked(childPosition, childPosition);
+		}
+	};
 	
 	@Override
 	public void onClick(View v) {
@@ -123,6 +134,7 @@ public class SlideMenuController implements OnClickListener {
 	// Interfaces
 	public interface SlideMenuControllerListener {
 		public void setAdapter(ExpandableListView expListView, ArrayList<String> parentItems, ArrayList<Object> childItems);
+		public boolean childClicked(int groupPosition, int childPosition);
 	}
 
 }

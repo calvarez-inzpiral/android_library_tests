@@ -45,7 +45,7 @@ public class SlideMenuFragment extends ListFragment implements SlideMenuControll
 		if (getActivity() == null) return;
 
 		if (getActivity() instanceof HomeActivity) {
-			((HomeActivity) getActivity()).loadCategories(id, position);
+//			((HomeActivity) getActivity()).loadCategories(id, position);
 		}
 	}
 
@@ -96,6 +96,11 @@ public class SlideMenuFragment extends ListFragment implements SlideMenuControll
 
 			return convertView;
 		}
+	}
+	@Override
+	public boolean childClicked(int groupPosition, int childPosition) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
