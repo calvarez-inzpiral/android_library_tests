@@ -22,7 +22,7 @@ import com.inzpiral.consumer.views.SlideMenuView;
  *
  */
 public class SlideMenuController implements OnClickListener {
-	
+
 	private SlideMenuView mSpinnersView;
 	private SlideMenuControllerListener mListener;
 	private EvaluationHelper mHelper;
@@ -35,10 +35,10 @@ public class SlideMenuController implements OnClickListener {
 
 		mSpinnersView.getRingGraphic().setPercent(75);
 		mListener.onSetListAdapter(mHelper.getCategories());
-		
+
 		recalculateProgress();
 	}
-	
+
 	private void recalculateProgress() {
 		for (Node node : mHelper.getCategories()) {
 			if(node instanceof PresentationNode) {
@@ -47,13 +47,13 @@ public class SlideMenuController implements OnClickListener {
 			}
 		}
 	}
-	
+
 	@Override
 	public void onClick(View v) {
 		Thread t = new Thread(null, new Runnable() {
 			@Override
 			public void run() {
-//				Node v = (Node) EvaluationHelper.getInstance().getRoot();
+				//				Node v = (Node) EvaluationHelper.getInstance().getRoot();
 				Evaluation v = EvaluationHelper.getInstance().getEvaluations();
 				Gson gson = new Gson();
 
@@ -81,19 +81,19 @@ public class SlideMenuController implements OnClickListener {
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
-//        File myFile = new File("/sdcard/myjsonstuff.txt");
-//        FileInputStream fIn = new FileInputStream(myFile);
-//        BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
-//        String aDataRow = "";
-//        String aBuffer = ""; //Holds the text
-//        while ((aDataRow = myReader.readLine()) != null) 
-//        {
-//            aBuffer += aDataRow ;
-//        }
-//        myReader.close();
-//		
+		//        File myFile = new File("/sdcard/myjsonstuff.txt");
+		//        FileInputStream fIn = new FileInputStream(myFile);
+		//        BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
+		//        String aDataRow = "";
+		//        String aBuffer = ""; //Holds the text
+		//        while ((aDataRow = myReader.readLine()) != null) 
+		//        {
+		//            aBuffer += aDataRow ;
+		//        }
+		//        myReader.close();
+		//		
 	}
-	
+
 	// Interfaces
 	public interface SlideMenuControllerListener {
 		public void onSetListAdapter(List<Node> list);
