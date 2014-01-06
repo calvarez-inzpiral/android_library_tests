@@ -38,7 +38,7 @@ public class TreeViewListDemo extends Activity {
     private TreeViewList treeView;
 
     private static final int[] DEMO_NODES = new int[] { 0, 0, 1, 1, 1, 2, 2, 1,
-            1, 2, 1, 0, 0, 0, 1, 2, 3, 2, 0, 0, 1, 2, 0, 1, 2, 0, 1 };
+        1, 2, 1, 0, 0, 0, 1, 2, 3, 2, 0, 0, 1, 2, 0, 1, 2, 0, 1 };
     private static final int LEVEL_NUMBER = 4;
     private TreeStateManager<Long> manager = null;
     private FancyColouredVariousSizesAdapter fancyAdapter;
