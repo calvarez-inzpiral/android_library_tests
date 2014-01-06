@@ -97,8 +97,7 @@ public class SlideMenuController implements OnClickListener {
 				treeBuilder.sequentiallyAddNextNode((long) i, (int)mNodeDepth.get(i));
 			}
 
-
-		newTreeType = TreeType.SIMPLE;
+			newTreeType = TreeType.SIMPLE;
 		newCollapsible = true;
 		//		} else {
 		//			manager = (TreeStateManager<Long>) savedInstanceState
