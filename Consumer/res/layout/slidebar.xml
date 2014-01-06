@@ -30,20 +30,27 @@
     <!-- android:layout_height="wrap_content" -->
     <!-- android:text="Categorías" -->
     <!-- android:textAppearance="?android:attr/textAppearanceLarge" /> -->
-<!-- intercambiar el tipo de lista para usar la lista expandible -->
-<!--     <ListView -->
-<!--         android:id="@android:id/list" -->
-<!--         android:layout_width="match_parent" -->
-<!--         android:layout_height="404dp" -->
-<!--         android:layout_weight="0.83" > -->
-<!--     </ListView> -->
-    
+    <!-- intercambiar el tipo de lista para usar la lista expandible -->
+    <!-- <ListView -->
+    <!-- android:id="@android:id/list" -->
+    <!-- android:layout_width="match_parent" -->
+    <!-- android:layout_height="404dp" -->
+    <!-- android:layout_weight="0.83" > -->
+    <!-- </ListView> -->
+
     <ExpandableListView
         android:id="@+id/exp_list"
         android:layout_width="match_parent"
         android:layout_height="404dp"
-        android:layout_weight="0.83" >
+        android:layout_weight="0.83"
+        android:visibility="gone" >
     </ExpandableListView>
+
+    <pl.polidea.treeview.TreeViewList
+        android:id="@+id/mainTreeView"
+        android:layout_width="match_parent"
+        android:layout_height="404dp"
+        android:layout_weight="0.83" />
 
     <Button
         android:id="@+id/btn_end"
