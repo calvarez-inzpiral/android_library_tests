@@ -28,6 +28,7 @@ import com.inzpiral.consumer.models.Evaluation;
 import com.inzpiral.consumer.models.IHeader;
 import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.models.PresentationNode;
+import com.inzpiral.consumer.models.TreeStructure;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.views.SlideMenuView;
 
@@ -52,13 +53,10 @@ public class SlideMenuController implements OnClickListener {
 	private final Set<Long> selected = new HashSet<Long>();
 	private TreeViewList treeView;
 
-	private static ArrayList<Integer> mNodeDepth;
-	private TreeStateManager<Long> manager = null;
-	private static final int[] DEMO_NODES = new int[] { 0, 0, 1, 1, 1, 2, 2, 1,
-		1, 2, 1, 0, 0, 0, 1, 2, 3, 2, 0, 0, 1, 2, 0, 1, 2, 0, 1 };
-
-
-
+	private static ArrayList<TreeStructure> mNodeDepth;
+	private TreeStateManager<TreeStructure> manager = null;
+//	private static final int[] DEMO_NODES = new int[] { 0, 0, 1, 1, 1, 2, 2, 1,
+//		1, 2, 1, 0, 0, 0, 1, 2, 3, 2, 0, 0, 1, 2, 0, 1, 2, 0, 1 };
 
 	private TreeType treeType;
 	private boolean collapsible;
@@ -91,10 +89,10 @@ public class SlideMenuController implements OnClickListener {
 		boolean newCollapsible;
 
 //		if (savedInstanceState == null) {
-			manager = new InMemoryTreeStateManager<Long>();
-			final TreeBuilder<Long> treeBuilder = new TreeBuilder<Long>(manager);
+			manager = new InMemoryTreeStateManager<TreeStructure>();
+			final TreeBuilder<TreeStructure> treeBuilder = new TreeBuilder<TreeStructure>(manager);
 			for (int i = 0; i < mNodeDepth.size(); i++) {
-				treeBuilder.sequentiallyAddNextNode((long) i, (int)mNodeDepth.get(i));
+				treeBuilder.sequentiallyAddNextNode(mNodeDepth.get(i), mNodeDepth.get(i).getDepth());
 			}
 
 			newTreeType = TreeType.SIMPLE;
@@ -127,7 +125,7 @@ public class SlideMenuController implements OnClickListener {
 	}
 
 	private void displayHeaders() {
-		mNodeDepth = new ArrayList<Integer>();
+		mNodeDepth = new ArrayList<TreeStructure>();
 		if(mHelper.getRoot() instanceof IHeader) {
 			IHeader root = (IHeader) mHelper.getRoot();
 			System.out.println("Root: " + root.headerName());
@@ -217,7 +215,7 @@ public class SlideMenuController implements OnClickListener {
 	// Interfaces
 	public interface SlideMenuControllerListener {
 		public void setAdapter(TreeViewList treeView, Set<Long> selected,
-				TreeStateManager<Long> manager);
+				TreeStateManager<TreeStructure> manager);
 	}
 
 }

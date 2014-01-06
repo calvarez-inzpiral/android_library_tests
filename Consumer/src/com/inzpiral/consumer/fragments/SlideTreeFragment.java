@@ -14,11 +14,12 @@ import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.adapters.ExpandableAdapter;
 import com.inzpiral.consumer.controllers.SlideMenuController;
 import com.inzpiral.consumer.controllers.SlideMenuController.SlideMenuControllerListener;
+import com.inzpiral.consumer.models.TreeStructure;
 import com.inzpiral.consumer.views.SlideMenuView;
 
 public class SlideTreeFragment extends Fragment implements SlideMenuControllerListener {
 	
-    private static final int LEVEL_NUMBER = 5;
+    private static final int LEVEL_NUMBER = 6;
     
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,10 +39,9 @@ public class SlideTreeFragment extends Fragment implements SlideMenuControllerLi
 
 	@Override
 	public void setAdapter(TreeViewList treeView, Set<Long> selected,
-			TreeStateManager<Long> manager) {
+			TreeStateManager<TreeStructure> manager) {
 		ExpandableAdapter simpleAdapter = new ExpandableAdapter(getActivity(), selected, manager, LEVEL_NUMBER);
 		treeView.setAdapter(simpleAdapter);
 	}
-   
 
 }

@@ -3,6 +3,8 @@ package com.inzpiral.consumer.adapters;
 import java.util.Arrays;
 import java.util.Set;
 
+import com.inzpiral.consumer.models.TreeStructure;
+
 import pl.polidea.treeview.AbstractTreeViewAdapter;
 import pl.polidea.treeview.R;
 import pl.polidea.treeview.TreeNodeInfo;
@@ -22,7 +24,7 @@ import android.widget.TextView;
  * adaptador que permite mostrar un arbol de n niveles
  * 
  */
-public class ExpandableAdapter extends AbstractTreeViewAdapter<Long> {
+public class ExpandableAdapter extends AbstractTreeViewAdapter<TreeStructure> {
 
 	private final Set<Long> selected;
 	Activity activity;
@@ -47,20 +49,21 @@ public class ExpandableAdapter extends AbstractTreeViewAdapter<Long> {
 
 	public ExpandableAdapter(Activity context,
 			final Set<Long> selected,
-			final TreeStateManager<Long> treeStateManager,
+			final TreeStateManager<TreeStructure> treeStateManager,
 			final int numberOfLevels) {
 		super( context, treeStateManager, numberOfLevels);
 		this.selected = selected;
 		this.activity= context;
 	}
 
-	private String getDescription(final long id) {
-		final Integer[] hierarchy = getManager().getHierarchyDescription(id);
-		return "Node " + id + Arrays.asList(hierarchy);
+	private String getDescription(final String id) {
+//		final Integer[] hierarchy = getManager().getHierarchyDescription(id);
+		return "";
+//		return "Node " + id + Arrays.asList(hierarchy);
 	}
 
 	@Override
-	public View getNewChildView(final TreeNodeInfo<Long> treeNodeInfo) {
+	public View getNewChildView(final TreeNodeInfo<TreeStructure> treeNodeInfo) {
 		final LinearLayout viewLayout = (LinearLayout) getActivity()
 				.getLayoutInflater().inflate(R.layout.demo_list_item, null);
 		return updateView(viewLayout, treeNodeInfo);
@@ -68,13 +71,14 @@ public class ExpandableAdapter extends AbstractTreeViewAdapter<Long> {
 
 	@Override
 	public LinearLayout updateView(final View view,
-			final TreeNodeInfo<Long> treeNodeInfo) {
+			final TreeNodeInfo<TreeStructure> treeNodeInfo) {
 		final LinearLayout viewLayout = (LinearLayout) view;
 		final TextView descriptionView = (TextView) viewLayout
 				.findViewById(R.id.demo_list_item_description);
 		final TextView levelView = (TextView) viewLayout
 				.findViewById(R.id.demo_list_item_level);
-		descriptionView.setText(getDescription(treeNodeInfo.getId()));
+//		descriptionView.setText(getDescription(treeNodeInfo.getId()));
+		descriptionView.setText(treeNodeInfo.getId().getNodeTitle());
 		levelView.setText(Integer.toString(treeNodeInfo.getLevel()));
 		final CheckBox box = (CheckBox) viewLayout
 				.findViewById(R.id.demo_list_checkbox);
@@ -91,20 +95,20 @@ public class ExpandableAdapter extends AbstractTreeViewAdapter<Long> {
 
 	@Override
 	public void handleItemClick(final View view, final Object id) {
-		final Long longId = (Long) id;
-		final TreeNodeInfo<Long> info = getManager().getNodeInfo(longId);
-		if (info.isWithChildren()) {
-			super.handleItemClick(view, id);
-		} else {
-			final ViewGroup vg = (ViewGroup) view;
-			final CheckBox cb = (CheckBox) vg
-					.findViewById(R.id.demo_list_checkbox);
-			cb.performClick();
-		}
+//		final Long longId = (Long) id;
+//		final TreeNodeInfo<TreeStructure> info = getManager().getNodeInfo(((TreeStructure)id));
+//		if (info.isWithChildren()) {
+//			super.handleItemClick(view, id);
+//		} else {
+//			final ViewGroup vg = (ViewGroup) view;
+//			final CheckBox cb = (CheckBox) vg
+//					.findViewById(R.id.demo_list_checkbox);
+//			cb.performClick();
+//		}
 	}
 
 	@Override
 	public long getItemId(final int position) {
-		return getTreeId(position);
+		return getTreeId(position).getDepth();
 	}
 }
