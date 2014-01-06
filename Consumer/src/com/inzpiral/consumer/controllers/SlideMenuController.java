@@ -42,11 +42,10 @@ public class SlideMenuController implements OnClickListener {
 	private ArrayList<String> mParentItems = new ArrayList<String>();
 	private ArrayList<Object> mChildItems = new ArrayList<Object>();
 	private ExpandableListView mExpListView;
-	
+
 	// ExpandableTree
 	private enum TreeType implements Serializable {
-		SIMPLE,
-		FANCY
+		SIMPLE
 	}
 	private final Set<Long> selected = new HashSet<Long>();
 	private TreeViewList treeView;
@@ -54,7 +53,7 @@ public class SlideMenuController implements OnClickListener {
 	private static final int[] DEMO_NODES = new int[] { 0, 0, 1, 1, 1, 2, 2, 1,
 		1, 2, 1, 0, 0, 0, 1, 2, 3, 2, 0, 0, 1, 2, 0, 1, 2, 0, 1 };
 	private TreeStateManager<Long> manager = null;
-	
+
 	private TreeType treeType;
 	private boolean collapsible;
 
@@ -65,61 +64,61 @@ public class SlideMenuController implements OnClickListener {
 
 		mSlideMenuView.getRingGraphic().setPercent(75);
 		displayHeaders();
-		
+
 		configureExpandableTree();
 
-//		Para 2 niveles NO BORRAR
-//		mExpListView = slideMenuView.getExpandableListView();
-//		mExpListView.setDividerHeight(2);
-//		mExpListView.setGroupIndicator(null);
-//		mExpListView.setClickable(true);
-//		configureList(mHelper.getCategories());
-//		mListener.setAdapter(mExpListView, mParentItems, mChildItems);
-//		mExpListView.setOnChildClickListener(mOnChildClickListener);
+		//		Para 2 niveles NO BORRAR
+		//		mExpListView = slideMenuView.getExpandableListView();
+		//		mExpListView.setDividerHeight(2);
+		//		mExpListView.setGroupIndicator(null);
+		//		mExpListView.setClickable(true);
+		//		configureList(mHelper.getCategories());
+		//		mListener.setAdapter(mExpListView, mParentItems, mChildItems);
+		//		mExpListView.setOnChildClickListener(mOnChildClickListener);
 
-//		NO BORRAR
-//		recalculateProgress();
+		//		NO BORRAR
+		//		recalculateProgress();
 	}
-	
+
 	private void configureExpandableTree() {
 		TreeType newTreeType = null;
 		boolean newCollapsible;
-//		if (savedInstanceState == null) {
-			manager = new InMemoryTreeStateManager<Long>();
-			final TreeBuilder<Long> treeBuilder = new TreeBuilder<Long>(manager);
-			for (int i = 0; i < DEMO_NODES.length; i++) {
-				treeBuilder.sequentiallyAddNextNode((long) i, DEMO_NODES[i]);
-			}
+		//		if (savedInstanceState == null) {
+		manager = new InMemoryTreeStateManager<Long>();
+		final TreeBuilder<Long> treeBuilder = new TreeBuilder<Long>(manager);
+		for (int i = 0; i < DEMO_NODES.length; i++) {
+			treeBuilder.sequentiallyAddNextNode((long) i, DEMO_NODES[i]);
+		}
 
-			newTreeType = TreeType.SIMPLE;
-			newCollapsible = true;
-//		} else {
-//			manager = (TreeStateManager<Long>) savedInstanceState
-//					.getSerializable("treeManager");
-//			if (manager == null) {
-//				manager = new InMemoryTreeStateManager<Long>();
-//			}
-//			newTreeType = (TreeType) savedInstanceState
-//					.getSerializable("treeType");
-//			if (newTreeType == null) {
-//				newTreeType = TreeType.SIMPLE;
-//			}
-//			newCollapsible = savedInstanceState.getBoolean("collapsible");
-//		}
+		newTreeType = TreeType.SIMPLE;
+		newCollapsible = true;
+		//		} else {
+		//			manager = (TreeStateManager<Long>) savedInstanceState
+		//					.getSerializable("treeManager");
+		//			if (manager == null) {
+		//				manager = new InMemoryTreeStateManager<Long>();
+		//			}
+		//			newTreeType = (TreeType) savedInstanceState
+		//					.getSerializable("treeType");
+		//			if (newTreeType == null) {
+		//				newTreeType = TreeType.SIMPLE;
+		//			}
+		//			newCollapsible = savedInstanceState.getBoolean("collapsible");
+		//		}
 
-//		treeView = (TreeViewList) getActivity().findViewById(R.id.mainTreeView);
+		//		treeView = (TreeViewList) getActivity().findViewById(R.id.mainTreeView);
 		treeView = mSlideMenuView.getTreeListView();
 
 		mListener.setAdapter(treeView, selected, manager);
-		
+
 		setCollapsible(newCollapsible);
 	}
-	
-    protected final void setCollapsible(final boolean newCollapsible) {
-        this.collapsible = newCollapsible;
-        treeView.setCollapsible(this.collapsible);
-    }
-	
+
+	protected final void setCollapsible(final boolean newCollapsible) {
+		this.collapsible = newCollapsible;
+		treeView.setCollapsible(this.collapsible);
+	}
+
 	private void displayHeaders() {
 		if(mHelper.getRoot() instanceof IHeader) {
 			IHeader root = (IHeader) mHelper.getRoot();
@@ -127,7 +126,7 @@ public class SlideMenuController implements OnClickListener {
 			root.displayHeader(0);
 		}
 	}
-	
+
 	// llena el listview hay que hacerlo iterar los nuevos niveles
 	public void configureList(List<Node> categories) {
 		for (Node category : categories) {
@@ -153,7 +152,7 @@ public class SlideMenuController implements OnClickListener {
 	private OnChildClickListener mOnChildClickListener = new OnChildClickListener() {
 		@Override
 		public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-//			return mListener.childClicked(childPosition, childPosition);
+			//			return mListener.childClicked(childPosition, childPosition);
 			return false;
 		}
 	};
