@@ -2,6 +2,8 @@ package com.inzpiral.consumer.models;
 
 import java.util.ArrayList;
 
+import com.inzpiral.consumer.utils.Config;
+
 
 
 public class PresentationNode extends Node implements IAnwerable, IHeader {
@@ -31,7 +33,7 @@ public class PresentationNode extends Node implements IAnwerable, IHeader {
 	@Override
 	public ArrayList<TreeStructure> displayHeader(ArrayList<TreeStructure> nodeDepth, int depth) {
 		for (BaseNode headerNode : getChildren()) {
-			if(headerNode instanceof IHeader) {
+			if(depth < Config.LEVEL_NUMBER && headerNode instanceof IHeader) {
 				nodeDepth.add(new TreeStructure(((IHeader)headerNode).headerName(), depth, "0%"));
 				System.out.println("Depth " + depth + ": " + ((IHeader)headerNode).headerName());
 				((IHeader)headerNode).displayHeader(nodeDepth, depth+1);

@@ -1,6 +1,7 @@
 package com.inzpiral.consumer.models;
 
 public class TreeStructure {
+    
 	private String mNodeTitle;
 	private String mPercent;
 	private int mDepth;
