@@ -20,6 +20,7 @@ import com.inzpiral.consumer.activities.HomeActivity;
 import com.inzpiral.consumer.adapters.SlidebarExpandableAdapter;
 import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.Evaluation;
+import com.inzpiral.consumer.models.IHeader;
 import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.models.PresentationNode;
 import com.inzpiral.consumer.utils.EvaluationHelper;
@@ -52,12 +53,20 @@ public class SlideMenuController implements OnClickListener {
 		mExpListView.setGroupIndicator(null);
 		mExpListView.setClickable(true);
 
-		configureList(mHelper.getCategories());
-		mListener.setAdapter(mExpListView, mParentItems, mChildItems);
-		mExpListView.setOnChildClickListener(mOnChildClickListener);
+		displayHeaders();
+		
+//		configureList(mHelper.getCategories());
+//		mListener.setAdapter(mExpListView, mParentItems, mChildItems);
+//		mExpListView.setOnChildClickListener(mOnChildClickListener);
 
-		recalculateProgress();
+//		recalculateProgress();
 	}
+	
+	private void displayHeaders() {
+		System.out.println("ASD " + mHelper.getRoot().getName());
+		((IHeader)mHelper.getRoot()).displayHeader(0);
+	}
+	
 	// llena el listview hay que hacerlo iterar los nuevos niveles
 	public void configureList(List<Node> categories) {
 		for (Node category : categories) {

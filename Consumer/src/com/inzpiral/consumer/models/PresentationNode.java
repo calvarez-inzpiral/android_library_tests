@@ -2,7 +2,7 @@ package com.inzpiral.consumer.models;
 
 
 
-public class PresentationNode extends Node implements IAnwerable {
+public class PresentationNode extends Node implements IAnwerable, IHeader {
 
 	@Override
 	public int countAnswers() {
@@ -24,6 +24,21 @@ public class PresentationNode extends Node implements IAnwerable {
 			}
 		}
 		return count;
+	}
+
+	@Override
+	public void displayHeader(int depth) {
+		for (BaseNode headerNode : getChildren()) {
+			if(headerNode instanceof IHeader) {
+				System.out.println("Depth " + depth + ": " + ((IHeader)headerNode).headerName());
+				((IHeader)headerNode).displayHeader(depth+1);
+			}
+		}
+	}
+
+	@Override
+	public String headerName() {
+		return getName();
 	}
 	
 }
