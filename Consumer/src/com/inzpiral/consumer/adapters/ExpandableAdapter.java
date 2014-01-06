@@ -1,23 +1,19 @@
 package com.inzpiral.consumer.adapters;
 
-import java.util.Arrays;
 import java.util.Set;
-
-import com.inzpiral.consumer.models.TreeStructure;
 
 import pl.polidea.treeview.AbstractTreeViewAdapter;
 import pl.polidea.treeview.R;
 import pl.polidea.treeview.TreeNodeInfo;
 import pl.polidea.treeview.TreeStateManager;
-import pl.polidea.treeview.demo.TreeViewListDemo;
 import android.app.Activity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.inzpiral.consumer.models.TreeStructure;
 
 /**
  * @author JP
@@ -57,9 +53,9 @@ public class ExpandableAdapter extends AbstractTreeViewAdapter<TreeStructure> {
 	}
 
 	private String getDescription(final String id) {
-//		final Integer[] hierarchy = getManager().getHierarchyDescription(id);
+		//		final Integer[] hierarchy = getManager().getHierarchyDescription(id);
 		return "";
-//		return "Node " + id + Arrays.asList(hierarchy);
+		//		return "Node " + id + Arrays.asList(hierarchy);
 	}
 
 	@Override
@@ -75,36 +71,36 @@ public class ExpandableAdapter extends AbstractTreeViewAdapter<TreeStructure> {
 		final LinearLayout viewLayout = (LinearLayout) view;
 		final TextView descriptionView = (TextView) viewLayout
 				.findViewById(R.id.demo_list_item_description);
-		final TextView levelView = (TextView) viewLayout
-				.findViewById(R.id.demo_list_item_level);
-//		descriptionView.setText(getDescription(treeNodeInfo.getId()));
+		//		final TextView levelView = (TextView) viewLayout
+		//				.findViewById(R.id.demo_list_item_level);
+		//		descriptionView.setText(getDescription(treeNodeInfo.getId()));
 		descriptionView.setText(treeNodeInfo.getId().getNodeTitle());
-		levelView.setText(Integer.toString(treeNodeInfo.getLevel()));
-		final CheckBox box = (CheckBox) viewLayout
-				.findViewById(R.id.demo_list_checkbox);
-		box.setTag(treeNodeInfo.getId());
-		if (treeNodeInfo.isWithChildren()) {
-			box.setVisibility(View.GONE);
-		} else {
-			box.setVisibility(View.VISIBLE);
-			box.setChecked(selected.contains(treeNodeInfo.getId()));
-		}
-		box.setOnCheckedChangeListener(onCheckedChange);
+		//levelView.setText(Integer.toString(treeNodeInfo.getLevel()));
+		//		final CheckBox box = (CheckBox) viewLayout
+		//				.findViewById(R.id.demo_list_checkbox);
+		//		box.setTag(treeNodeInfo.getId());
+		//		if (treeNodeInfo.isWithChildren()) {
+		//			box.setVisibility(View.GONE);
+		//		} else {
+		//			box.setVisibility(View.VISIBLE);
+		//			box.setChecked(selected.contains(treeNodeInfo.getId()));
+		//		}
+		//		box.setOnCheckedChangeListener(onCheckedChange);
 		return viewLayout;
 	}
 
 	@Override
 	public void handleItemClick(final View view, final Object id) {
-//		final Long longId = (Long) id;
-//		final TreeNodeInfo<TreeStructure> info = getManager().getNodeInfo(((TreeStructure)id));
-//		if (info.isWithChildren()) {
-//			super.handleItemClick(view, id);
-//		} else {
-//			final ViewGroup vg = (ViewGroup) view;
-//			final CheckBox cb = (CheckBox) vg
-//					.findViewById(R.id.demo_list_checkbox);
-//			cb.performClick();
-//		}
+		//		final Long longId = (Long) id;
+		//		final TreeNodeInfo<TreeStructure> info = getManager().getNodeInfo(((TreeStructure)id));
+		//		if (info.isWithChildren()) {
+		//			super.handleItemClick(view, id);
+		//		} else {
+		//			final ViewGroup vg = (ViewGroup) view;
+		//			final CheckBox cb = (CheckBox) vg
+		//					.findViewById(R.id.demo_list_checkbox);
+		//			cb.performClick();
+		//		}
 	}
 
 	@Override

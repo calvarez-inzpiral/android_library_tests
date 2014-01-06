@@ -7,7 +7,6 @@ import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -55,8 +54,8 @@ public class SlideMenuController implements OnClickListener {
 
 	private static ArrayList<TreeStructure> mNodeDepth;
 	private TreeStateManager<TreeStructure> manager = null;
-//	private static final int[] DEMO_NODES = new int[] { 0, 0, 1, 1, 1, 2, 2, 1,
-//		1, 2, 1, 0, 0, 0, 1, 2, 3, 2, 0, 0, 1, 2, 0, 1, 2, 0, 1 };
+	//	private static final int[] DEMO_NODES = new int[] { 0, 0, 1, 1, 1, 2, 2, 1,
+	//		1, 2, 1, 0, 0, 0, 1, 2, 3, 2, 0, 0, 1, 2, 0, 1, 2, 0, 1 };
 
 	private TreeType treeType;
 	private boolean collapsible;
@@ -88,14 +87,14 @@ public class SlideMenuController implements OnClickListener {
 		TreeType newTreeType = null;
 		boolean newCollapsible;
 
-//		if (savedInstanceState == null) {
-			manager = new InMemoryTreeStateManager<TreeStructure>();
-			final TreeBuilder<TreeStructure> treeBuilder = new TreeBuilder<TreeStructure>(manager);
-			for (int i = 0; i < mNodeDepth.size(); i++) {
-				treeBuilder.sequentiallyAddNextNode(mNodeDepth.get(i), mNodeDepth.get(i).getDepth());
-			}
+		//		if (savedInstanceState == null) {
+		manager = new InMemoryTreeStateManager<TreeStructure>();
+		final TreeBuilder<TreeStructure> treeBuilder = new TreeBuilder<TreeStructure>(manager);
+		for (int i = 0; i < mNodeDepth.size(); i++) {
+			treeBuilder.sequentiallyAddNextNode(mNodeDepth.get(i), mNodeDepth.get(i).getDepth());
+		}
 
-			newTreeType = TreeType.SIMPLE;
+		newTreeType = TreeType.SIMPLE;
 		newCollapsible = true;
 		//		} else {
 		//			manager = (TreeStateManager<Long>) savedInstanceState
@@ -131,7 +130,7 @@ public class SlideMenuController implements OnClickListener {
 			System.out.println("Root: " + root.headerName());
 			root.displayHeader(mNodeDepth, 0);
 		}
-		
+
 		System.out.println(Arrays.toString(mNodeDepth.toArray()));
 	}
 
