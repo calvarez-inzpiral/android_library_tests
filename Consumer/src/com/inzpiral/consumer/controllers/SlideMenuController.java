@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -51,9 +53,10 @@ public class SlideMenuController implements OnClickListener {
 	private final Set<Long> selected = new HashSet<Long>();
 	private TreeViewList treeView;
 
+	private static ArrayList<Integer> mNodeDepth;
+	private TreeStateManager<Long> manager = null;
 	private static final int[] DEMO_NODES = new int[] { 0, 0, 1, 1, 1, 2, 2, 1,
 		1, 2, 1, 0, 0, 0, 1, 2, 3, 2, 0, 0, 1, 2, 0, 1, 2, 0, 1 };
-	private TreeStateManager<Long> manager = null;
 	
 	private TreeType treeType;
 	private boolean collapsible;
@@ -87,8 +90,8 @@ public class SlideMenuController implements OnClickListener {
 //		if (savedInstanceState == null) {
 			manager = new InMemoryTreeStateManager<Long>();
 			final TreeBuilder<Long> treeBuilder = new TreeBuilder<Long>(manager);
-			for (int i = 0; i < DEMO_NODES.length; i++) {
-				treeBuilder.sequentiallyAddNextNode((long) i, DEMO_NODES[i]);
+			for (int i = 0; i < mNodeDepth.size(); i++) {
+				treeBuilder.sequentiallyAddNextNode((long) i, (int)mNodeDepth.get(i));
 			}
 
 			newTreeType = TreeType.SIMPLE;
@@ -121,11 +124,14 @@ public class SlideMenuController implements OnClickListener {
     }
 	
 	private void displayHeaders() {
+		mNodeDepth = new ArrayList<Integer>();
 		if(mHelper.getRoot() instanceof IHeader) {
 			IHeader root = (IHeader) mHelper.getRoot();
-			System.out.println("Depth 0: " + root.headerName());
-			root.displayHeader(0);
+			System.out.println("Root: " + root.headerName());
+			root.displayHeader(mNodeDepth, 0);
 		}
+		
+		System.out.println(Arrays.toString(mNodeDepth.toArray()));
 	}
 	
 	// llena el listview hay que hacerlo iterar los nuevos niveles

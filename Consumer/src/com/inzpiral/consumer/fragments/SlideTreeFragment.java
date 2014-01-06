@@ -1,8 +1,14 @@
 package com.inzpiral.consumer.fragments;
 
-import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
+
+import pl.polidea.treeview.TreeStateManager;
+import pl.polidea.treeview.TreeViewList;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.adapters.ExpandableAdapter;
@@ -10,27 +16,9 @@ import com.inzpiral.consumer.controllers.SlideMenuController;
 import com.inzpiral.consumer.controllers.SlideMenuController.SlideMenuControllerListener;
 import com.inzpiral.consumer.views.SlideMenuView;
 
-import pl.polidea.treeview.InMemoryTreeStateManager;
-import pl.polidea.treeview.TreeBuilder;
-import pl.polidea.treeview.TreeStateManager;
-import pl.polidea.treeview.TreeViewList;
-
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.widget.AdapterView.AdapterContextMenuInfo;
-
 public class SlideTreeFragment extends Fragment implements SlideMenuControllerListener {
 	
-    private static final int LEVEL_NUMBER = 4;
+    private static final int LEVEL_NUMBER = 5;
     
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
