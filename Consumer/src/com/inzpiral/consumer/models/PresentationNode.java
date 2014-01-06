@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.inzpiral.consumer.utils.Config;
 
 
-
 public class PresentationNode extends Node implements IAnwerable, IHeader {
 
 	@Override
