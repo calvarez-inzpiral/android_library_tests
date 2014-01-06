@@ -34,6 +34,7 @@ import com.google.gson.GsonBuilder;
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.fragments.FragmentAdapter;
 import com.inzpiral.consumer.fragments.SlideExpandableFragment;
+import com.inzpiral.consumer.fragments.SlideTreeFragment;
 import com.inzpiral.consumer.fragments.SpinnerFragment;
 import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.Evaluation;
@@ -107,11 +108,13 @@ ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
 		if (savedInstanceState == null) {
 			FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
 			//mFrag = new SlideMenuFragment();
-			mFrag = new SlideExpandableFragment();
+			//mFrag = new SlideExpandableFragment();
+			mFrag = new SlideTreeFragment();
 			t.replace(R.id.menu_frame, mFrag);
 			t.commit();
 		} else {
 			//mFrag = (ListFragment)this.getSupportFragmentManager().findFragmentById(R.id.menu_frame);
+			//mFrag = (Fragment)this.getSupportFragmentManager().findFragmentById(R.id.menu_frame);
 			mFrag = (Fragment)this.getSupportFragmentManager().findFragmentById(R.id.menu_frame);
 		}
 

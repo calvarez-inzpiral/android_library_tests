@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import pl.polidea.treeview.InMemoryTreeStateManager;
+
 import pl.polidea.treeview.R;
 import pl.polidea.treeview.TreeBuilder;
 import pl.polidea.treeview.TreeNodeInfo;

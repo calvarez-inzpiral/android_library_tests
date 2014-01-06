@@ -33,4 +33,8 @@ public class SlideMenuView extends LinearLayout {
 		return (ExpandableListView) findViewById(R.id.exp_list);
 	}
 	
+	public ExpandableListView getTreeListView() {
+		return (ExpandableListView) findViewById(R.id.mainTreeView);
+	}
+	
 }
