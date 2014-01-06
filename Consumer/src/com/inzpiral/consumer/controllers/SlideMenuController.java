@@ -116,6 +116,7 @@ public class SlideMenuController implements OnClickListener {
 		mListener.setAdapter(treeView, selected, manager);
 
 		setCollapsible(newCollapsible);
+		manager.collapseChildren(null);
 	}
 
 	protected final void setCollapsible(final boolean newCollapsible) {
