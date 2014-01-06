@@ -1,5 +1,6 @@
 package com.inzpiral.consumer.views;
 
+import pl.polidea.treeview.TreeViewList;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.Button;
@@ -33,8 +34,12 @@ public class SlideMenuView extends LinearLayout {
 		return (ExpandableListView) findViewById(R.id.exp_list);
 	}
 	
-	public ExpandableListView getTreeListView() {
-		return (ExpandableListView) findViewById(R.id.mainTreeView);
+//	public ExpandableListView getTreeListView() {
+//		return (ExpandableListView) findViewById(R.id.mainTreeView);
+//	}
+	
+	public TreeViewList getTreeListView() {
+		return (TreeViewList) findViewById(R.id.mainTreeView);
 	}
 	
 }

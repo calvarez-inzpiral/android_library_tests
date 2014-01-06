@@ -33,7 +33,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.inzpiral.consumer.R;
 import com.inzpiral.consumer.fragments.FragmentAdapter;
-import com.inzpiral.consumer.fragments.SlideExpandableFragment;
 import com.inzpiral.consumer.fragments.SlideTreeFragment;
 import com.inzpiral.consumer.fragments.SpinnerFragment;
 import com.inzpiral.consumer.models.BaseNode;
