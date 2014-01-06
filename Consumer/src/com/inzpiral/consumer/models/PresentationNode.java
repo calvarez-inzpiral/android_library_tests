@@ -1,5 +1,7 @@
 package com.inzpiral.consumer.models;
 
+import java.util.ArrayList;
+
 
 
 public class PresentationNode extends Node implements IAnwerable, IHeader {
@@ -27,13 +29,15 @@ public class PresentationNode extends Node implements IAnwerable, IHeader {
 	}
 
 	@Override
-	public void displayHeader(int depth) {
+	public ArrayList<Integer> displayHeader(ArrayList<Integer> nodeDepth, int depth) {
 		for (BaseNode headerNode : getChildren()) {
 			if(headerNode instanceof IHeader) {
+				nodeDepth.add(depth);
 				System.out.println("Depth " + depth + ": " + ((IHeader)headerNode).headerName());
-				((IHeader)headerNode).displayHeader(depth+1);
+				((IHeader)headerNode).displayHeader(nodeDepth, depth+1);
 			}
 		}
+		return nodeDepth;
 	}
 
 	@Override

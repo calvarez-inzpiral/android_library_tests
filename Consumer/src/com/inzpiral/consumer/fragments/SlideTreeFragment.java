@@ -18,7 +18,7 @@ import com.inzpiral.consumer.views.SlideMenuView;
 
 public class SlideTreeFragment extends Fragment implements SlideMenuControllerListener {
 	
-    private static final int LEVEL_NUMBER = 4;
+    private static final int LEVEL_NUMBER = 5;
     
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

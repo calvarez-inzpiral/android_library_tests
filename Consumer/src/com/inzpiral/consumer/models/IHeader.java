@@ -1,6 +1,8 @@
 package com.inzpiral.consumer.models;
 
+import java.util.ArrayList;
+
 public interface IHeader {
-	public void displayHeader(int depth);
+	public ArrayList<Integer> displayHeader(ArrayList<Integer> nodeDepth, int depth);
 	public String headerName();
 }
