@@ -90,14 +90,14 @@ public class SlideMenuController implements OnClickListener {
 		TreeType newTreeType = null;
 		boolean newCollapsible;
 
-//		if (savedInstanceState == null) {
-			manager = new InMemoryTreeStateManager<Long>();
-			final TreeBuilder<Long> treeBuilder = new TreeBuilder<Long>(manager);
-			for (int i = 0; i < mNodeDepth.size(); i++) {
-				treeBuilder.sequentiallyAddNextNode((long) i, (int)mNodeDepth.get(i));
-			}
+		//		if (savedInstanceState == null) {
+		manager = new InMemoryTreeStateManager<Long>();
+		final TreeBuilder<Long> treeBuilder = new TreeBuilder<Long>(manager);
+		for (int i = 0; i < mNodeDepth.size(); i++) {
+			treeBuilder.sequentiallyAddNextNode((long) i, (int)mNodeDepth.get(i));
+		}
 
-			newTreeType = TreeType.SIMPLE;
+		newTreeType = TreeType.SIMPLE;
 		newCollapsible = true;
 		//		} else {
 		//			manager = (TreeStateManager<Long>) savedInstanceState
@@ -133,7 +133,7 @@ public class SlideMenuController implements OnClickListener {
 			System.out.println("Root: " + root.headerName());
 			root.displayHeader(mNodeDepth, 0);
 		}
-		
+
 		System.out.println(Arrays.toString(mNodeDepth.toArray()));
 	}
 
