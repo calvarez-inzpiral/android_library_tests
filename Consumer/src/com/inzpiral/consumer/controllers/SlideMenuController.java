@@ -89,21 +89,14 @@ public class SlideMenuController implements OnClickListener {
 	private void configureExpandableTree() {
 		TreeType newTreeType = null;
 		boolean newCollapsible;
-<<<<<<< HEAD
-		//		if (savedInstanceState == null) {
-		manager = new InMemoryTreeStateManager<Long>();
-		final TreeBuilder<Long> treeBuilder = new TreeBuilder<Long>(manager);
-		for (int i = 0; i < DEMO_NODES.length; i++) {
-			treeBuilder.sequentiallyAddNextNode((long) i, DEMO_NODES[i]);
-		}
-=======
+
 //		if (savedInstanceState == null) {
 			manager = new InMemoryTreeStateManager<Long>();
 			final TreeBuilder<Long> treeBuilder = new TreeBuilder<Long>(manager);
 			for (int i = 0; i < mNodeDepth.size(); i++) {
 				treeBuilder.sequentiallyAddNextNode((long) i, (int)mNodeDepth.get(i));
 			}
->>>>>>> 0ba72282b904d26dae53002492af1603898a6d67
+
 
 		newTreeType = TreeType.SIMPLE;
 		newCollapsible = true;
