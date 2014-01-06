@@ -34,7 +34,7 @@ public class SlideMenuController implements OnClickListener {
 	private SlideMenuView mSpinnersView;
 	private SlideMenuControllerListener mListener;
 	private EvaluationHelper mHelper;
-	
+
 	private ArrayList<String> mParentItems = new ArrayList<String>();
 	private ArrayList<Object> mChildItems = new ArrayList<Object>();
 	private ExpandableListView mExpListView;
@@ -55,10 +55,10 @@ public class SlideMenuController implements OnClickListener {
 		configureList(mHelper.getCategories());
 		mListener.setAdapter(mExpListView, mParentItems, mChildItems);
 		mExpListView.setOnChildClickListener(mOnChildClickListener);
-		
+
 		recalculateProgress();
 	}
-	
+	// llena el listview hay que hacerlo iterar los nuevos niveles
 	public void configureList(List<Node> categories) {
 		for (Node category : categories) {
 			mParentItems.add(category.getName());
@@ -69,7 +69,7 @@ public class SlideMenuController implements OnClickListener {
 			mChildItems.add(child);
 		}
 	}
-	
+
 
 	private void recalculateProgress() {
 		for (Node node : mHelper.getBrands()) {
@@ -86,14 +86,14 @@ public class SlideMenuController implements OnClickListener {
 			return mListener.childClicked(childPosition, childPosition);
 		}
 	};
-	
+
 
 	@Override
 	public void onClick(View v) {
 		Thread t = new Thread(null, new Runnable() {
 			@Override
 			public void run() {
-				//				Node v = (Node) EvaluationHelper.getInstance().getRoot();
+				//Node v = (Node) EvaluationHelper.getInstance().getRoot();
 				Evaluation v = EvaluationHelper.getInstance().getEvaluations();
 				Gson gson = new Gson();
 

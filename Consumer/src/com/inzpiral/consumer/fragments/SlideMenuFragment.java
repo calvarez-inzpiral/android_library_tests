@@ -23,14 +23,14 @@ import com.inzpiral.consumer.models.Node;
 import com.inzpiral.consumer.views.SlideMenuView;
 
 public class SlideMenuFragment extends ListFragment implements SlideMenuControllerListener {
-	
+
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.slidebar, null);
 	}
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
+
 		// Activity links the view and the controller
 		SlideMenuController slideMenuController = new SlideMenuController((SlideMenuView) getView().findViewById(R.id.slide_menu_view), this);
 
@@ -45,7 +45,7 @@ public class SlideMenuFragment extends ListFragment implements SlideMenuControll
 		if (getActivity() == null) return;
 
 		if (getActivity() instanceof HomeActivity) {
-//			((HomeActivity) getActivity()).loadCategories(id, position);
+			//((HomeActivity) getActivity()).loadCategories(id, position);
 		}
 	}
 
@@ -54,18 +54,18 @@ public class SlideMenuFragment extends ListFragment implements SlideMenuControll
 	public void setAdapter(ExpandableListView expListView,
 			ArrayList<String> parentItems, ArrayList<Object> childItems) {
 		// TODO Auto-generated method stub
-		
+
 	}
-//	@Override
-//	public void configureList(List<Node> categories) {
-//		SlideMenuListAdapter adapter = new SlideMenuListAdapter(getActivity());
-//		for (Node category : categories) {
-//			adapter.add(new rowItem(category.getCode(), category.getName(), 0, android.R.drawable.ic_menu_search));
-//		}
-//
-//		setListAdapter(adapter);
-//	}
-	
+	//	@Override
+	//	public void configureList(List<Node> categories) {
+	//		SlideMenuListAdapter adapter = new SlideMenuListAdapter(getActivity());
+	//		for (Node category : categories) {
+	//			adapter.add(new rowItem(category.getCode(), category.getName(), 0, android.R.drawable.ic_menu_search));
+	//		}
+	//
+	//		setListAdapter(adapter);
+	//	}
+
 	// List adapter
 	private class rowItem {
 		public String code, title, percent;

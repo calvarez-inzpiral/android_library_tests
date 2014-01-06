@@ -2,16 +2,14 @@ package com.inzpiral.consumer.adapters;
 
 import java.util.ArrayList;
 
-import com.inzpiral.consumer.R;
-
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.inzpiral.consumer.R;
 
 public class SlidebarExpandableAdapter extends BaseExpandableListAdapter{
 
@@ -52,22 +50,13 @@ public class SlidebarExpandableAdapter extends BaseExpandableListAdapter{
 		if (convertView == null) {
 			@SuppressWarnings("static-access")
 			LayoutInflater infalInflater = (LayoutInflater) activity
-					.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
+			.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
 			convertView = infalInflater.inflate(R.layout.row,
 					null);
 		}
 
 		textView = (TextView) convertView.findViewById(R.id.row_title);
 		textView.setText(child.get(childPosition));
-
-//		convertView.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View view) {
-//				Toast.makeText(activity, child.get(childPosition),
-//						Toast.LENGTH_SHORT).show();
-//			}
-//		});
 
 		return convertView;
 	}
@@ -95,7 +84,7 @@ public class SlidebarExpandableAdapter extends BaseExpandableListAdapter{
 
 	@Override
 	public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-	
+
 
 		if (convertView == null) {
 			LayoutInflater infalInflater = (LayoutInflater) activity

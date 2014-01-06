@@ -47,7 +47,7 @@ import com.viewpagerindicator.IconPageIndicator;
 import com.viewpagerindicator.PageIndicator;
 
 public class HomeActivity extends SlidingFragmentActivity implements 
-		ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
+ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
 
 	// Manejo de tabs
 	private FragmentAdapter mAdapter;
@@ -57,9 +57,9 @@ public class HomeActivity extends SlidingFragmentActivity implements
 
 	// Manejo de evaluacion
 	private EvaluationHelper mHelper;
-	private String mURL = "http://www.frogmi.com/consumo_masivo_lider.json";
+	private String mURL = "http://www.frogmi.com/consumo_masivo.json";
 	//	private String mURL = "http://192.168.1.153/test/consumo_masivo.json";
-	
+
 	// Geotag
 	private LocationClient mLocationClient;
 	private LocationRequest mLocationRequest;
@@ -75,15 +75,15 @@ public class HomeActivity extends SlidingFragmentActivity implements
 		// Create the LocationClient object
 		mLocationClient = new LocationClient(this, this, this);
 		// Create the LocationRequest object
-        mLocationRequest = LocationRequest.create();
-        // Use high accuracy
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        // Set the update interval to 10 seconds
-        mLocationRequest.setInterval(10000);
-        // Set the fastest update interval to 5 seconds
-        mLocationRequest.setFastestInterval(5000);
+		mLocationRequest = LocationRequest.create();
+		// Use high accuracy
+		mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+		// Set the update interval to 10 seconds
+		mLocationRequest.setInterval(10000);
+		// Set the fastest update interval to 5 seconds
+		mLocationRequest.setFastestInterval(5000);
 	}
-	
+
 	@Override
 	public void onStart() {
 		super.onStart();
@@ -93,7 +93,7 @@ public class HomeActivity extends SlidingFragmentActivity implements
 	public void onStop() {
 		if (mLocationClient.isConnected()) {
 			mLocationClient.removeLocationUpdates(this);
-        }
+		}
 		mLocationClient.disconnect();
 		super.onStop();
 	}
@@ -236,33 +236,33 @@ public class HomeActivity extends SlidingFragmentActivity implements
 			}
 		}, 50);
 	}
-	
+
 	// Geotag listener
 	@Override
 	public void onConnected(Bundle dataBundle) {
 		Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
 		mLocationClient.requestLocationUpdates(mLocationRequest, this);
-//		displayCurrentLocation();
+		//		displayCurrentLocation();
 	}
 
 	@Override
 	public void onDisconnected() {
 		Toast.makeText(this, "Disconnected. Please re-connect.", Toast.LENGTH_SHORT).show();
 	}
-	
+
 	@Override
 	public void onConnectionFailed(ConnectionResult connectionResult) {
-	      Toast.makeText(this, "Connection Failure : " + connectionResult.getErrorCode(), Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "Connection Failure : " + connectionResult.getErrorCode(), Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onLocationChanged(Location location) {
 		displayCurrentLocation();
 	}
-	
+
 	public void displayCurrentLocation() {
 		Location currentLocation = null;
-		
+
 		// Get the current location's latitude & longitude
 		currentLocation = mLocationClient.getLastLocation();
 		String msg = "Current Location: " +
