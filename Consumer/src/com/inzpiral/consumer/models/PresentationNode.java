@@ -34,9 +34,10 @@ public class PresentationNode extends Node implements IAnwerable, IHeader {
 		if(getChildren() == null) return nodeDepth;
 		for (BaseNode headerNode : getChildren()) {
 			if(depth < Config.LEVEL_NUMBER && headerNode instanceof IHeader) {
-				nodeDepth.add(new TreeStructure(((IHeader)headerNode).headerName(), depth, "0%"));
-				System.out.println("Depth " + depth + ": " + ((IHeader)headerNode).headerName());
-				((IHeader)headerNode).displayHeader(nodeDepth, depth+1);
+				IHeader header = (IHeader)headerNode;
+				nodeDepth.add(new TreeStructure(headerNode.getCode(), header.headerName(), depth, "0%"));
+				System.out.println("Depth " + depth + ": " + header.headerName());
+				header.displayHeader(nodeDepth, depth+1);
 			}
 		}
 		return nodeDepth;

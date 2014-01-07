@@ -209,13 +209,26 @@ ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
 	}
 
 	public void loadCategories(TreeStructure parent, TreeStructure pressed) {
+		Node selectedCategory = null;
+		Node selectedBrand = null; 
+		
 		System.out.println("parent:" + parent.getNodeTitle() + ", pressed:" + pressed.getNodeTitle());
-
 		mHelper = EvaluationHelper.getInstance();
-		Node selectedCategory = mHelper.getCategories().get(groupPosition);
-		Node selectedBrand = (Node) selectedCategory.getChildren().get(groupPosition);
 
-		if(mHelper.getCurrentCategory() == selectedCategory && mHelper.getCurrentBrand() == selectedBrand) {
+		for (Node category : mHelper.getCategories()) {
+			if(category.getCode().equals(parent.getNodeCode())) {
+				selectedCategory = category;
+			}
+		}
+		for (BaseNode brand : selectedCategory.getChildren()) {
+			if(brand.getCode().equals(pressed.getNodeCode())) {
+				selectedBrand = (Node)brand;
+			}
+		}
+
+		if(selectedCategory == null || selectedCategory == null ||
+				(mHelper.getCurrentCategory() == selectedCategory && 
+				mHelper.getCurrentBrand() == selectedBrand)) {
 			closeSlidingmenu();
 			return;
 		}
