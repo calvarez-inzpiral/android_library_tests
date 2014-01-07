@@ -112,6 +112,7 @@ public class SlideMenuController implements OnClickListener {
 
 		//		treeView = (TreeViewList) getActivity().findViewById(R.id.mainTreeView);
 		treeView = mSlideMenuView.getTreeListView();
+//		treeView.setHandleTrackballPress(true);
 
 		mListener.setAdapter(treeView, selected, manager);
 

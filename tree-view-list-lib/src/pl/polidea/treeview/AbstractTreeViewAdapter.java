@@ -246,7 +246,7 @@ public abstract class AbstractTreeViewAdapter<T> extends BaseAdapter implements
         if (nodeInfo.isWithChildren() && collapsible) {
             layout.setOnClickListener(indicatorClickListener);
         } else {
-            layout.setOnClickListener(null);
+//            layout.setOnClickListener(null);
         }
         layout.setTag(nodeInfo.getId());
         final FrameLayout frameLayout = (FrameLayout) layout

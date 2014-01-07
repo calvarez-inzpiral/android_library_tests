@@ -2,15 +2,25 @@ package com.inzpiral.consumer.models;
 
 public class TreeStructure {
     
+	private String mNodeCode;
 	private String mNodeTitle;
 	private String mPercent;
 	private int mDepth;
 	
-	public TreeStructure(String mNodeTitle, int depth, String mPercent) {
+	public TreeStructure(String nodeCode, String mNodeTitle, int depth, String mPercent) {
+		this.mNodeCode = nodeCode;
 		this.mNodeTitle = mNodeTitle;
 		this.mDepth = depth;
 		this.mPercent = mPercent;
 	}
+	
+	public String getNodeCode() {
+		return mNodeCode;
+	}
+	public void setNodeCode(String nodeCode) {
+		this.mNodeCode = nodeCode;
+	}
+
 	public String getNodeTitle() {
 		return mNodeTitle;
 	}

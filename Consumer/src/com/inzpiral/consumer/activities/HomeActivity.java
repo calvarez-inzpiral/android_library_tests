@@ -38,6 +38,7 @@ import com.inzpiral.consumer.fragments.SpinnerFragment;
 import com.inzpiral.consumer.models.BaseNode;
 import com.inzpiral.consumer.models.Evaluation;
 import com.inzpiral.consumer.models.Node;
+import com.inzpiral.consumer.models.TreeStructure;
 import com.inzpiral.consumer.utils.ConsumerDeserializer;
 import com.inzpiral.consumer.utils.EvaluationHelper;
 import com.inzpiral.consumer.utils.NetworkUtils;
@@ -207,8 +208,8 @@ ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
 		}, 1000);
 	}
 
-	public void loadCategories(int groupPosition, int childPosition) {
-		System.out.println("groupPosition:" + groupPosition + ", childPosition:" + childPosition);
+	public void loadCategories(TreeStructure parent, TreeStructure pressed) {
+		System.out.println("parent:" + parent.getNodeTitle() + ", pressed:" + pressed.getNodeTitle());
 
 		mHelper = EvaluationHelper.getInstance();
 		Node selectedCategory = mHelper.getCategories().get(groupPosition);

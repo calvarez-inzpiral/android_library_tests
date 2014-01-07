@@ -2,6 +2,6 @@ package com.inzpiral.consumer.utils;
 
 public class Config {
 	
-    public static final int LEVEL_NUMBER = 10;
+    public static final int LEVEL_NUMBER = 2;
     
 }

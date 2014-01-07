@@ -13,6 +13,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.inzpiral.consumer.activities.HomeActivity;
 import com.inzpiral.consumer.models.TreeStructure;
 
 /**
@@ -23,7 +24,7 @@ import com.inzpiral.consumer.models.TreeStructure;
 public class ExpandableAdapter extends AbstractTreeViewAdapter<TreeStructure> {
 
 	private final Set<Long> selected;
-	Activity activity;
+	private Activity mActivity;
 
 	private final OnCheckedChangeListener onCheckedChange = new OnCheckedChangeListener() {
 		@Override
@@ -49,7 +50,7 @@ public class ExpandableAdapter extends AbstractTreeViewAdapter<TreeStructure> {
 			final int numberOfLevels) {
 		super( context, treeStateManager, numberOfLevels);
 		this.selected = selected;
-		this.activity= context;
+		this.mActivity= context;
 	}
 
 	private String getDescription(final String id) {
@@ -90,17 +91,17 @@ public class ExpandableAdapter extends AbstractTreeViewAdapter<TreeStructure> {
 	}
 
 	@Override
-	public void handleItemClick(final View view, final Object id) {
-		//		final Long longId = (Long) id;
-		//		final TreeNodeInfo<TreeStructure> info = getManager().getNodeInfo(((TreeStructure)id));
-		//		if (info.isWithChildren()) {
-		//			super.handleItemClick(view, id);
-		//		} else {
-		//			final ViewGroup vg = (ViewGroup) view;
-		//			final CheckBox cb = (CheckBox) vg
-		//					.findViewById(R.id.demo_list_checkbox);
-		//			cb.performClick();
-		//		}
+	public void handleItemClick(final View view, Object id) {
+		TreeStructure treeStructure = (TreeStructure) id;
+		TreeStructure parentTreeStructure = getManager().getParent(treeStructure);
+		
+		System.out.println("ME: " + treeStructure.getNodeTitle());
+		System.out.println("PARENT: " + parentTreeStructure.getNodeTitle());
+
+		if (mActivity == null) return;
+		if (mActivity instanceof HomeActivity) {
+			((HomeActivity) getActivity()).loadCategories(parentTreeStructure, treeStructure);
+		}
 	}
 
 	@Override
