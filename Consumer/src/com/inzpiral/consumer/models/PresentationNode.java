@@ -31,6 +31,7 @@ public class PresentationNode extends Node implements IAnwerable, IHeader {
 
 	@Override
 	public ArrayList<TreeStructure> displayHeader(ArrayList<TreeStructure> nodeDepth, int depth) {
+		if(getChildren() == null) return nodeDepth;
 		for (BaseNode headerNode : getChildren()) {
 			if(depth < Config.LEVEL_NUMBER && headerNode instanceof IHeader) {
 				nodeDepth.add(new TreeStructure(((IHeader)headerNode).headerName(), depth, "0%"));
