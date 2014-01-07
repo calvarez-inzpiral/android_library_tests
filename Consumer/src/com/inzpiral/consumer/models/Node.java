@@ -15,6 +15,9 @@ public class Node extends BaseNode {
 	@SerializedName("children")
 	private List<BaseNode> mChildren;
 
+	@SerializedName("references")
+	private List<Reference> mReferences;
+
 	public String getName() {
 		return mName;
 	}
@@ -38,6 +41,14 @@ public class Node extends BaseNode {
 
 	public void setChildren(List<BaseNode> mChildren) {
 		this.mChildren = mChildren;
+	}
+
+	public List<Reference> getReferences() {
+		return mReferences;
+	}
+
+	public void setReferences(List<Reference> references) {
+		this.mReferences = references;
 	}
 	
 	// Other methods

@@ -57,9 +57,9 @@ ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
 
 	// Manejo de evaluacion
 	private EvaluationHelper mHelper;
-//	private String mURL = "http://www.frogmi.com/consumo_masivo.json";
+	private String mURL = "http://www.frogmi.com/consumo_masivo.json";
 //	private String mURL = "http://www.frogmi.com/consumo_masivo_lider.json";
-	private String mURL = "http://www.frogmi.com/consumo_masivo_indice.json";
+//	private String mURL = "http://www.frogmi.com/consumo_masivo_indice.json";
 
 	// Geotag
 	private LocationClient mLocationClient;
