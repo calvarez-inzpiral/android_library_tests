@@ -224,6 +224,7 @@ public abstract class AbstractTreeViewAdapter<T> extends BaseAdapter implements
         }
     }
 
+    @SuppressWarnings("deprecation")
     public final LinearLayout populateTreeItem(final LinearLayout layout,
             final View childView, final TreeNodeInfo<T> nodeInfo,
             final boolean newChildView) {
@@ -243,9 +244,9 @@ public abstract class AbstractTreeViewAdapter<T> extends BaseAdapter implements
         image.setScaleType(ScaleType.CENTER);
         image.setTag(nodeInfo.getId());
         if (nodeInfo.isWithChildren() && collapsible) {
-            image.setOnClickListener(indicatorClickListener);
+            layout.setOnClickListener(indicatorClickListener);
         } else {
-            image.setOnClickListener(null);
+            layout.setOnClickListener(null);
         }
         layout.setTag(nodeInfo.getId());
         final FrameLayout frameLayout = (FrameLayout) layout
